@@ -225,3 +225,22 @@
 [2026-04-14T18:22:56]   OSM: 56 raw hits
 [2026-04-14T18:23:00] Total raw candidates: 237
 [2026-04-14T18:23:00] Run complete. Added: 40, Updated: 42, Total on file: 103
+[2026-04-14T18:38:02] Loaded store: 103 existing leads
+[2026-04-14T18:38:02] Source: OpenStreetMap (no API key)
+[2026-04-14T18:38:02] Category: Plumbing
+[2026-04-14T18:38:06]   OSM: 13 raw hits
+[2026-04-14T18:38:10] Category: HVAC / Heating
+[2026-04-14T18:38:13]   OSM: 12 raw hits
+[2026-04-14T18:38:17] Category: Electrical
+[2026-04-14T18:38:24]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:38:37]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:38:56]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T18:39:22]   OSM: 8 raw hits
+[2026-04-14T18:39:26] Category: Roofing
+[2026-04-14T18:39:33]   OSM: 5 raw hits
+[2026-04-14T18:39:37] Category: General Contracting
+[2026-04-14T18:39:45]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:39:58]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-04-14T18:40:29]   OSM: 28 raw hits
+[2026-04-14T18:40:33] Category: Landscaping / Excavation
+[2026-04-14T18:40:39]   . Overpass 504, backing off 6s (attempt 1/4)

@@ -294,6 +294,102 @@
     font-size: 12px;
   }
   button.ghost:hover { color: var(--ink); border-color: var(--accent); }
+  /* Outreach sequencer */
+  .outreach-kpis {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 900px) {
+    .outreach-kpis { grid-template-columns: repeat(4, 1fr); }
+  }
+  .ok-tile {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .ok-tile:hover { border-color: var(--accent); }
+  .ok-tile.active { border-color: var(--accent); background: rgba(212, 160, 74, 0.08); }
+  .ok-tile .ok-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-dim);
+    margin-bottom: 2px;
+  }
+  .ok-tile .ok-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .ok-tile.new    .ok-value { color: var(--ink); }
+  .ok-tile.contacted .ok-value { color: #4ea8ff; }
+  .ok-tile.replied   .ok-value { color: #a78bfa; }
+  .ok-tile.meeting   .ok-value { color: var(--warn); }
+  .ok-tile.closed    .ok-value { color: var(--good); }
+  .ok-tile.dead      .ok-value { color: #64748b; }
+
+  .status-select {
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    color: var(--ink);
+    font-size: 11px;
+    cursor: pointer;
+    min-width: 92px;
+  }
+  .status-select.s-new       { color: var(--ink-dim); }
+  .status-select.s-contacted { color: #4ea8ff; border-color: #4ea8ff55; }
+  .status-select.s-replied   { color: #a78bfa; border-color: #a78bfa55; }
+  .status-select.s-meeting   { color: var(--warn); border-color: #f59e0b55; }
+  .status-select.s-closed    { color: var(--good); border-color: #22c55e55; }
+  .status-select.s-dead      { color: #64748b; border-color: #64748b55; }
+
+  .notes-toggle {
+    background: none;
+    border: none;
+    color: var(--ink-dim);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 2px 6px;
+  }
+  .notes-toggle:hover { color: var(--accent); }
+  .notes-toggle.has-notes { color: var(--accent); }
+  .notes-row td { background: var(--panel-2); padding: 10px 14px; }
+  .notes-row textarea {
+    width: 100%;
+    min-height: 60px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--ink);
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    resize: vertical;
+  }
+  .notes-row .notes-meta {
+    font-size: 10px;
+    color: var(--ink-dim);
+    margin-top: 4px;
+  }
+  .export-btn {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .export-btn:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -449,7 +545,11 @@
     </div>
 
     <div class="panel">
-      <h2>Lead Pipeline</h2>
+      <h2>Lead Pipeline &amp; Outreach Sequencer</h2>
+
+      <!-- Outreach funnel KPIs (click any tile to filter) -->
+      <div class="outreach-kpis" id="outreach-kpis"></div>
+
       <div class="controls-bar">
         <input type="text" id="search" placeholder="Search name, trade, city…" />
         <select id="filter-trade"><option value="">All trades</option></select>
@@ -460,6 +560,16 @@
           <option value="55">Score ≥ 55</option>
           <option value="70">Score ≥ 70</option>
         </select>
+        <select id="filter-status">
+          <option value="">All statuses</option>
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="replied">Replied</option>
+          <option value="meeting">Meeting</option>
+          <option value="closed">Closed</option>
+          <option value="dead">Dead</option>
+        </select>
+        <button class="export-btn" id="export-csv-btn" title="Download current filter as CSV">⬇ Export CSV</button>
         <span class="data-stamp" id="data-stamp">&nbsp;</span>
       </div>
       <div style="overflow-x: auto;">
@@ -470,9 +580,11 @@
               <th data-sort="name">Company</th>
               <th data-sort="trade">Trade</th>
               <th data-sort="city">City</th>
+              <th>Status</th>
               <th>Contact</th>
               <th>Research</th>
               <th data-sort="discovered_at">Found</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody id="leads-body"></tbody>
@@ -497,6 +609,47 @@ const SERVICES = [
   { key: "cornerstone", label: "Cornerstone",    monthly: 300,   setup: 14000, defaultMix: 15 },
   { key: "herald",      label: "Herald (SEO)",   monthly: 3500,  setup: 0,     defaultMix: 20 },
 ];
+
+/* ============================================================
+   Outreach sequencer (localStorage-backed pipeline state)
+   ============================================================ */
+const STATUS_OPTIONS = [
+  { key: "new",       label: "New"       },
+  { key: "contacted", label: "Contacted" },
+  { key: "replied",   label: "Replied"   },
+  { key: "meeting",   label: "Meeting"   },
+  { key: "closed",    label: "Closed"    },
+  { key: "dead",      label: "Dead"      },
+];
+const OUTREACH_KEY = "mh_outreach_v1";
+let OUTREACH = loadOutreach();
+
+function loadOutreach() {
+  try {
+    const raw = localStorage.getItem(OUTREACH_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw) || {};
+  } catch (e) { return {}; }
+}
+function saveOutreach() {
+  try { localStorage.setItem(OUTREACH_KEY, JSON.stringify(OUTREACH)); }
+  catch (e) { console.warn("Could not save outreach state:", e); }
+}
+function getEntry(leadId) {
+  return OUTREACH[leadId] || { status: "new", notes: "", updated_at: "" };
+}
+function setStatus(leadId, status) {
+  const e = getEntry(leadId);
+  OUTREACH[leadId] = { ...e, status, updated_at: new Date().toISOString() };
+  saveOutreach();
+  renderOutreachKpis();
+  renderTable();
+}
+function setNotes(leadId, notes) {
+  const e = getEntry(leadId);
+  OUTREACH[leadId] = { ...e, notes, updated_at: new Date().toISOString() };
+  saveOutreach();
+}
 
 /* ============================================================
    Boot
@@ -829,22 +982,60 @@ function scoreBadge(s) {
   return '<span class="badge cool">COOL ' + s + '</span>';
 }
 
-function renderTable() {
+function filteredLeads() {
   const q = document.getElementById("search").value.toLowerCase().trim();
   const ft = document.getElementById("filter-trade").value;
   const fc = document.getElementById("filter-city").value;
   const ms = +document.getElementById("filter-min-score").value;
-
-  let rows = DATA.filter(l => {
+  const fs = document.getElementById("filter-status").value;
+  return DATA.filter(l => {
     if (ft && l.trade !== ft) return false;
     if (fc && l.city !== fc) return false;
     if (l.fit_score < ms) return false;
+    if (fs && (getEntry(l.id).status || "new") !== fs) return false;
     if (q) {
       const blob = (l.name + " " + l.trade + " " + l.city + " " + l.address).toLowerCase();
       if (!blob.includes(q)) return false;
     }
     return true;
   });
+}
+
+function renderOutreachKpis() {
+  const counts = { all: DATA.length, new: 0, contacted: 0, replied: 0, meeting: 0, closed: 0, dead: 0 };
+  for (const l of DATA) {
+    const st = (getEntry(l.id).status || "new");
+    if (counts[st] !== undefined) counts[st]++;
+    else counts.new++;
+  }
+  const active = document.getElementById("filter-status").value;
+  const tiles = [
+    { k: "",          cls: "",          label: "Total",     value: counts.all },
+    { k: "new",       cls: "new",       label: "New",       value: counts.new },
+    { k: "contacted", cls: "contacted", label: "Contacted", value: counts.contacted },
+    { k: "replied",   cls: "replied",   label: "Replied",   value: counts.replied },
+    { k: "meeting",   cls: "meeting",   label: "Meeting",   value: counts.meeting },
+    { k: "closed",    cls: "closed",    label: "Closed",    value: counts.closed },
+    { k: "dead",      cls: "dead",      label: "Dead",      value: counts.dead },
+  ];
+  const host = document.getElementById("outreach-kpis");
+  host.innerHTML = "";
+  for (const t of tiles) {
+    const div = document.createElement("div");
+    div.className = "ok-tile " + t.cls + (active === t.k ? " active" : "");
+    div.innerHTML = `<div class="ok-label">${t.label}</div><div class="ok-value">${t.value}</div>`;
+    div.addEventListener("click", () => {
+      const sel = document.getElementById("filter-status");
+      sel.value = t.k;
+      renderOutreachKpis();
+      renderTable();
+    });
+    host.appendChild(div);
+  }
+}
+
+function renderTable() {
+  let rows = filteredLeads();
   rows.sort((a, b) => {
     const av = a[sortKey] ?? "";
     const bv = b[sortKey] ?? "";
@@ -862,6 +1053,9 @@ function renderTable() {
   }
   empty.style.display = "none";
   for (const l of rows.slice(0, 400)) {
+    const entry = getEntry(l.id);
+    const status = entry.status || "new";
+    const hasNotes = !!(entry.notes && entry.notes.trim());
     const tr = document.createElement("tr");
     const contact = [
       l.website ? `<a href="${l.website}" target="_blank">site</a>` : "",
@@ -870,17 +1064,105 @@ function renderTable() {
     ].filter(Boolean).join(" ");
     const research = Object.entries(l.research_urls || {})
       .map(([k, v]) => `<a href="${v}" target="_blank">${k}</a>`).join(" ");
+    const statusOpts = STATUS_OPTIONS.map(o =>
+      `<option value="${o.key}" ${o.key === status ? "selected" : ""}>${o.label}</option>`
+    ).join("");
     tr.innerHTML = `
       <td class="score">${scoreBadge(l.fit_score)}</td>
       <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--ink-dim); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
       <td>${escapeHtml(l.trade)}</td>
       <td>${escapeHtml(l.city)}</td>
+      <td><select class="status-select s-${status}" data-lead-id="${escapeHtml(l.id)}">${statusOpts}</select></td>
       <td>${contact || '<span style="color: var(--ink-dim);">—</span>'}</td>
       <td>${research}</td>
       <td style="color: var(--ink-dim); font-size: 11px;">${(l.discovered_at || "").slice(0, 10)}</td>
+      <td><button class="notes-toggle ${hasNotes ? "has-notes" : ""}" data-lead-id="${escapeHtml(l.id)}" title="${hasNotes ? "Has notes" : "Add note"}">✎</button></td>
     `;
     body.appendChild(tr);
   }
+
+  // Wire status dropdowns
+  for (const sel of body.querySelectorAll(".status-select")) {
+    sel.addEventListener("change", e => {
+      setStatus(sel.dataset.leadId, sel.value);
+    });
+  }
+  // Wire notes toggles (expand/collapse a row below)
+  for (const btn of body.querySelectorAll(".notes-toggle")) {
+    btn.addEventListener("click", () => toggleNotesRow(btn));
+  }
+}
+
+function toggleNotesRow(btn) {
+  const tr = btn.closest("tr");
+  const next = tr.nextElementSibling;
+  if (next && next.classList.contains("notes-row") && next.dataset.leadId === btn.dataset.leadId) {
+    next.remove();
+    return;
+  }
+  // Remove any other open notes row
+  document.querySelectorAll(".notes-row").forEach(n => n.remove());
+  const leadId = btn.dataset.leadId;
+  const entry = getEntry(leadId);
+  const row = document.createElement("tr");
+  row.className = "notes-row";
+  row.dataset.leadId = leadId;
+  const colspan = tr.children.length;
+  row.innerHTML = `
+    <td colspan="${colspan}">
+      <textarea placeholder="Outreach notes — what you sent, their response, next step…">${escapeHtml(entry.notes || "")}</textarea>
+      <div class="notes-meta">${entry.updated_at ? "Last updated: " + entry.updated_at.replace("T", " ").slice(0, 16) : "Not yet touched"}</div>
+    </td>
+  `;
+  tr.insertAdjacentElement("afterend", row);
+  const ta = row.querySelector("textarea");
+  ta.focus();
+  let saveTimer;
+  ta.addEventListener("input", () => {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      setNotes(leadId, ta.value);
+      btn.classList.toggle("has-notes", !!ta.value.trim());
+      row.querySelector(".notes-meta").textContent =
+        "Last updated: " + new Date().toISOString().replace("T", " ").slice(0, 16);
+    }, 400);
+  });
+}
+
+function exportCsv() {
+  const rows = filteredLeads();
+  const headers = ["Status","Score","Company","Trade","City","Address","Website","Phone","Email","Notes","Last Updated","Discovered","Lead ID"];
+  const lines = [headers.join(",")];
+  const esc = s => {
+    const v = String(s ?? "");
+    return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+  };
+  for (const l of rows) {
+    const e = getEntry(l.id);
+    lines.push([
+      e.status || "new",
+      l.fit_score,
+      l.name,
+      l.trade,
+      l.city,
+      l.address,
+      l.website,
+      l.phone,
+      l.email,
+      e.notes || "",
+      e.updated_at || "",
+      (l.discovered_at || "").slice(0, 10),
+      l.id,
+    ].map(esc).join(","));
+  }
+  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `marketing-hero-outreach-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
 }
 
 function escapeHtml(s) {
@@ -899,14 +1181,20 @@ for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
   });
 }
 // Table filters
-for (const id of ["search", "filter-trade", "filter-city", "filter-min-score"]) {
-  document.getElementById(id).addEventListener("input", renderTable);
+for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status"]) {
+  document.getElementById(id).addEventListener("input", () => {
+    renderOutreachKpis();
+    renderTable();
+  });
 }
+// Export button
+document.getElementById("export-csv-btn").addEventListener("click", exportCsv);
 
 /* ============================================================
    Initial paint
    ============================================================ */
 if (DATA.length) renderDistributions();
+renderOutreachKpis();
 renderTable();
 recompute();
 </script>

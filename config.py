@@ -235,7 +235,7 @@ PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 # ---------------------------------------------------------------------------
 
 # Max NEW leads to add per run (prevents the JSON blob from ballooning).
-MAX_NEW_LEADS_PER_RUN = 40
+MAX_NEW_LEADS_PER_RUN = 200
 
 # Max total leads to keep on file. Oldest low-score leads get pruned when
 # exceeded. Set to None for unlimited.
