@@ -225,10 +225,25 @@ OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 OVERPASS_TIMEOUT_SEC = 90
 
 # Optional: Google Places API. Paste your key here (or set env var
-# MARKETING_HERO_PLACES_KEY) to unlock richer data. Leave empty to use OSM only.
+# MARKETING_HERO_PLACES_KEY — recommended, keeps key out of git) to unlock
+# richer data. Leave empty to use OSM only.
 GOOGLE_PLACES_API_KEY = ""
 PLACES_TEXT_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
+
+# --- Cost control for Places ---
+# Places Text Search is billed at ~$32 / 1000 requests. Google provides a
+# $200/mo free credit, which covers ~6,250 calls/month (~200/day).
+#
+# To stay inside the free credit, we:
+#   1. Only query the top few metros (not every city in BC_TARGET_AREAS)
+#   2. Only query the BIG_TRADE_CATEGORIES (higher-revenue trades)
+#
+# Default = 5 metros × ~10 big categories = 50 calls/day = ~1,500/mo = FREE.
+PLACES_TOP_METROS = ["Vancouver", "Surrey", "Burnaby", "Victoria", "Richmond"]
+PLACES_BIG_CATEGORIES_ONLY = True
+# Safety cap — hard stop on Places calls per run, even if config drifts.
+PLACES_MAX_CALLS_PER_RUN = 80
 
 # ---------------------------------------------------------------------------
 # DAILY QUOTA

@@ -244,3 +244,71 @@
 [2026-04-14T18:40:29]   OSM: 28 raw hits
 [2026-04-14T18:40:33] Category: Landscaping / Excavation
 [2026-04-14T18:40:39]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-14T18:40:46]   OSM: 4 raw hits
+[2026-04-14T18:40:50] Category: Painting
+[2026-04-14T18:40:57]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:41:10]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:41:30]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T18:41:56]   OSM: 7 raw hits
+[2026-04-14T18:42:00] Category: Flooring / Tile
+[2026-04-14T18:42:03]   OSM: 1 raw hits
+[2026-04-14T18:42:07] Category: Drywall / Plastering
+[2026-04-14T18:42:15]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:42:27]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:42:45]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T18:43:10]   OSM: 0 raw hits
+[2026-04-14T18:43:14] Category: Concrete / Masonry
+[2026-04-14T18:43:17]   OSM: 3 raw hits
+[2026-04-14T18:43:21] Category: Windows / Doors
+[2026-04-14T18:43:28]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:43:40]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:43:58]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T18:44:24]   OSM: 1 raw hits
+[2026-04-14T18:44:28] Category: Garage Doors
+[2026-04-14T18:44:28]   OSM: 0 raw hits
+[2026-04-14T18:44:32] Category: Fencing / Decking
+[2026-04-14T18:44:39]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-14T18:44:53]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-04-14T18:45:11]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T18:45:43]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-04-14T18:46:31]   ! Overpass error for Fencing / Decking: HTTP Error 504: Gateway Timeout
+[2026-04-14T18:46:31]   OSM: 0 raw hits
+[2026-04-14T18:46:35] Category: Solar
+[2026-04-14T18:46:41]   OSM: 0 raw hits
+[2026-04-14T18:46:45] Category: Pool / Spa
+[2026-04-14T18:46:45]   OSM: 0 raw hits
+[2026-04-14T18:46:49] Category: Glass / Glazing
+[2026-04-14T18:46:55]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-14T18:47:07]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-04-14T18:47:26]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T18:47:53]   OSM: 4 raw hits
+[2026-04-14T18:47:57] Category: Insulation / Scaffolding
+[2026-04-14T18:47:59]   OSM: 1 raw hits
+[2026-04-14T18:48:03] Category: Metal Fabrication / Welding
+[2026-04-14T18:48:09]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:48:22]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:48:41]   OSM: 4 raw hits
+[2026-04-14T18:48:45] Category: Cabinet / Millwork
+[2026-04-14T18:48:48]   OSM: 0 raw hits
+[2026-04-14T18:48:52] Category: Manufacturing / Factory
+[2026-04-14T18:48:59]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:49:12]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:49:31]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T18:50:19]   OSM: 36 raw hits
+[2026-04-14T18:50:23] Category: Sawmill / Wood Products
+[2026-04-14T18:50:30]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-14T18:50:39]   OSM: 2 raw hits
+[2026-04-14T18:50:43] Category: Brewery / Distillery / Winery
+[2026-04-14T18:50:49]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:51:02]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:51:21]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T18:51:50]   OSM: 47 raw hits
+[2026-04-14T18:51:54] Category: Printing / Signs
+[2026-04-14T18:51:57]   OSM: 5 raw hits
+[2026-04-14T18:52:01] Category: Trade Supply / Hardware
+[2026-04-14T18:52:08]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T18:52:20]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T18:52:38]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T18:53:37]   OSM: 56 raw hits
+[2026-04-14T18:53:41] Total raw candidates: 237
+[2026-04-14T18:53:41] Run complete. Added: 55, Updated: 105, Total on file: 158

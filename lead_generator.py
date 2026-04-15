@@ -469,6 +469,21 @@ def run(dry_run: bool = False, reset: bool = False) -> int:
     use_places = bool(places_key())
     log(f"Source: {'Google Places + OSM' if use_places else 'OpenStreetMap (no API key)'}")
 
+    # Pre-compute the Places scope to stay inside the free credit (~$200/mo).
+    places_metros = getattr(config, "PLACES_TOP_METROS", config.BC_TARGET_AREAS[:5])
+    places_big_only = getattr(config, "PLACES_BIG_CATEGORIES_ONLY", True)
+    places_max = getattr(config, "PLACES_MAX_CALLS_PER_RUN", 80)
+    places_calls = 0
+
+    if use_places:
+        eligible_cats = [
+            c["label"] for c in config.TRADE_CATEGORIES
+            if (not places_big_only) or c["label"] in config.BIG_TRADE_CATEGORIES
+        ]
+        estimated = len(eligible_cats) * len(places_metros)
+        log(f"Places scope: {len(eligible_cats)} cats × {len(places_metros)} metros "
+            f"= {estimated} calls (cap {places_max})")
+
     candidates: list[dict] = []
 
     for category in config.TRADE_CATEGORIES:
@@ -479,14 +494,23 @@ def run(dry_run: bool = False, reset: bool = False) -> int:
         candidates.extend(osm_leads)
         time.sleep(4.0)  # be polite to Overpass (free tier rate-limits hard)
 
-        # Google Places if configured
+        # Google Places — scoped to stay under the free credit
         if use_places:
-            for city in config.BC_TARGET_AREAS[:8]:  # top 8 metros per run
+            if places_big_only and category["label"] not in config.BIG_TRADE_CATEGORIES:
+                continue
+            for city in places_metros:
+                if places_calls >= places_max:
+                    log(f"  Places cap reached ({places_max}) — skipping remainder")
+                    break
                 places_leads = fetch_places(category, city)
+                places_calls += 1
                 if places_leads:
                     log(f"  Places [{city}]: {len(places_leads)} hits")
                 candidates.extend(places_leads)
                 time.sleep(0.2)
+
+    if use_places:
+        log(f"Places calls this run: {places_calls}")
 
     log(f"Total raw candidates: {len(candidates)}")
 
