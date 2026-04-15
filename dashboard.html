@@ -255,96 +255,9 @@
     font-size: 12px;
   }
   button.ghost:hover { color: var(--ink); border-color: var(--accent); }
-  #gate {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-  #gate .box {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 36px 40px;
-    max-width: 380px;
-    width: 92%;
-    text-align: center;
-  }
-  #gate h2 { margin: 0 0 8px 0; color: var(--ink); font-size: 18px; }
-  #gate p { margin: 0 0 20px 0; color: var(--ink-dim); font-size: 13px; }
-  #gate input {
-    width: 100%;
-    padding: 12px 14px;
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--ink);
-    font-size: 14px;
-    outline: none;
-    margin-bottom: 12px;
-  }
-  #gate input:focus { border-color: var(--accent); }
-  #gate button {
-    width: 100%;
-    padding: 12px;
-    background: var(--accent);
-    border: 0;
-    border-radius: 8px;
-    color: #0f1724;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  #gate .err { color: var(--bad); font-size: 12px; min-height: 16px; margin-top: 8px; }
-  #app { display: none; }
 </style>
 </head>
 <body>
-<div id="gate">
-  <div class="box">
-    <h2>Marketing Hero</h2>
-    <p>Private lead dashboard. Enter access password.</p>
-    <input id="gate-input" type="password" placeholder="Password" autofocus />
-    <button id="gate-btn">Unlock</button>
-    <div id="gate-err" class="err"></div>
-  </div>
-</div>
-<script>
-  // SHA-256 hash of the access password. Change both the hash and the client's password together.
-  // Default password: "fivetalents2026" — REPLACE BEFORE SHARING.
-  // To generate a new hash: run in browser console -> crypto.subtle.digest("SHA-256", new TextEncoder().encode("YOUR_PASSWORD")).then(b => console.log(Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("")))
-  const GATE_HASH = "e39275cd37f69bea3e06fb1f42881a66c4d261c46704d21936ea7ae0f366268f";
-  async function sha256(s) {
-    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
-    return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, "0")).join("");
-  }
-  async function tryUnlock(pw) {
-    const h = await sha256(pw);
-    if (h === GATE_HASH) {
-      sessionStorage.setItem("mh_unlocked", "1");
-      document.getElementById("gate").style.display = "none";
-      document.getElementById("app").style.display = "block";
-      return true;
-    }
-    return false;
-  }
-  if (sessionStorage.getItem("mh_unlocked") === "1") {
-    document.getElementById("gate").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  }
-  document.getElementById("gate-btn").addEventListener("click", async () => {
-    const pw = document.getElementById("gate-input").value;
-    const ok = await tryUnlock(pw);
-    if (!ok) document.getElementById("gate-err").textContent = "Incorrect password.";
-  });
-  document.getElementById("gate-input").addEventListener("keydown", e => {
-    if (e.key === "Enter") document.getElementById("gate-btn").click();
-  });
-</script>
-<div id="app">
 <header>
   <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
   <div class="sub">BC trades prospects, $3&ndash;9M revenue band • Live profit modelling from daily lead feed</div>
@@ -950,6 +863,5 @@ if (DATA.length) renderDistributions();
 renderTable();
 recompute();
 </script>
-</div>
 </body>
 </html>
