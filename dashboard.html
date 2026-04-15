@@ -33,7 +33,29 @@
     padding: 22px 32px;
     background: linear-gradient(90deg, #0b1220 0%, #162131 100%);
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
   }
+  header .logos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 0 0 auto;
+  }
+  header .logos img {
+    height: 52px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+  header .logos .logo-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+  }
+  header .title-block { flex: 1 1 auto; min-width: 280px; }
   header h1 {
     margin: 0 0 4px 0;
     font-size: 22px;
@@ -42,6 +64,14 @@
   }
   header h1 .accent { color: var(--accent); }
   header .sub { color: var(--ink-dim); font-size: 13px; }
+  header .tagline {
+    color: var(--accent);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
   .grid {
     display: grid;
     grid-template-columns: 380px 1fr;
@@ -259,8 +289,16 @@
 </head>
 <body>
 <header>
-  <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
-  <div class="sub">BC trades prospects, $3&ndash;9M revenue band • Live profit modelling from daily lead feed</div>
+  <div class="logos">
+    <img src="assets/eunoia-logo.png" alt="Eunoia" onerror="this.style.display='none'; this.nextElementSibling && (this.nextElementSibling.style.display='none');" />
+    <div class="logo-divider"></div>
+    <img src="assets/five-talents-logo.png" alt="Five Talents" onerror="this.style.display='none'; this.previousElementSibling && (this.previousElementSibling.style.display='none');" />
+  </div>
+  <div class="title-block">
+    <div class="tagline">Eunoia Strategy + Operations Built</div>
+    <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
+    <div class="sub">BC trades, manufacturers &amp; trade-based businesses, $3&ndash;9M revenue band • Live profit modelling from daily lead feed</div>
+  </div>
 </header>
 
 <!-- Load the generated data file. If it's missing, we show a setup message. -->

@@ -47,9 +47,16 @@ BC_TARGET_AREAS = [
 ]
 
 # Trade categories. Each entry maps a human label to OpenStreetMap tags and
-# Google Places text-search query fragments. Keep the OSM tags specific —
-# "craft=*" and "shop=trade" are the two richest veins.
+# Google Places text-search query fragments.
+#
+# OSM tag fields (all optional):
+#   osm_craft  — list of craft=* values  (e.g. "plumber")
+#   osm_shop   — list of shop=* values   (e.g. "trade")
+#   osm_tags   — list of [key, value] pairs for other tag schemas.
+#                value can be None to match any value for that key (wildcard).
+#                Examples: ["industrial", "factory"], ["man_made", "works"], ["office", "company"]
 TRADE_CATEGORIES = [
+    # --- Core trades (contractors / installers) ---
     {
         "label": "Plumbing",
         "osm_craft": ["plumber"],
@@ -93,26 +100,26 @@ TRADE_CATEGORIES = [
         "places_query": "painting contractor",
     },
     {
-        "label": "Flooring",
-        "osm_craft": ["floorer"],
+        "label": "Flooring / Tile",
+        "osm_craft": ["floorer", "tiler", "parquet_layer", "carpet_layer"],
         "osm_shop": [],
-        "places_query": "flooring contractor installer",
+        "places_query": "flooring tile contractor installer",
     },
     {
-        "label": "Drywall",
+        "label": "Drywall / Plastering",
         "osm_craft": ["plasterer"],
         "osm_shop": [],
-        "places_query": "drywall contractor",
+        "places_query": "drywall plaster contractor",
     },
     {
         "label": "Concrete / Masonry",
-        "osm_craft": ["stonemason", "bricklayer", "concrete"],
+        "osm_craft": ["stonemason", "bricklayer", "concrete", "paver"],
         "osm_shop": [],
         "places_query": "concrete masonry contractor",
     },
     {
         "label": "Windows / Doors",
-        "osm_craft": ["window_construction"],
+        "osm_craft": ["window_construction", "door_construction"],
         "osm_shop": [],
         "places_query": "windows doors installer contractor",
     },
@@ -124,13 +131,13 @@ TRADE_CATEGORIES = [
     },
     {
         "label": "Fencing / Decking",
-        "osm_craft": [],
+        "osm_craft": ["fence_maker"],
         "osm_shop": [],
         "places_query": "fencing decking contractor",
     },
     {
         "label": "Solar",
-        "osm_craft": [],
+        "osm_craft": ["photovoltaic"],
         "osm_shop": [],
         "places_query": "solar installer contractor",
     },
@@ -139,6 +146,73 @@ TRADE_CATEGORIES = [
         "osm_craft": [],
         "osm_shop": [],
         "places_query": "pool spa contractor installer",
+    },
+    # --- Specialty trades ---
+    {
+        "label": "Glass / Glazing",
+        "osm_craft": ["glaziery"],
+        "osm_shop": [],
+        "places_query": "glass glazing contractor",
+    },
+    {
+        "label": "Insulation / Scaffolding",
+        "osm_craft": ["insulation", "scaffolder"],
+        "osm_shop": [],
+        "places_query": "insulation scaffolding contractor",
+    },
+    {
+        "label": "Metal Fabrication / Welding",
+        "osm_craft": ["blacksmith", "metal_construction", "welder", "tinsmith"],
+        "osm_shop": [],
+        "places_query": "metal fabrication welding shop",
+    },
+    {
+        "label": "Cabinet / Millwork",
+        "osm_craft": ["cabinet_maker", "joiner", "turner"],
+        "osm_shop": [],
+        "places_query": "cabinet maker millwork joinery",
+    },
+    # --- Manufacturing / industrial ---
+    {
+        "label": "Manufacturing / Factory",
+        "osm_craft": [],
+        "osm_shop": [],
+        "osm_tags": [
+            ["industrial", "factory"],
+            ["industrial", "machine_shop"],
+            ["industrial", "metal_production"],
+            ["industrial", "food_processing"],
+            ["industrial", "sawmill"],
+            ["industrial", "shipyard"],
+            ["industrial", "wire_drawing"],
+            ["man_made", "works"],
+        ],
+        "places_query": "manufacturing factory",
+    },
+    {
+        "label": "Sawmill / Wood Products",
+        "osm_craft": ["sawmill"],
+        "osm_shop": [],
+        "places_query": "sawmill lumber wood products manufacturer",
+    },
+    {
+        "label": "Brewery / Distillery / Winery",
+        "osm_craft": ["brewery", "distillery", "winery"],
+        "osm_shop": [],
+        "places_query": "brewery distillery winery",
+    },
+    {
+        "label": "Printing / Signs",
+        "osm_craft": ["printer", "signmaker", "engraver"],
+        "osm_shop": [],
+        "places_query": "commercial printing sign shop",
+    },
+    # --- Trade supply / wholesale ---
+    {
+        "label": "Trade Supply / Hardware",
+        "osm_craft": [],
+        "osm_shop": ["doityourself", "hardware", "paint", "fireplace", "bathroom_furnishing", "kitchen", "tiles"],
+        "places_query": "building supply hardware trade wholesale",
     },
 ]
 
@@ -183,7 +257,18 @@ SCORE_WEIGHTS = {
     "review_count_proxy": 10,   # richer data on OSM = more established biz
 }
 
-BIG_TRADE_CATEGORIES = {"HVAC / Heating", "Electrical", "Roofing", "Plumbing", "General Contracting"}
+BIG_TRADE_CATEGORIES = {
+    "HVAC / Heating",
+    "Electrical",
+    "Roofing",
+    "Plumbing",
+    "General Contracting",
+    "Manufacturing / Factory",
+    "Metal Fabrication / Welding",
+    "Sawmill / Wood Products",
+    "Brewery / Distillery / Winery",
+    "Cabinet / Millwork",
+}
 URBAN_METROS = {"Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Coquitlam", "Langley"}
 
 # Minimum fit score required to include a lead in the output (0–100).

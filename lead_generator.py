@@ -136,12 +136,22 @@ def http_post_with_retry(url: str, data: bytes, timeout: int = 60,
 def build_overpass_query(category: dict) -> str | None:
     """Build an Overpass QL query for a trade category inside BC."""
     parts = []
-    for craft in category["osm_craft"]:
+    for craft in category.get("osm_craft", []):
         parts.append(f'node["craft"="{craft}"](area.bc);')
         parts.append(f'way["craft"="{craft}"](area.bc);')
-    for shop in category["osm_shop"]:
+    for shop in category.get("osm_shop", []):
         parts.append(f'node["shop"="{shop}"](area.bc);')
         parts.append(f'way["shop"="{shop}"](area.bc);')
+    for entry in category.get("osm_tags", []):
+        # entry is [key, value] or [key, None] for wildcard
+        key = entry[0]
+        value = entry[1] if len(entry) > 1 else None
+        if value is None:
+            parts.append(f'node["{key}"](area.bc);')
+            parts.append(f'way["{key}"](area.bc);')
+        else:
+            parts.append(f'node["{key}"="{value}"](area.bc);')
+            parts.append(f'way["{key}"="{value}"](area.bc);')
     if not parts:
         return None
     body = "\n    ".join(parts)
