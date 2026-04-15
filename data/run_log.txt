@@ -1,0 +1,147 @@
+[2026-04-14T16:35:00] Loaded store: 0 existing leads
+[2026-04-14T16:35:00] Source: OpenStreetMap (no API key)
+[2026-04-14T16:35:00] Category: Plumbing
+[2026-04-14T16:35:07]   ! Overpass error for Plumbing: HTTP Error 504: Gateway Timeout
+[2026-04-14T16:35:07]   OSM: 0 raw hits
+[2026-04-14T16:35:08] Category: HVAC / Heating
+[2026-04-14T16:35:12]   OSM: 12 raw hits
+[2026-04-14T16:35:14] Category: Electrical
+[2026-04-14T16:35:22]   OSM: 8 raw hits
+[2026-04-14T16:35:23] Category: Roofing
+[2026-04-14T16:35:29]   ! Overpass error for Roofing: HTTP Error 429: Too Many Requests
+[2026-04-14T16:35:29]   OSM: 0 raw hits
+[2026-04-14T16:35:30] Category: General Contracting
+[2026-04-14T16:35:41]   ! Overpass error for General Contracting: HTTP Error 429: Too Many Requests
+[2026-04-14T16:35:41]   OSM: 0 raw hits
+[2026-04-14T16:35:43] Category: Landscaping / Excavation
+[2026-04-14T16:35:49]   ! Overpass error for Landscaping / Excavation: HTTP Error 429: Too Many Requests
+[2026-04-14T16:35:49]   OSM: 0 raw hits
+[2026-04-14T16:35:51] Category: Painting
+[2026-04-14T16:35:57]   ! Overpass error for Painting: HTTP Error 429: Too Many Requests
+[2026-04-14T16:35:57]   OSM: 0 raw hits
+[2026-04-14T16:35:59] Category: Flooring
+[2026-04-14T16:36:05]   ! Overpass error for Flooring: HTTP Error 429: Too Many Requests
+[2026-04-14T16:36:05]   OSM: 0 raw hits
+[2026-04-14T16:36:07] Category: Drywall
+[2026-04-14T16:36:13]   ! Overpass error for Drywall: HTTP Error 504: Gateway Timeout
+[2026-04-14T16:36:13]   OSM: 0 raw hits
+[2026-04-14T16:36:14] Category: Concrete / Masonry
+[2026-04-14T16:36:20]   OSM: 3 raw hits
+[2026-04-14T16:36:21] Category: Windows / Doors
+[2026-04-14T16:36:24]   OSM: 1 raw hits
+[2026-04-14T16:36:26] Category: Garage Doors
+[2026-04-14T16:36:26]   OSM: 0 raw hits
+[2026-04-14T16:36:27] Category: Fencing / Decking
+[2026-04-14T16:36:27]   OSM: 0 raw hits
+[2026-04-14T16:36:29] Category: Solar
+[2026-04-14T16:36:29]   OSM: 0 raw hits
+[2026-04-14T16:36:30] Category: Pool / Spa
+[2026-04-14T16:36:30]   OSM: 0 raw hits
+[2026-04-14T16:36:32] Total raw candidates: 24
+[2026-04-14T16:36:32] Dry-run: top 10 candidates this run:
+[2026-04-14T16:36:32]   [ 50] ProAmp Electric Ltd. — Electrical — Coquitlam
+[2026-04-14T16:36:32]   [ 45] Philcan Heating & Air Conditioning Limited — HVAC / Heating — Surrey
+[2026-04-14T16:36:32]   [ 45] Smith Electrical Systems Ltd — Electrical — Langley
+[2026-04-14T16:36:32]   [ 45] RMS Electric — Electrical — Coquitlam
+[2026-04-14T16:36:32]   [ 45] Frank & Sons Electrical — Electrical — Vancouver
+[2026-04-14T16:36:32]   [ 35] Thomson Industries Ltd. — HVAC / Heating — Port Coquitlam
+[2026-04-14T16:36:32]   [ 35] Moore and Russell Heating & Air Conditioning — HVAC / Heating — Port Coquitlam
+[2026-04-14T16:36:32]   [ 35] E.H. Price — HVAC / Heating — Kelowna
+[2026-04-14T16:36:32]   [ 35] Marble Art Canada — Concrete / Masonry — Burnaby
+[2026-04-14T16:36:32]   [ 35] The Local Window Guy — Windows / Doors — Langley
+[2026-04-14T16:37:52] Loaded store: 0 existing leads
+[2026-04-14T16:37:52] Source: OpenStreetMap (no API key)
+[2026-04-14T16:37:52] Category: Plumbing
+[2026-04-14T16:37:54]   OSM: 13 raw hits
+[2026-04-14T16:37:58] Category: HVAC / Heating
+[2026-04-14T16:38:01]   OSM: 12 raw hits
+[2026-04-14T16:38:05] Category: Electrical
+[2026-04-14T16:38:11]   OSM: 8 raw hits
+[2026-04-14T16:38:15] Category: Roofing
+[2026-04-14T16:38:22]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T16:38:30]   OSM: 5 raw hits
+[2026-04-14T16:38:34] Category: General Contracting
+[2026-04-14T16:38:41]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-14T16:39:15]   OSM: 28 raw hits
+[2026-04-14T16:39:19] Category: Landscaping / Excavation
+[2026-04-14T16:39:23]   OSM: 4 raw hits
+[2026-04-14T16:39:27] Category: Painting
+[2026-04-14T16:39:33]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T16:39:49]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T16:40:07]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T16:40:36]   OSM: 7 raw hits
+[2026-04-14T16:40:40] Category: Flooring
+[2026-04-14T16:40:42]   OSM: 0 raw hits
+[2026-04-14T16:40:46] Category: Drywall
+[2026-04-14T16:40:52]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T16:41:05]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T16:41:23]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T16:41:49]   OSM: 0 raw hits
+[2026-04-14T16:41:53] Category: Concrete / Masonry
+[2026-04-14T16:41:57]   OSM: 3 raw hits
+[2026-04-14T16:42:01] Category: Windows / Doors
+[2026-04-14T16:42:07]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T16:42:20]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T16:42:34]   OSM: 1 raw hits
+[2026-04-14T16:42:38] Category: Garage Doors
+[2026-04-14T16:42:38]   OSM: 0 raw hits
+[2026-04-14T16:42:42] Category: Fencing / Decking
+[2026-04-14T16:42:42]   OSM: 0 raw hits
+[2026-04-14T16:42:46] Category: Solar
+[2026-04-14T16:42:46]   OSM: 0 raw hits
+[2026-04-14T16:42:50] Category: Pool / Spa
+[2026-04-14T16:42:50]   OSM: 0 raw hits
+[2026-04-14T16:42:54] Total raw candidates: 81
+[2026-04-14T16:42:54] Run complete. Added: 40, Updated: 0, Total on file: 40
+[2026-04-14T16:58:45] Loaded store: 40 existing leads
+[2026-04-14T16:58:45] Source: OpenStreetMap (no API key)
+[2026-04-14T16:58:45] Category: Plumbing
+[2026-04-14T16:58:48]   OSM: 13 raw hits
+[2026-04-14T16:58:52] Category: HVAC / Heating
+[2026-04-14T16:58:54]   OSM: 12 raw hits
+[2026-04-14T16:58:58] Category: Electrical
+[2026-04-14T16:59:05]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T16:59:19]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T16:59:37]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-14T17:00:06]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-04-14T17:00:54]   ! Overpass error for Electrical: HTTP Error 504: Gateway Timeout
+[2026-04-14T17:00:54]   OSM: 0 raw hits
+[2026-04-14T17:00:58] Category: Roofing
+[2026-04-14T17:01:01]   OSM: 5 raw hits
+[2026-04-14T17:01:05] Category: General Contracting
+[2026-04-14T17:01:30]   OSM: 28 raw hits
+[2026-04-14T17:01:34] Category: Landscaping / Excavation
+[2026-04-14T17:01:40]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T17:01:52]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T17:02:05]   OSM: 4 raw hits
+[2026-04-14T17:02:09] Category: Painting
+[2026-04-14T17:02:16]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T17:02:28]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T17:02:42]   OSM: 7 raw hits
+[2026-04-14T17:02:46] Category: Flooring
+[2026-04-14T17:02:51]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T17:03:03]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T17:03:17]   OSM: 0 raw hits
+[2026-04-14T17:03:21] Category: Drywall
+[2026-04-14T17:03:32]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T17:03:45]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-04-14T17:04:04]   OSM: 0 raw hits
+[2026-04-14T17:04:08] Category: Concrete / Masonry
+[2026-04-14T17:04:17]   OSM: 3 raw hits
+[2026-04-14T17:04:21] Category: Windows / Doors
+[2026-04-14T17:04:28]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-14T17:04:40]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-14T17:04:59]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-14T17:05:30]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-04-14T17:06:18]   ! Overpass error for Windows / Doors: HTTP Error 504: Gateway Timeout
+[2026-04-14T17:06:18]   OSM: 0 raw hits
+[2026-04-14T17:06:22] Category: Garage Doors
+[2026-04-14T17:06:22]   OSM: 0 raw hits
+[2026-04-14T17:06:26] Category: Fencing / Decking
+[2026-04-14T17:06:26]   OSM: 0 raw hits
+[2026-04-14T17:06:30] Category: Solar
+[2026-04-14T17:06:30]   OSM: 0 raw hits
+[2026-04-14T17:06:34] Category: Pool / Spa
+[2026-04-14T17:06:34]   OSM: 0 raw hits
+[2026-04-14T17:06:38] Total raw candidates: 72
+[2026-04-14T17:06:38] Run complete. Added: 23, Updated: 36, Total on file: 63

@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Marketing Hero — Five Talents Lead &amp; Profit Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1724;
+    --panel: #162131;
+    --panel-2: #1d2a3d;
+    --ink: #e8edf5;
+    --ink-dim: #94a3b8;
+    --accent: #d4a04a;
+    --accent-2: #4ea8ff;
+    --good: #22c55e;
+    --warn: #f59e0b;
+    --bad: #ef4444;
+    --border: #243244;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  header {
+    padding: 22px 32px;
+    background: linear-gradient(90deg, #0b1220 0%, #162131 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: 0.2px;
+  }
+  header h1 .accent { color: var(--accent); }
+  header .sub { color: var(--ink-dim); font-size: 13px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 22px;
+    padding: 22px 32px;
+  }
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .panel h2 {
+    margin: 0 0 14px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .slider-group { margin-bottom: 16px; }
+  .slider-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+  .slider-group label .value {
+    color: var(--ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  input[type=range] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 900px) {
+    .kpis { grid-template-columns: 1fr 1fr; }
+  }
+  .kpi {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .kpi .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .kpi .value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi .value.good { color: var(--good); }
+  .kpi .value.warn { color: var(--warn); }
+  .charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 900px) {
+    .charts { grid-template-columns: 1fr; }
+  }
+  .chart-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .chart-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 600;
+    flex: 0 0 auto;
+  }
+  .chart-box canvas {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100% !important;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    color: var(--ink-dim);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td.score {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  td a {
+    color: var(--accent-2);
+    text-decoration: none;
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  td a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    background: var(--panel-2);
+    color: var(--ink-dim);
+  }
+  .badge.hot { background: #3f1d1a; color: #ff6b5e; }
+  .badge.warm { background: #3f321a; color: #f5c76b; }
+  .badge.cool { background: #1a2e3f; color: #6bb8f5; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 50px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  .service-row input[type=range] { width: 100%; }
+  .controls-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .controls-bar input[type=text] {
+    flex: 1;
+    min-width: 180px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .controls-bar select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--panel-2);
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .data-stamp {
+    color: var(--ink-dim);
+    font-size: 11px;
+    margin-left: auto;
+  }
+  .no-data {
+    text-align: center;
+    padding: 40px;
+    color: var(--ink-dim);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  .no-data code {
+    background: var(--panel-2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+  button.ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink-dim);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  button.ghost:hover { color: var(--ink); border-color: var(--accent); }
+  #gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  #gate .box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 40px;
+    max-width: 380px;
+    width: 92%;
+    text-align: center;
+  }
+  #gate h2 { margin: 0 0 8px 0; color: var(--ink); font-size: 18px; }
+  #gate p { margin: 0 0 20px 0; color: var(--ink-dim); font-size: 13px; }
+  #gate input {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  #gate input:focus { border-color: var(--accent); }
+  #gate button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    color: #0f1724;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  #gate .err { color: var(--bad); font-size: 12px; min-height: 16px; margin-top: 8px; }
+  #app { display: none; }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="box">
+    <h2>Marketing Hero</h2>
+    <p>Private lead dashboard. Enter access password.</p>
+    <input id="gate-input" type="password" placeholder="Password" autofocus />
+    <button id="gate-btn">Unlock</button>
+    <div id="gate-err" class="err"></div>
+  </div>
+</div>
+<script>
+  // SHA-256 hash of the access password. Change both the hash and the client's password together.
+  // Default password: "fivetalents2026" — REPLACE BEFORE SHARING.
+  // To generate a new hash: run in browser console -> crypto.subtle.digest("SHA-256", new TextEncoder().encode("YOUR_PASSWORD")).then(b => console.log(Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("")))
+  const GATE_HASH = "e39275cd37f69bea3e06fb1f42881a66c4d261c46704d21936ea7ae0f366268f";
+  async function sha256(s) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, "0")).join("");
+  }
+  async function tryUnlock(pw) {
+    const h = await sha256(pw);
+    if (h === GATE_HASH) {
+      sessionStorage.setItem("mh_unlocked", "1");
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      return true;
+    }
+    return false;
+  }
+  if (sessionStorage.getItem("mh_unlocked") === "1") {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }
+  document.getElementById("gate-btn").addEventListener("click", async () => {
+    const pw = document.getElementById("gate-input").value;
+    const ok = await tryUnlock(pw);
+    if (!ok) document.getElementById("gate-err").textContent = "Incorrect password.";
+  });
+  document.getElementById("gate-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") document.getElementById("gate-btn").click();
+  });
+</script>
+<div id="app">
+<header>
+  <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
+  <div class="sub">BC trades prospects, $3&ndash;9M revenue band • Live profit modelling from daily lead feed</div>
+</header>
+
+<!-- Load the generated data file. If it's missing, we show a setup message. -->
+<script src="data/leads.js" onerror="window.MARKETING_HERO_DATA=null;"></script>
+
+<div id="no-data-banner" style="display:none" class="no-data" >
+  <div style="font-size:16px; margin-bottom:8px;">No lead data yet.</div>
+  <div>Run <code>python lead_generator.py</code> to populate <code>data/leads.js</code> then refresh this page.</div>
+</div>
+
+<div class="grid">
+  <!-- LEFT: SLIDERS -->
+  <aside>
+    <div class="panel">
+      <h2>Funnel Assumptions</h2>
+
+      <div class="slider-group">
+        <label>Leads worked / day <span class="value" id="val-leads-day">8</span></label>
+        <input type="range" id="sl-leads-day" min="1" max="40" value="8" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>Working days / month <span class="value" id="val-working-days">22</span></label>
+        <input type="range" id="sl-working-days" min="10" max="25" value="22" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>Reply rate <span class="value" id="val-reply-rate">12%</span></label>
+        <input type="range" id="sl-reply-rate" min="1" max="40" value="12" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>Meeting-set rate (of replies) <span class="value" id="val-meeting-rate">35%</span></label>
+        <input type="range" id="sl-meeting-rate" min="5" max="80" value="35" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>Close rate (of meetings) <span class="value" id="val-close-rate">25%</span></label>
+        <input type="range" id="sl-close-rate" min="5" max="60" value="25" step="1">
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 18px;">
+      <h2>Economics</h2>
+
+      <div class="slider-group">
+        <label>Avg deal size / mo (CAD) <span class="value" id="val-deal-size">$6,400</span></label>
+        <input type="range" id="sl-deal-size" min="1500" max="15000" value="6400" step="100">
+      </div>
+
+      <div class="slider-group">
+        <label>Avg contract length (months) <span class="value" id="val-contract">8</span></label>
+        <input type="range" id="sl-contract" min="3" max="24" value="8" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>One-time setup / project fee (avg) <span class="value" id="val-setup">$4,500</span></label>
+        <input type="range" id="sl-setup" min="0" max="25000" value="4500" step="500">
+      </div>
+
+      <div class="slider-group">
+        <label>Delivery cost % of revenue <span class="value" id="val-cogs">35%</span></label>
+        <input type="range" id="sl-cogs" min="10" max="70" value="35" step="1">
+      </div>
+
+      <div class="slider-group">
+        <label>Fixed overhead / mo (CAD) <span class="value" id="val-overhead">$3,500</span></label>
+        <input type="range" id="sl-overhead" min="0" max="20000" value="3500" step="500">
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 18px;">
+      <h2>Service Mix</h2>
+      <div style="color: var(--ink-dim); font-size: 12px; margin-bottom: 10px;">
+        Split of signed deals across Five Talents services. Auto-recomputes deal size.
+      </div>
+      <div id="service-mix"></div>
+      <div style="margin-top: 10px; font-size: 11px; color: var(--ink-dim);">
+        Total: <span id="mix-total">100</span>% • Weighted avg deal: <span id="mix-weighted" style="color: var(--ink);">$0</span>
+      </div>
+      <button class="ghost" style="margin-top: 10px;" onclick="resetMix()">Reset to defaults</button>
+    </div>
+  </aside>
+
+  <!-- RIGHT: KPIs + CHARTS + TABLE -->
+  <main>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="label">Qualified leads / mo</div>
+        <div class="value" id="kpi-qualified">0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">New clients / mo</div>
+        <div class="value good" id="kpi-clients">0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">New MRR / mo</div>
+        <div class="value" id="kpi-new-mrr">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Steady-state MRR</div>
+        <div class="value" id="kpi-steady-mrr">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Annual revenue</div>
+        <div class="value" id="kpi-annual">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Gross profit / yr</div>
+        <div class="value good" id="kpi-gross">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Net profit / yr</div>
+        <div class="value" id="kpi-net">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Break-even leads / day</div>
+        <div class="value warn" id="kpi-breakeven">—</div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-box">
+        <h3>12-Month Revenue Build</h3>
+        <canvas id="chart-revenue"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Funnel Waterfall (Monthly)</h3>
+        <canvas id="chart-funnel"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Leads by Trade</h3>
+        <canvas id="chart-trade"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Leads by City</h3>
+        <canvas id="chart-city"></canvas>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Lead Pipeline</h2>
+      <div class="controls-bar">
+        <input type="text" id="search" placeholder="Search name, trade, city…" />
+        <select id="filter-trade"><option value="">All trades</option></select>
+        <select id="filter-city"><option value="">All cities</option></select>
+        <select id="filter-min-score">
+          <option value="0">Any score</option>
+          <option value="40">Score ≥ 40</option>
+          <option value="55">Score ≥ 55</option>
+          <option value="70">Score ≥ 70</option>
+        </select>
+        <span class="data-stamp" id="data-stamp">&nbsp;</span>
+      </div>
+      <div style="overflow-x: auto;">
+        <table id="leads-table">
+          <thead>
+            <tr>
+              <th data-sort="fit_score">Score</th>
+              <th data-sort="name">Company</th>
+              <th data-sort="trade">Trade</th>
+              <th data-sort="city">City</th>
+              <th>Contact</th>
+              <th>Research</th>
+              <th data-sort="discovered_at">Found</th>
+            </tr>
+          </thead>
+          <tbody id="leads-body"></tbody>
+        </table>
+      </div>
+      <div id="empty-row" class="no-data" style="display:none">
+        No leads match the current filters.
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ============================================================
+   Five Talents service catalogue — must match the PDF proposal.
+   ============================================================ */
+const SERVICES = [
+  { key: "compounding", label: "Compounding",    monthly: 2000,  setup: 0,     defaultMix: 20 },
+  { key: "dominion",    label: "Dominion (CMO)", monthly: 7500,  setup: 0,     defaultMix: 20 },
+  { key: "order",       label: "Order (COO)",    monthly: 9000,  setup: 0,     defaultMix: 10 },
+  { key: "multiplier",  label: "Multiplier (AI)",monthly: 1500,  setup: 12000, defaultMix: 15 },
+  { key: "cornerstone", label: "Cornerstone",    monthly: 300,   setup: 14000, defaultMix: 15 },
+  { key: "herald",      label: "Herald (SEO)",   monthly: 3500,  setup: 0,     defaultMix: 20 },
+];
+
+/* ============================================================
+   Boot
+   ============================================================ */
+const DATA = (window.MARKETING_HERO_DATA && window.MARKETING_HERO_DATA.leads) || [];
+const GENERATED_AT = window.MARKETING_HERO_DATA && window.MARKETING_HERO_DATA.generated_at;
+
+if (!DATA.length) {
+  document.getElementById("no-data-banner").style.display = "block";
+}
+if (GENERATED_AT) {
+  document.getElementById("data-stamp").textContent =
+    `${DATA.length} leads • generated ${GENERATED_AT}`;
+} else if (DATA.length) {
+  document.getElementById("data-stamp").textContent = `${DATA.length} leads`;
+}
+
+/* ============================================================
+   Slider wiring
+   ============================================================ */
+const sliders = [
+  ["sl-leads-day",    "val-leads-day",    v => v],
+  ["sl-working-days", "val-working-days", v => v],
+  ["sl-reply-rate",   "val-reply-rate",   v => v + "%"],
+  ["sl-meeting-rate", "val-meeting-rate", v => v + "%"],
+  ["sl-close-rate",   "val-close-rate",   v => v + "%"],
+  ["sl-deal-size",    "val-deal-size",    v => fmtMoney(+v)],
+  ["sl-contract",     "val-contract",     v => v],
+  ["sl-setup",        "val-setup",        v => fmtMoney(+v)],
+  ["sl-cogs",         "val-cogs",         v => v + "%"],
+  ["sl-overhead",     "val-overhead",     v => fmtMoney(+v)],
+];
+for (const [sl, lbl, fmt] of sliders) {
+  const el = document.getElementById(sl);
+  const out = document.getElementById(lbl);
+  const handler = () => { out.textContent = fmt(el.value); recompute(); };
+  el.addEventListener("input", handler);
+}
+
+/* ============================================================
+   Service-mix sliders
+   ============================================================ */
+const mixBox = document.getElementById("service-mix");
+function renderMix() {
+  mixBox.innerHTML = "";
+  for (const svc of SERVICES) {
+    const row = document.createElement("div");
+    row.className = "service-row";
+    row.innerHTML = `
+      <span>${svc.label}</span>
+      <input type="range" id="mix-${svc.key}" min="0" max="100" value="${svc.defaultMix}" step="5">
+      <span class="value" id="mix-val-${svc.key}">${svc.defaultMix}%</span>
+    `;
+    mixBox.appendChild(row);
+  }
+  for (const svc of SERVICES) {
+    const r = document.getElementById(`mix-${svc.key}`);
+    r.addEventListener("input", () => {
+      document.getElementById(`mix-val-${svc.key}`).textContent = r.value + "%";
+      recompute();
+    });
+  }
+}
+function resetMix() {
+  for (const svc of SERVICES) {
+    const r = document.getElementById(`mix-${svc.key}`);
+    r.value = svc.defaultMix;
+    document.getElementById(`mix-val-${svc.key}`).textContent = svc.defaultMix + "%";
+  }
+  recompute();
+}
+renderMix();
+
+/* ============================================================
+   Math
+   ============================================================ */
+function fmtMoney(n) {
+  if (Math.abs(n) >= 1_000_000) return "$" + (n / 1_000_000).toFixed(2) + "M";
+  if (Math.abs(n) >= 1_000) return "$" + (n / 1_000).toFixed(n >= 100_000 ? 0 : 1) + "K";
+  return "$" + Math.round(n).toLocaleString();
+}
+function num(id) { return +document.getElementById(id).value; }
+
+function readMix() {
+  const raw = SERVICES.map(s => ({ ...s, mix: num("mix-" + s.key) }));
+  const total = raw.reduce((a, b) => a + b.mix, 0) || 1;
+  return raw.map(r => ({ ...r, weight: r.mix / total }));
+}
+
+function weightedMonthly(mix) { return mix.reduce((a, b) => a + b.monthly * b.weight, 0); }
+function weightedSetup(mix)   { return mix.reduce((a, b) => a + b.setup   * b.weight, 0); }
+
+function compute() {
+  const leadsDay    = num("sl-leads-day");
+  const workingDays = num("sl-working-days");
+  const replyRate   = num("sl-reply-rate") / 100;
+  const meetingRate = num("sl-meeting-rate") / 100;
+  const closeRate   = num("sl-close-rate") / 100;
+
+  const mix        = readMix();
+  const mixTotal   = mix.reduce((a, b) => a + b.mix, 0);
+  const wMonthly   = weightedMonthly(mix);
+  const wSetup     = weightedSetup(mix);
+
+  // User can override deal size; we show the mix-implied number alongside.
+  const dealSizeOverride = num("sl-deal-size");
+  const contractMo       = num("sl-contract");
+  const setupOverride    = num("sl-setup");
+  const cogs             = num("sl-cogs") / 100;
+  const overhead         = num("sl-overhead");
+
+  // Blend: 70% weight mix-implied, 30% weight user override. This lets the
+  // user anchor to a number they have in mind without fighting the mix.
+  const dealMonthly = 0.7 * wMonthly + 0.3 * dealSizeOverride;
+  const dealSetup   = 0.7 * wSetup   + 0.3 * setupOverride;
+
+  const leadsMonth    = leadsDay * workingDays;
+  const replies       = leadsMonth * replyRate;
+  const meetings      = replies * meetingRate;
+  const newClients    = meetings * closeRate;
+  const newMRR        = newClients * dealMonthly;
+  const monthlySetup  = newClients * dealSetup;
+
+  // Steady-state MRR = newMRR * avg contract length (approximation: every
+  // client sticks for contractMo months, so after contractMo months the book
+  // stabilises at newMRR * contractMo).
+  const steadyMRR = newMRR * contractMo;
+
+  // 12-month revenue model: MRR ramps linearly as new clients land each month.
+  // Clients churn off after contractMo months.
+  const months = [];
+  const mrrSeries = [];
+  const revSeries = [];
+  const activeCohorts = []; // {clientsRemaining, monthly, setupBooked}
+  let cumRev = 0;
+  for (let m = 1; m <= 12; m++) {
+    // Add this month's cohort
+    activeCohorts.push({ startMonth: m, clients: newClients, monthly: dealMonthly, setupBooked: false });
+    // Compute active MRR and recognise setup fees in month of signing
+    let mrr = 0;
+    let setupThisMonth = 0;
+    for (const c of activeCohorts) {
+      const age = m - c.startMonth;
+      if (age < contractMo) mrr += c.clients * c.monthly;
+      if (age === 0 && !c.setupBooked) { setupThisMonth += c.clients * dealSetup; c.setupBooked = true; }
+    }
+    const monthRev = mrr + setupThisMonth;
+    cumRev += monthRev;
+    months.push("M" + m);
+    mrrSeries.push(mrr);
+    revSeries.push(monthRev);
+  }
+
+  const annualRev = cumRev;
+  const grossProfit = annualRev * (1 - cogs);
+  const netProfit   = grossProfit - overhead * 12;
+
+  // Break-even leads/day: solve for leadsDay such that net profit = 0
+  // annualRev(L) = 12 * (L*workingDays*replyRate*meetingRate*closeRate) * (dealMonthly * avgActiveMonths + dealSetup)
+  // where avgActiveMonths for year-1 is a ramp; approximate with contractMo/2 for simplicity.
+  const avgActive = Math.min(contractMo, 12) / 2 + 1;
+  const revPerLead = workingDays * replyRate * meetingRate * closeRate *
+                     (dealMonthly * avgActive + dealSetup);
+  const grossPerLeadDay = revPerLead * 12 * (1 - cogs);
+  const breakEvenLeads = overhead * 12 / Math.max(grossPerLeadDay, 0.01);
+
+  return {
+    leadsMonth, replies, meetings, newClients,
+    newMRR, monthlySetup, steadyMRR, annualRev,
+    grossProfit, netProfit, breakEvenLeads,
+    dealMonthly, dealSetup, mixTotal,
+    months, mrrSeries, revSeries,
+  };
+}
+
+/* ============================================================
+   KPI + chart render
+   ============================================================ */
+let revChart, funnelChart, tradeChart, cityChart;
+
+function recompute() {
+  const c = compute();
+
+  document.getElementById("kpi-qualified").textContent = Math.round(c.meetings).toLocaleString();
+  document.getElementById("kpi-clients").textContent   = c.newClients.toFixed(1);
+  document.getElementById("kpi-new-mrr").textContent   = fmtMoney(c.newMRR);
+  document.getElementById("kpi-steady-mrr").textContent= fmtMoney(c.steadyMRR);
+  document.getElementById("kpi-annual").textContent    = fmtMoney(c.annualRev);
+  document.getElementById("kpi-gross").textContent     = fmtMoney(c.grossProfit);
+  const netEl = document.getElementById("kpi-net");
+  netEl.textContent = fmtMoney(c.netProfit);
+  netEl.className = "value " + (c.netProfit >= 0 ? "good" : "");
+  if (c.netProfit < 0) netEl.style.color = "var(--bad)"; else netEl.style.color = "";
+  document.getElementById("kpi-breakeven").textContent =
+    isFinite(c.breakEvenLeads) ? c.breakEvenLeads.toFixed(1) + " / day" : "—";
+
+  document.getElementById("mix-total").textContent = c.mixTotal;
+  document.getElementById("mix-weighted").textContent = fmtMoney(c.dealMonthly);
+
+  /* Revenue chart */
+  const revData = {
+    labels: c.months,
+    datasets: [
+      {
+        label: "Monthly revenue",
+        data: c.revSeries,
+        backgroundColor: "rgba(212, 160, 74, 0.25)",
+        borderColor: "#d4a04a",
+        borderWidth: 2,
+        fill: true,
+        tension: 0.25,
+      },
+      {
+        label: "Active MRR",
+        data: c.mrrSeries,
+        borderColor: "#4ea8ff",
+        backgroundColor: "rgba(78, 168, 255, 0.15)",
+        borderWidth: 2,
+        fill: true,
+        tension: 0.25,
+      },
+    ],
+  };
+  if (revChart) { revChart.data = revData; revChart.update(); }
+  else {
+    revChart = new Chart(document.getElementById("chart-revenue"), {
+      type: "line",
+      data: revData,
+      options: chartOpts(true),
+    });
+  }
+
+  /* Funnel chart */
+  const fData = {
+    labels: ["Leads", "Replies", "Meetings", "Clients"],
+    datasets: [{
+      label: "Monthly count",
+      data: [c.leadsMonth, c.replies, c.meetings, c.newClients],
+      backgroundColor: ["#243244", "#3a4a63", "#4ea8ff", "#d4a04a"],
+    }],
+  };
+  if (funnelChart) { funnelChart.data = fData; funnelChart.update(); }
+  else {
+    funnelChart = new Chart(document.getElementById("chart-funnel"), {
+      type: "bar",
+      data: fData,
+      options: chartOpts(false),
+    });
+  }
+}
+
+function chartOpts(money) {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: "#94a3b8", font: { size: 11 } } },
+      tooltip: {
+        callbacks: money ? {
+          label: ctx => ctx.dataset.label + ": " + fmtMoney(ctx.raw),
+        } : {},
+      },
+    },
+    scales: {
+      x: { ticks: { color: "#94a3b8" }, grid: { color: "#243244" } },
+      y: {
+        ticks: {
+          color: "#94a3b8",
+          callback: v => money ? fmtMoney(v) : v.toLocaleString(),
+        },
+        grid: { color: "#243244" },
+      },
+    },
+  };
+}
+
+/* ============================================================
+   Leads table + distribution charts
+   ============================================================ */
+let sortKey = "fit_score";
+let sortDir = -1;
+
+function renderDistributions() {
+  const byTrade = {}, byCity = {};
+  for (const l of DATA) {
+    byTrade[l.trade] = (byTrade[l.trade] || 0) + 1;
+    byCity[l.city] = (byCity[l.city] || 0) + 1;
+  }
+  const tradeLabels = Object.keys(byTrade).sort((a, b) => byTrade[b] - byTrade[a]);
+  const cityLabels = Object.keys(byCity).sort((a, b) => byCity[b] - byCity[a]).slice(0, 12);
+
+  const tradeData = {
+    labels: tradeLabels,
+    datasets: [{ data: tradeLabels.map(k => byTrade[k]), backgroundColor: "#4ea8ff" }],
+  };
+  const cityData = {
+    labels: cityLabels,
+    datasets: [{ data: cityLabels.map(k => byCity[k]), backgroundColor: "#d4a04a" }],
+  };
+  tradeChart = new Chart(document.getElementById("chart-trade"), {
+    type: "bar",
+    data: tradeData,
+    options: { ...chartOpts(false), indexAxis: "y", plugins: { legend: { display: false } } },
+  });
+  cityChart = new Chart(document.getElementById("chart-city"), {
+    type: "bar",
+    data: cityData,
+    options: { ...chartOpts(false), plugins: { legend: { display: false } } },
+  });
+
+  // Populate filters
+  const tradeSel = document.getElementById("filter-trade");
+  for (const t of tradeLabels) {
+    const o = document.createElement("option");
+    o.value = t; o.textContent = t;
+    tradeSel.appendChild(o);
+  }
+  const citySel = document.getElementById("filter-city");
+  const allCities = Object.keys(byCity).sort();
+  for (const c of allCities) {
+    const o = document.createElement("option");
+    o.value = c; o.textContent = c;
+    citySel.appendChild(o);
+  }
+}
+
+function scoreBadge(s) {
+  if (s >= 70) return '<span class="badge hot">HOT ' + s + '</span>';
+  if (s >= 45) return '<span class="badge warm">WARM ' + s + '</span>';
+  return '<span class="badge cool">COOL ' + s + '</span>';
+}
+
+function renderTable() {
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const ft = document.getElementById("filter-trade").value;
+  const fc = document.getElementById("filter-city").value;
+  const ms = +document.getElementById("filter-min-score").value;
+
+  let rows = DATA.filter(l => {
+    if (ft && l.trade !== ft) return false;
+    if (fc && l.city !== fc) return false;
+    if (l.fit_score < ms) return false;
+    if (q) {
+      const blob = (l.name + " " + l.trade + " " + l.city + " " + l.address).toLowerCase();
+      if (!blob.includes(q)) return false;
+    }
+    return true;
+  });
+  rows.sort((a, b) => {
+    const av = a[sortKey] ?? "";
+    const bv = b[sortKey] ?? "";
+    if (av < bv) return -1 * sortDir;
+    if (av > bv) return 1 * sortDir;
+    return 0;
+  });
+
+  const body = document.getElementById("leads-body");
+  body.innerHTML = "";
+  const empty = document.getElementById("empty-row");
+  if (!rows.length) {
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+  for (const l of rows.slice(0, 400)) {
+    const tr = document.createElement("tr");
+    const contact = [
+      l.website ? `<a href="${l.website}" target="_blank">site</a>` : "",
+      l.phone ? `<a href="tel:${l.phone}">📞</a>` : "",
+      l.email ? `<a href="mailto:${l.email}">✉</a>` : "",
+    ].filter(Boolean).join(" ");
+    const research = Object.entries(l.research_urls || {})
+      .map(([k, v]) => `<a href="${v}" target="_blank">${k}</a>`).join(" ");
+    tr.innerHTML = `
+      <td class="score">${scoreBadge(l.fit_score)}</td>
+      <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--ink-dim); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
+      <td>${escapeHtml(l.trade)}</td>
+      <td>${escapeHtml(l.city)}</td>
+      <td>${contact || '<span style="color: var(--ink-dim);">—</span>'}</td>
+      <td>${research}</td>
+      <td style="color: var(--ink-dim); font-size: 11px;">${(l.discovered_at || "").slice(0, 10)}</td>
+    `;
+    body.appendChild(tr);
+  }
+}
+
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+// Table sorting
+for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
+  th.addEventListener("click", () => {
+    const k = th.dataset.sort;
+    if (sortKey === k) sortDir *= -1;
+    else { sortKey = k; sortDir = -1; }
+    renderTable();
+  });
+}
+// Table filters
+for (const id of ["search", "filter-trade", "filter-city", "filter-min-score"]) {
+  document.getElementById(id).addEventListener("input", renderTable);
+}
+
+/* ============================================================
+   Initial paint
+   ============================================================ */
+if (DATA.length) renderDistributions();
+renderTable();
+recompute();
+</script>
+</div>
+</body>
+</html>
