@@ -290,9 +290,9 @@
 <body>
 <header>
   <div class="logos">
-    <img src="assets/eunoia-logo.png" alt="Eunoia" onerror="this.style.display='none'; this.nextElementSibling && (this.nextElementSibling.style.display='none');" />
+    <img src="assets/eunoia-humanist-logo.png" alt="Eunoia" onerror="this.style.display='none';" />
     <div class="logo-divider"></div>
-    <img src="assets/five-talents-logo.png" alt="Five Talents" onerror="this.style.display='none'; this.previousElementSibling && (this.previousElementSibling.style.display='none');" />
+    <img src="assets/five-talents-logo.png" alt="Five Talents" onerror="this.style.display='none'; var d=this.previousElementSibling; if(d && d.classList.contains('logo-divider')) d.style.display='none';" />
   </div>
   <div class="title-block">
     <div class="tagline">Eunoia Strategy + Operations Built</div>
