@@ -680,3 +680,88 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-04-25T07:22:17] Total raw candidates: 241
 [2026-04-25T07:22:17] Run complete. Added: 0, Updated: 163, Total on file: 161
 [2026-04-25  7:22:17.11] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main c5197da] Daily lead refresh 2026-04-25  7:22:17.36
+ 3 files changed, 229 insertions(+), 163 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   cab074a..c5197da  main -> main
+[2026-04-25  7:22:17.36] Deployed to live dashboard 
+[2026-04-25  7:22:19.49] Done 
+[2026-04-26  7:00:01.83] Starting Marketing Hero daily run 
+^C[2026-04-27 10:57:57.65] Starting Marketing Hero daily run 
+^C[2026-04-28  7:00:01.65] Starting Marketing Hero daily run 
+[2026-04-28T07:00:02] Loaded store: 161 existing leads
+[2026-04-28T07:00:02] Source: OpenStreetMap (no API key)
+[2026-04-28T07:00:02] Category: Plumbing
+[2026-04-28T07:00:04]   OSM: 13 raw hits
+[2026-04-28T07:00:08] Category: HVAC / Heating
+[2026-04-28T07:00:18]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-28T07:00:26]   OSM: 12 raw hits
+[2026-04-28T07:00:30] Category: Electrical
+[2026-04-28T07:00:40]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:00:54]   OSM: 8 raw hits
+[2026-04-28T07:00:58] Category: Roofing
+[2026-04-28T07:01:09]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-28T07:01:20]   OSM: 5 raw hits
+[2026-04-28T07:01:24] Category: General Contracting
+[2026-04-28T07:01:37]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:01:54]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:02:14]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-28T07:02:59]   OSM: 28 raw hits
+[2026-04-28T07:03:03] Category: Landscaping / Excavation
+[2026-04-28T07:03:04]   OSM: 4 raw hits
+[2026-04-28T07:03:08] Category: Painting
+[2026-04-28T07:03:19]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:03:36]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:03:52]   OSM: 7 raw hits
+[2026-04-28T07:03:56] Category: Flooring / Tile
+[2026-04-28T07:04:06]   OSM: 1 raw hits
+[2026-04-28T07:04:10] Category: Drywall / Plastering
+[2026-04-28T07:04:21]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:04:36]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:04:53]   OSM: 0 raw hits
+[2026-04-28T07:04:57] Category: Concrete / Masonry
+[2026-04-28T07:05:07]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:05:16]   OSM: 3 raw hits
+[2026-04-28T07:05:20] Category: Windows / Doors
+[2026-04-28T07:05:22]   OSM: 1 raw hits
+[2026-04-28T07:05:26] Category: Garage Doors
+[2026-04-28T07:05:26]   OSM: 0 raw hits
+[2026-04-28T07:05:30] Category: Fencing / Decking
+[2026-04-28T07:05:42]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:05:56]   OSM: 0 raw hits
+[2026-04-28T07:06:00] Category: Solar
+[2026-04-28T07:06:10]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:06:17]   OSM: 0 raw hits
+[2026-04-28T07:06:21] Category: Pool / Spa
+[2026-04-28T07:06:21]   OSM: 0 raw hits
+[2026-04-28T07:06:25] Category: Glass / Glazing
+[2026-04-28T07:06:27]   OSM: 4 raw hits
+[2026-04-28T07:06:31] Category: Insulation / Scaffolding
+[2026-04-28T07:06:40]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:06:54]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:07:08]   OSM: 1 raw hits
+[2026-04-28T07:07:12] Category: Metal Fabrication / Welding
+[2026-04-28T07:07:25]   OSM: 4 raw hits
+[2026-04-28T07:07:29] Category: Cabinet / Millwork
+[2026-04-28T07:07:40]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:07:56]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:08:12]   OSM: 0 raw hits
+[2026-04-28T07:08:16] Category: Manufacturing / Factory
+[2026-04-28T07:08:26]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-28T07:09:00]   OSM: 40 raw hits
+[2026-04-28T07:09:04] Category: Sawmill / Wood Products
+[2026-04-28T07:09:15]   OSM: 2 raw hits
+[2026-04-28T07:09:19] Category: Brewery / Distillery / Winery
+[2026-04-28T07:09:31]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:09:42]   OSM: 47 raw hits
+[2026-04-28T07:09:46] Category: Printing / Signs
+[2026-04-28T07:09:57]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:10:12]   OSM: 5 raw hits
+[2026-04-28T07:10:16] Category: Trade Supply / Hardware
+[2026-04-28T07:10:26]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-28T07:10:41]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-28T07:11:25]   OSM: 56 raw hits
+[2026-04-28T07:11:29] Total raw candidates: 241
+[2026-04-28T07:11:29] Run complete. Added: 0, Updated: 163, Total on file: 161
+[2026-04-28  7:11:29.53] Run complete, deploying... 
