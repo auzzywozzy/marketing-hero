@@ -765,3 +765,77 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-04-28T07:11:29] Total raw candidates: 241
 [2026-04-28T07:11:29] Run complete. Added: 0, Updated: 163, Total on file: 161
 [2026-04-28  7:11:29.53] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main c31aec0] Daily lead refresh 2026-04-28  7:11:29.79
+ 3 files changed, 248 insertions(+), 163 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   c5197da..c31aec0  main -> main
+[2026-04-28  7:11:29.79] Deployed to live dashboard 
+[2026-04-28  7:11:32.59] Done 
+[2026-04-29  7:00:01.64] Starting Marketing Hero daily run 
+[2026-04-29T07:00:02] Loaded store: 161 existing leads
+[2026-04-29T07:00:02] Source: OpenStreetMap (no API key)
+[2026-04-29T07:00:02] Category: Plumbing
+[2026-04-29T07:00:09]   OSM: 13 raw hits
+[2026-04-29T07:00:13] Category: HVAC / Heating
+[2026-04-29T07:00:16]   OSM: 12 raw hits
+[2026-04-29T07:00:20] Category: Electrical
+[2026-04-29T07:00:29]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:00:45]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-29T07:00:59]   OSM: 8 raw hits
+[2026-04-29T07:01:03] Category: Roofing
+[2026-04-29T07:01:13]   OSM: 5 raw hits
+[2026-04-29T07:01:17] Category: General Contracting
+[2026-04-29T07:01:26]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:02:13]   OSM: 29 raw hits
+[2026-04-29T07:02:17] Category: Landscaping / Excavation
+[2026-04-29T07:02:19]   OSM: 4 raw hits
+[2026-04-29T07:02:23] Category: Painting
+[2026-04-29T07:02:34]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:02:51]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-29T07:03:14]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-04-29T07:03:39]   OSM: 7 raw hits
+[2026-04-29T07:03:43] Category: Flooring / Tile
+[2026-04-29T07:03:46]   OSM: 1 raw hits
+[2026-04-29T07:03:50] Category: Drywall / Plastering
+[2026-04-29T07:04:01]   OSM: 0 raw hits
+[2026-04-29T07:04:05] Category: Concrete / Masonry
+[2026-04-29T07:04:20]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:04:31]   OSM: 3 raw hits
+[2026-04-29T07:04:35] Category: Windows / Doors
+[2026-04-29T07:04:37]   OSM: 1 raw hits
+[2026-04-29T07:04:41] Category: Garage Doors
+[2026-04-29T07:04:41]   OSM: 0 raw hits
+[2026-04-29T07:04:45] Category: Fencing / Decking
+[2026-04-29T07:04:54]   OSM: 0 raw hits
+[2026-04-29T07:04:58] Category: Solar
+[2026-04-29T07:05:05]   OSM: 0 raw hits
+[2026-04-29T07:05:09] Category: Pool / Spa
+[2026-04-29T07:05:09]   OSM: 0 raw hits
+[2026-04-29T07:05:13] Category: Glass / Glazing
+[2026-04-29T07:05:24]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:05:33]   OSM: 4 raw hits
+[2026-04-29T07:05:37] Category: Insulation / Scaffolding
+[2026-04-29T07:05:39]   OSM: 1 raw hits
+[2026-04-29T07:05:43] Category: Metal Fabrication / Welding
+[2026-04-29T07:05:48]   OSM: 4 raw hits
+[2026-04-29T07:05:52] Category: Cabinet / Millwork
+[2026-04-29T07:05:55]   OSM: 0 raw hits
+[2026-04-29T07:05:59] Category: Manufacturing / Factory
+[2026-04-29T07:06:10]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-04-29T07:06:26]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-04-29T07:06:46]   . Overpass 429, backing off 24s (attempt 3/4)
+[2026-04-29T07:07:29]   OSM: 41 raw hits
+[2026-04-29T07:07:33] Category: Sawmill / Wood Products
+[2026-04-29T07:07:34]   OSM: 2 raw hits
+[2026-04-29T07:07:38] Category: Brewery / Distillery / Winery
+[2026-04-29T07:07:47]   OSM: 47 raw hits
+[2026-04-29T07:07:51] Category: Printing / Signs
+[2026-04-29T07:08:00]   OSM: 5 raw hits
+[2026-04-29T07:08:04] Category: Trade Supply / Hardware
+[2026-04-29T07:08:13]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-04-29T07:08:28]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-04-29T07:09:13]   OSM: 56 raw hits
+[2026-04-29T07:09:17] Total raw candidates: 243
+[2026-04-29T07:09:17] Run complete. Added: 2, Updated: 163, Total on file: 163
+[2026-04-29  7:09:17.76] Run complete, deploying... 
