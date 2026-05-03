@@ -966,3 +966,67 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-05-02T08:27:09] Total raw candidates: 243
 [2026-05-02T08:27:09] Run complete. Added: 0, Updated: 165, Total on file: 163
 [2026-05-02  8:27:09.17] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main 1f34d61] Daily lead refresh 2026-05-02  8:27:09.40
+ 3 files changed, 227 insertions(+), 165 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   db5dc5f..1f34d61  main -> main
+[2026-05-02  8:27:09.40] Deployed to live dashboard 
+[2026-05-02  8:27:11.60] Done 
+[2026-05-03  7:00:01.89] Starting Marketing Hero daily run 
+[2026-05-03T07:00:03] Loaded store: 163 existing leads
+[2026-05-03T07:00:03] Source: OpenStreetMap (no API key)
+[2026-05-03T07:00:03] Category: Plumbing
+[2026-05-03T07:00:05]   OSM: 13 raw hits
+[2026-05-03T07:00:09] Category: HVAC / Heating
+[2026-05-03T07:00:14]   OSM: 12 raw hits
+[2026-05-03T07:00:18] Category: Electrical
+[2026-05-03T07:00:22]   OSM: 8 raw hits
+[2026-05-03T07:00:26] Category: Roofing
+[2026-05-03T07:00:27]   OSM: 5 raw hits
+[2026-05-03T07:00:31] Category: General Contracting
+[2026-05-03T07:01:09]   OSM: 29 raw hits
+[2026-05-03T07:01:13] Category: Landscaping / Excavation
+[2026-05-03T07:01:14]   OSM: 4 raw hits
+[2026-05-03T07:01:18] Category: Painting
+[2026-05-03T07:01:20]   OSM: 7 raw hits
+[2026-05-03T07:01:24] Category: Flooring / Tile
+[2026-05-03T07:01:26]   OSM: 1 raw hits
+[2026-05-03T07:01:30] Category: Drywall / Plastering
+[2026-05-03T07:01:37]   OSM: 0 raw hits
+[2026-05-03T07:01:41] Category: Concrete / Masonry
+[2026-05-03T07:01:48]   OSM: 3 raw hits
+[2026-05-03T07:01:52] Category: Windows / Doors
+[2026-05-03T07:02:06]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-05-03T07:02:15]   OSM: 1 raw hits
+[2026-05-03T07:02:19] Category: Garage Doors
+[2026-05-03T07:02:19]   OSM: 0 raw hits
+[2026-05-03T07:02:23] Category: Fencing / Decking
+[2026-05-03T07:02:25]   OSM: 0 raw hits
+[2026-05-03T07:02:29] Category: Solar
+[2026-05-03T07:02:31]   OSM: 0 raw hits
+[2026-05-03T07:02:35] Category: Pool / Spa
+[2026-05-03T07:02:35]   OSM: 0 raw hits
+[2026-05-03T07:02:39] Category: Glass / Glazing
+[2026-05-03T07:02:51]   OSM: 4 raw hits
+[2026-05-03T07:02:55] Category: Insulation / Scaffolding
+[2026-05-03T07:03:10]   OSM: 1 raw hits
+[2026-05-03T07:03:14] Category: Metal Fabrication / Welding
+[2026-05-03T07:03:29]   OSM: 4 raw hits
+[2026-05-03T07:03:33] Category: Cabinet / Millwork
+[2026-05-03T07:03:35]   OSM: 0 raw hits
+[2026-05-03T07:03:39] Category: Manufacturing / Factory
+[2026-05-03T07:03:51]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-05-03T07:04:16]   OSM: 41 raw hits
+[2026-05-03T07:04:20] Category: Sawmill / Wood Products
+[2026-05-03T07:04:21]   OSM: 2 raw hits
+[2026-05-03T07:04:25] Category: Brewery / Distillery / Winery
+[2026-05-03T07:04:29]   OSM: 47 raw hits
+[2026-05-03T07:04:33] Category: Printing / Signs
+[2026-05-03T07:04:36]   OSM: 5 raw hits
+[2026-05-03T07:04:40] Category: Trade Supply / Hardware
+[2026-05-03T07:04:54]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-05-03T07:05:33]   OSM: 56 raw hits
+[2026-05-03T07:05:37] Total raw candidates: 243
+[2026-05-03T07:05:37] Run complete. Added: 0, Updated: 165, Total on file: 163
+[2026-05-03  7:05:37.64] Run complete, deploying... 
