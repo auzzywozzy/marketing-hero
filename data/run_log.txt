@@ -1030,3 +1030,80 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-05-03T07:05:37] Total raw candidates: 243
 [2026-05-03T07:05:37] Run complete. Added: 0, Updated: 165, Total on file: 163
 [2026-05-03  7:05:37.64] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main 6effd6f] Daily lead refresh 2026-05-03  7:05:38.17
+ 3 files changed, 229 insertions(+), 165 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   1f34d61..6effd6f  main -> main
+[2026-05-03  7:05:38.17] Deployed to live dashboard 
+[2026-05-03  7:05:41.95] Done 
+[2026-05-04  8:33:31.60] Starting Marketing Hero daily run 
+[2026-05-04T08:33:32] Loaded store: 163 existing leads
+[2026-05-04T08:33:32] Source: OpenStreetMap (no API key)
+[2026-05-04T08:33:32] Category: Plumbing
+[2026-05-04T08:33:35]   OSM: 13 raw hits
+[2026-05-04T08:33:39] Category: HVAC / Heating
+[2026-05-04T08:33:42]   OSM: 12 raw hits
+[2026-05-04T08:33:46] Category: Electrical
+[2026-05-04T08:33:48]   OSM: 8 raw hits
+[2026-05-04T08:33:52] Category: Roofing
+[2026-05-04T08:33:54]   OSM: 5 raw hits
+[2026-05-04T08:33:58] Category: General Contracting
+[2026-05-04T08:34:10]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-05-04T08:34:27]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-05-04T08:35:00]   OSM: 29 raw hits
+[2026-05-04T08:35:04] Category: Landscaping / Excavation
+[2026-05-04T08:35:06]   OSM: 4 raw hits
+[2026-05-04T08:35:10] Category: Painting
+[2026-05-04T08:35:18]   OSM: 7 raw hits
+[2026-05-04T08:35:22] Category: Flooring / Tile
+[2026-05-04T08:35:27]   OSM: 1 raw hits
+[2026-05-04T08:35:31] Category: Drywall / Plastering
+[2026-05-04T08:35:40]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-05-04T08:35:55]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-05-04T08:36:14]   OSM: 0 raw hits
+[2026-05-04T08:36:18] Category: Concrete / Masonry
+[2026-05-04T08:36:31]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-05-04T08:36:41]   OSM: 3 raw hits
+[2026-05-04T08:36:45] Category: Windows / Doors
+[2026-05-04T08:36:49]   OSM: 1 raw hits
+[2026-05-04T08:36:53] Category: Garage Doors
+[2026-05-04T08:36:53]   OSM: 0 raw hits
+[2026-05-04T08:36:57] Category: Fencing / Decking
+[2026-05-04T08:37:04]   OSM: 0 raw hits
+[2026-05-04T08:37:08] Category: Solar
+[2026-05-04T08:37:13]   OSM: 0 raw hits
+[2026-05-04T08:37:17] Category: Pool / Spa
+[2026-05-04T08:37:17]   OSM: 0 raw hits
+[2026-05-04T08:37:21] Category: Glass / Glazing
+[2026-05-04T08:37:33]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-05-04T08:37:43]   OSM: 4 raw hits
+[2026-05-04T08:37:47] Category: Insulation / Scaffolding
+[2026-05-04T08:37:59]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-05-04T08:38:07]   OSM: 1 raw hits
+[2026-05-04T08:38:11] Category: Metal Fabrication / Welding
+[2026-05-04T08:38:15]   OSM: 4 raw hits
+[2026-05-04T08:38:19] Category: Cabinet / Millwork
+[2026-05-04T08:38:24]   OSM: 0 raw hits
+[2026-05-04T08:38:28] Category: Manufacturing / Factory
+[2026-05-04T08:38:38]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-05-04T08:39:05]   OSM: 41 raw hits
+[2026-05-04T08:39:09] Category: Sawmill / Wood Products
+[2026-05-04T08:39:20]   OSM: 2 raw hits
+[2026-05-04T08:39:24] Category: Brewery / Distillery / Winery
+[2026-05-04T08:39:36]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-05-04T08:39:46]   OSM: 47 raw hits
+[2026-05-04T08:39:50] Category: Printing / Signs
+[2026-05-04T08:39:55]   OSM: 5 raw hits
+[2026-05-04T08:39:59] Category: Trade Supply / Hardware
+[2026-05-04T08:40:34]   OSM: 56 raw hits
+[2026-05-04T08:40:38] Total raw candidates: 243
+[2026-05-04T08:40:38] Run complete. Added: 0, Updated: 165, Total on file: 163
+Exception ignored while finalizing file <http.client.HTTPResponse object at 0x00000231A0D9CE50>:
+Traceback (most recent call last):
+  File "C:\Users\PROLL\AppData\Local\Python\pythoncore-3.14-64\Lib\http\client.py", line 437, in close
+    super().close() # set "closed" flag
+  File "C:\Users\PROLL\AppData\Local\Python\pythoncore-3.14-64\Lib\http\client.py", line 450, in flush
+    self.fp.flush()
+ValueError: I/O operation on closed file.
+[2026-05-04  8:40:38.30] Run complete, deploying... 
