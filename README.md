@@ -1,10 +1,10 @@
 # Marketing Hero — Five Talents Lead Generator + Profit Dashboard
 
-Daily lead-farming pipeline for Five Talents Marketing targeting British Columbia trades businesses in the **$3M–$9M revenue band**, plus an interactive profit dashboard that models how leads translate into revenue.
+Daily lead-farming pipeline for Five Talents Marketing targeting trades and manufacturing businesses in the **$3M–$9M revenue band** across **British Columbia, Alberta, and Washington State**, plus an interactive profit dashboard that models how leads translate into revenue. Branded for Eunoia Consulting (the system builder).
 
 ## What it does
 
-**`lead_generator.py`** — runs daily, queries OpenStreetMap (and optionally Google Places) for BC trades businesses, scores each one on a 0–100 fit score, dedupes against the existing store, and writes to `data/leads.json` + `data/leads.js`.
+**`lead_generator.py`** — runs daily, queries OpenStreetMap, optionally Google Places, and optionally Apollo.io for businesses in the configured regions × trade categories. Scores each one on a 0–100 fit score, dedupes against the existing store, and writes to `data/leads.json` + `data/leads.js`.
 
 **`dashboard.html`** — standalone HTML file. Open in any browser. Sliders on the left drive the economic model (close rate, deal size, service mix, delivery cost, overhead). KPI tiles and charts on the right update live. The lead pipeline table at the bottom reads straight from the generated data with search, filter, and sort.
 
@@ -52,7 +52,10 @@ Each lead also gets research URLs so **you** can confirm revenue manually in one
 - OpenCorporates (BC jurisdiction)
 - BC Registry
 
-**When you're ready to upgrade**, paste a Google Places API key into `config.py` (`GOOGLE_PLACES_API_KEY`) or set the env var `MARKETING_HERO_PLACES_KEY`. The generator will automatically pull richer data (ratings, review counts, place IDs) alongside OSM. For even better revenue data, a paid enrichment layer (Apollo, ZoomInfo, Dun & Bradstreet) can be bolted on by adding a function that hits their API after `score_lead()` in `lead_generator.py`.
+**Optional paid sources** (drop-in — set the env var and the generator picks them up):
+
+- **Google Places** — set `MARKETING_HERO_PLACES_KEY` (or `GOOGLE_PLACES_API_KEY` in `config.py`). Adds ratings, review counts, and place IDs for the big trades in the top metros of each region. Cost-capped at `PLACES_MAX_CALLS_PER_RUN` (default 220, fits inside the $200/mo Google free credit).
+- **Apollo.io** (organization search) — set `MARKETING_HERO_APOLLO_KEY`. Queries `/api/v1/mixed_companies/api_search` for companies in `APOLLO_INDUSTRY_KEYWORDS` × `apollo_locations` (per region) × `APOLLO_EMPLOYEE_RANGES`. Cost-capped at `APOLLO_MAX_CALLS_PER_RUN` (default 12 = ~270 calls/month).
 
 ## Tuning
 

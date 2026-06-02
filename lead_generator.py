@@ -57,15 +57,17 @@ def empty_lead() -> dict:
         "name": "",
         "trade": "",
         "city": "",
-        "province": "BC",
-        "country": "Canada",
+        "region": "",            # BC | AB | WA — short region key
+        "province": "",          # province / state — written from TARGET_REGIONS
+        "country": "",
         "address": "",
         "website": "",
         "phone": "",
         "email": "",
         "osm_id": "",
         "place_id": "",
-        "source": "",
+        "apollo_id": "",
+        "source": "",            # osm | google_places | apollo
         "discovered_at": "",
         "last_seen_at": "",
         "raw_tags": {},
@@ -133,31 +135,33 @@ def http_post_with_retry(url: str, data: bytes, timeout: int = 60,
 # OVERPASS (OSM) SOURCE
 # ---------------------------------------------------------------------------
 
-def build_overpass_query(category: dict) -> str | None:
-    """Build an Overpass QL query for a trade category inside BC."""
+def build_overpass_query(category: dict, region: dict) -> str | None:
+    """Build an Overpass QL query for a trade category inside one region."""
     parts = []
     for craft in category.get("osm_craft", []):
-        parts.append(f'node["craft"="{craft}"](area.bc);')
-        parts.append(f'way["craft"="{craft}"](area.bc);')
+        parts.append(f'node["craft"="{craft}"](area.region);')
+        parts.append(f'way["craft"="{craft}"](area.region);')
     for shop in category.get("osm_shop", []):
-        parts.append(f'node["shop"="{shop}"](area.bc);')
-        parts.append(f'way["shop"="{shop}"](area.bc);')
+        parts.append(f'node["shop"="{shop}"](area.region);')
+        parts.append(f'way["shop"="{shop}"](area.region);')
     for entry in category.get("osm_tags", []):
         # entry is [key, value] or [key, None] for wildcard
         key = entry[0]
         value = entry[1] if len(entry) > 1 else None
         if value is None:
-            parts.append(f'node["{key}"](area.bc);')
-            parts.append(f'way["{key}"](area.bc);')
+            parts.append(f'node["{key}"](area.region);')
+            parts.append(f'way["{key}"](area.region);')
         else:
-            parts.append(f'node["{key}"="{value}"](area.bc);')
-            parts.append(f'way["{key}"="{value}"](area.bc);')
+            parts.append(f'node["{key}"="{value}"](area.region);')
+            parts.append(f'way["{key}"="{value}"](area.region);')
     if not parts:
         return None
     body = "\n    ".join(parts)
+    iso = region["iso_code"]
+    admin = region.get("admin_level", 4)
     query = f"""
 [out:json][timeout:{config.OVERPASS_TIMEOUT_SEC}];
-area["ISO3166-2"="CA-BC"][admin_level=4]->.bc;
+area["ISO3166-2"="{iso}"][admin_level={admin}]->.region;
 (
     {body}
 );
@@ -166,8 +170,8 @@ out center tags 300;
     return query
 
 
-def fetch_overpass(category: dict) -> list[dict]:
-    query = build_overpass_query(category)
+def fetch_overpass(category: dict, region: dict) -> list[dict]:
+    query = build_overpass_query(category, region)
     if not query:
         return []
     try:
@@ -178,9 +182,10 @@ def fetch_overpass(category: dict) -> list[dict]:
         )
         payload = json.loads(data)
     except Exception as e:
-        log(f"  ! Overpass error for {category['label']}: {e}")
+        log(f"  ! Overpass error for {category['label']} [{region['key']}]: {e}")
         return []
 
+    target_areas_lower = {a.lower() for a in region["target_areas"]}
     leads = []
     for elem in payload.get("elements", []):
         tags = elem.get("tags", {}) or {}
@@ -193,14 +198,10 @@ def fetch_overpass(category: dict) -> list[dict]:
             or tags.get("is_in:city")
             or ""
         ).strip()
-        # Skip anything not in a configured BC target area.
-        if city and city not in config.BC_TARGET_AREAS:
-            # Loose fallback: match against lowercase compare
-            low = city.lower()
-            if not any(a.lower() == low for a in config.BC_TARGET_AREAS):
-                continue
+        # Skip anything not in a configured target area for THIS region.
         if not city:
-            # Try to derive from postcode or skip
+            continue
+        if city.lower() not in target_areas_lower:
             continue
 
         lead = empty_lead()
@@ -208,6 +209,9 @@ def fetch_overpass(category: dict) -> list[dict]:
         lead["name"] = name.strip()
         lead["trade"] = category["label"]
         lead["city"] = city
+        lead["region"] = region["key"]
+        lead["province"] = region["province"]
+        lead["country"] = region["country"]
         lead["address"] = _compose_address(tags)
         lead["website"] = tags.get("website", "") or tags.get("contact:website", "")
         lead["phone"] = tags.get("phone", "") or tags.get("contact:phone", "")
@@ -240,21 +244,23 @@ def places_key() -> str:
     )
 
 
-def fetch_places(category: dict, city: str) -> list[dict]:
+def fetch_places(category: dict, city: str, region: dict) -> list[dict]:
     key = places_key()
     if not key:
         return []
-    q = f'{category["places_query"]} in {city}, British Columbia'
+    q = f'{category["places_query"]} in {city}, {region["places_suffix"]}'
+    # Google's `region=` bias is an ISO 3166-1 country code (ca / us).
+    region_bias = "us" if region["country"] == "United States" else "ca"
     url = (
         config.PLACES_TEXT_SEARCH_URL
         + "?query=" + urllib.parse.quote(q)
-        + "&region=ca&key=" + key
+        + "&region=" + region_bias + "&key=" + key
     )
     try:
         data = http_get(url)
         payload = json.loads(data)
     except Exception as e:
-        log(f"  ! Places error for {category['label']} in {city}: {e}")
+        log(f"  ! Places error for {category['label']} in {city} [{region['key']}]: {e}")
         return []
 
     leads = []
@@ -267,6 +273,9 @@ def fetch_places(category: dict, city: str) -> list[dict]:
         lead["name"] = name
         lead["trade"] = category["label"]
         lead["city"] = city
+        lead["region"] = region["key"]
+        lead["province"] = region["province"]
+        lead["country"] = region["country"]
         lead["address"] = r.get("formatted_address", "")
         lead["place_id"] = r.get("place_id", "")
         lead["source"] = "google_places"
@@ -280,19 +289,215 @@ def fetch_places(category: dict, city: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# APOLLO SOURCE (optional — opt-in via MARKETING_HERO_APOLLO_KEY)
+# ---------------------------------------------------------------------------
+
+def apollo_key() -> str:
+    return (
+        getattr(config, "APOLLO_API_KEY", "")
+        or os.environ.get("MARKETING_HERO_APOLLO_KEY", "")
+    )
+
+
+def fetch_apollo_companies(region: dict, page: int) -> tuple[list[dict], int]:
+    """Run one Apollo /mixed_companies/api_search call for a region.
+
+    Returns (leads, total_pages_estimate). total_pages_estimate is best-effort
+    and used to short-circuit pagination when Apollo runs out of matches.
+    """
+    key = apollo_key()
+    if not key:
+        return [], 0
+
+    url = config.APOLLO_API_BASE_URL + config.APOLLO_ORG_SEARCH_PATH
+    body = {
+        "page": page,
+        "per_page": config.APOLLO_PAGE_SIZE,
+        "organization_locations": region["apollo_locations"],
+        "organization_num_employees_ranges": list(config.APOLLO_EMPLOYEE_RANGES),
+        "q_organization_keyword_tags": list(config.APOLLO_INDUSTRY_KEYWORDS),
+    }
+    headers = {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+        "X-Api-Key": key,
+        "User-Agent": "MarketingHero/1.0 (Eunoia Consulting)",
+    }
+
+    try:
+        raw = http_post(url, data=json.dumps(body).encode("utf-8"),
+                        timeout=30, headers=headers)
+        payload = json.loads(raw)
+    except urllib.error.HTTPError as e:
+        log(f"  ! Apollo HTTP {e.code} [{region['key']} p{page}]: {e.read()[:200].decode('utf-8', 'replace')}")
+        return [], 0
+    except Exception as e:
+        log(f"  ! Apollo error [{region['key']} p{page}]: {e}")
+        return [], 0
+
+    # Apollo's response keys have shifted over time — orgs may live under
+    # "organizations", "accounts", or "companies". Check in order.
+    orgs = []
+    for k in ("organizations", "accounts", "companies"):
+        v = payload.get(k)
+        if isinstance(v, list) and v:
+            orgs = v
+            break
+    total_entries = payload.get("total_entries")
+    if total_entries is None and isinstance(payload.get("pagination"), dict):
+        total_entries = payload["pagination"].get("total_entries")
+    pages_estimate = 0
+    if isinstance(total_entries, (int, float)):
+        pages_estimate = int(-(-int(total_entries) // config.APOLLO_PAGE_SIZE))
+
+    target_areas_lower = {a.lower() for a in region["target_areas"]}
+    leads = []
+    for o in orgs:
+        if not isinstance(o, dict):
+            continue
+        name = (o.get("name") or "").strip()
+        if not name:
+            continue
+        # Apollo gives city / state on the org record.
+        city = (o.get("city") or o.get("primary_city") or "").strip()
+        state = (o.get("state") or o.get("primary_state") or "").strip()
+        country = (o.get("country") or o.get("primary_country") or "").strip()
+        # Keep only orgs in the configured target_areas — guards against
+        # Apollo's loose location matching (e.g. "Vancouver" returning WA hits
+        # when querying for BC, etc.).
+        if city.lower() not in target_areas_lower:
+            continue
+        # Compose address from whatever Apollo returned. Apollo's `street_address`
+        # field carries the street; postal_code is sometimes populated.
+        addr_bits = [
+            (o.get("street_address") or "").strip(),
+            city,
+            state,
+            (o.get("postal_code") or "").strip(),
+        ]
+        address = ", ".join(b for b in addr_bits if b)
+
+        # Trade label inferred from Apollo's industry keywords array. We
+        # fall back to "Apollo · Unclassified" when nothing maps.
+        trade_label = _map_apollo_industry(o)
+
+        lead = empty_lead()
+        lead["id"] = make_lead_id(name, city)
+        lead["name"] = name
+        lead["trade"] = trade_label
+        lead["city"] = city
+        lead["region"] = region["key"]
+        lead["province"] = region["province"]
+        lead["country"] = region["country"]
+        lead["address"] = address
+        lead["website"] = (o.get("website_url") or "").strip()
+        lead["phone"] = (o.get("phone") or o.get("sanitized_phone") or "").strip()
+        lead["apollo_id"] = (o.get("id") or "").strip() if isinstance(o.get("id"), str) else str(o.get("id") or "")
+        lead["source"] = "apollo"
+        lead["raw_tags"] = {
+            "industry": o.get("industry"),
+            "keywords": (o.get("keywords") or [])[:8],
+            "estimated_num_employees": o.get("estimated_num_employees"),
+            "annual_revenue_printed": o.get("annual_revenue_printed"),
+            "linkedin_url": o.get("linkedin_url"),
+            "founded_year": o.get("founded_year"),
+        }
+        leads.append(lead)
+    return leads, pages_estimate
+
+
+# Apollo-industry → trade-label map. Anything not matched gets a generic
+# "Apollo · …" bucket so we don't accidentally collapse unrelated orgs into
+# the wrong OSM category.
+_APOLLO_INDUSTRY_MAP = [
+    ("plumb",            "Plumbing"),
+    ("hvac",             "HVAC / Heating"),
+    ("heating",          "HVAC / Heating"),
+    ("electric",         "Electrical"),
+    ("roof",             "Roofing"),
+    ("concrete",         "Concrete / Masonry"),
+    ("mason",            "Concrete / Masonry"),
+    ("excav",            "Excavation / Earthworks"),
+    ("demolition",       "Demolition / Site Prep"),
+    ("landscap",         "Landscaping"),
+    ("cabinet",          "Cabinet / Millwork"),
+    ("millwork",         "Cabinet / Millwork"),
+    ("metal fab",        "Metal Fabrication / Welding"),
+    ("welding",          "Metal Fabrication / Welding"),
+    ("auto body",        "Auto Body / Collision Repair"),
+    ("collision",        "Auto Body / Collision Repair"),
+    ("printing",         "Printing / Signs"),
+    ("sign",             "Printing / Signs"),
+    ("brewery",          "Brewery / Distillery / Winery"),
+    ("distillery",       "Brewery / Distillery / Winery"),
+    ("winery",           "Brewery / Distillery / Winery"),
+    ("sawmill",          "Sawmill / Wood Products"),
+    ("manufactur",       "Manufacturing / Factory"),
+    ("fabricat",         "Manufacturing / Factory"),
+    ("construction",     "General Contracting"),
+    ("contractor",       "General Contracting"),
+    ("building materials","Trade Supply / Hardware"),
+    ("glass",            "Glass / Glazing"),
+    ("insulation",       "Insulation / Scaffolding"),
+    ("scaffold",         "Insulation / Scaffolding"),
+    ("flooring",         "Flooring / Tile"),
+    ("tile",             "Flooring / Tile"),
+    ("paint",            "Painting"),
+    ("drywall",          "Drywall / Plastering"),
+    ("plaster",          "Drywall / Plastering"),
+    ("window",           "Windows / Doors"),
+    ("door",             "Windows / Doors"),
+    ("fence",            "Fencing / Decking"),
+    ("decking",          "Fencing / Decking"),
+    ("solar",            "Solar"),
+    ("pool",             "Pool / Spa"),
+]
+
+
+def _map_apollo_industry(org: dict) -> str:
+    haystack = " ".join(
+        str(x).lower() for x in [
+            org.get("industry") or "",
+            " ".join(org.get("keywords") or []),
+            " ".join(org.get("industries") or []),
+        ]
+    )
+    for needle, label in _APOLLO_INDUSTRY_MAP:
+        if needle in haystack:
+            return label
+    return "Apollo · Unclassified"
+
+
+# ---------------------------------------------------------------------------
 # ENRICHMENT — research URLs the user can click to verify revenue band
 # ---------------------------------------------------------------------------
 
-def add_research_urls(lead: dict) -> None:
-    q = f'"{lead["name"]}" {lead["city"]} BC'
+def add_research_urls(lead: dict, region: dict | None = None) -> None:
+    region = region or _region_for_lead(lead)
+    name_enc = urllib.parse.quote(lead["name"])
+    q = f'"{lead["name"]}" {lead["city"]} {lead.get("province", "")}'.strip()
     enc = urllib.parse.quote(q)
-    lead["research_urls"] = {
+    research = {
         "google": f"https://www.google.com/search?q={enc}",
         "google_maps": f"https://www.google.com/maps/search/{urllib.parse.quote(lead['name'] + ' ' + lead['city'])}",
-        "linkedin": f"https://www.linkedin.com/search/results/companies/?keywords={urllib.parse.quote(lead['name'])}",
-        "opencorporates": f"https://opencorporates.com/companies?q={urllib.parse.quote(lead['name'])}&jurisdiction_code=ca_bc",
-        "bc_registry": f"https://www.bcregistry.gov.bc.ca/search?q={urllib.parse.quote(lead['name'])}",
+        "linkedin": f"https://www.linkedin.com/search/results/companies/?keywords={name_enc}",
     }
+    if region:
+        for label, template in region.get("research", {}).items():
+            research[label] = template.format(q=name_enc)
+    else:
+        research["opencorporates"] = f"https://opencorporates.com/companies?q={name_enc}"
+    lead["research_urls"] = research
+
+
+def _region_for_lead(lead: dict) -> dict | None:
+    key = lead.get("region")
+    if not key:
+        return None
+    for r in config.TARGET_REGIONS:
+        if r["key"] == key:
+            return r
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -467,10 +672,17 @@ def run(dry_run: bool = False, reset: bool = False) -> int:
     log(f"Loaded store: {len(store['leads'])} existing leads")
 
     use_places = bool(places_key())
-    log(f"Source: {'Google Places + OSM' if use_places else 'OpenStreetMap (no API key)'}")
+    use_apollo = bool(apollo_key())
+    sources = ["OSM"]
+    if use_places: sources.append("Google Places")
+    if use_apollo: sources.append("Apollo")
+    log(f"Sources active: {' + '.join(sources)}")
 
-    # Pre-compute the Places scope to stay inside the free credit (~$200/mo).
-    places_metros = getattr(config, "PLACES_TOP_METROS", config.BC_TARGET_AREAS[:5])
+    regions = config.TARGET_REGIONS
+    log(f"Regions: {', '.join(r['key'] for r in regions)} "
+        f"({sum(len(r['target_areas']) for r in regions)} target cities)")
+    log(f"Categories: {len(config.TRADE_CATEGORIES)}")
+
     places_big_only = getattr(config, "PLACES_BIG_CATEGORIES_ONLY", True)
     places_max = getattr(config, "PLACES_MAX_CALLS_PER_RUN", 80)
     places_calls = 0
@@ -480,37 +692,61 @@ def run(dry_run: bool = False, reset: bool = False) -> int:
             c["label"] for c in config.TRADE_CATEGORIES
             if (not places_big_only) or c["label"] in config.BIG_TRADE_CATEGORIES
         ]
-        estimated = len(eligible_cats) * len(places_metros)
-        log(f"Places scope: {len(eligible_cats)} cats × {len(places_metros)} metros "
-            f"= {estimated} calls (cap {places_max})")
+        total_metros = sum(len(r["places_metros"]) for r in regions)
+        estimated = len(eligible_cats) * total_metros
+        log(f"Places scope: {len(eligible_cats)} cats × {total_metros} metros "
+            f"(across {len(regions)} regions) = {estimated} calls (cap {places_max})")
 
     candidates: list[dict] = []
 
+    # ---- OSM + Google Places: iterate (category × region) ----
     for category in config.TRADE_CATEGORIES:
         log(f"Category: {category['label']}")
-        # OSM first (always runs)
-        osm_leads = fetch_overpass(category)
-        log(f"  OSM: {len(osm_leads)} raw hits")
-        candidates.extend(osm_leads)
-        time.sleep(4.0)  # be polite to Overpass (free tier rate-limits hard)
+        for region in regions:
+            osm_leads = fetch_overpass(category, region)
+            log(f"  OSM [{region['key']}]: {len(osm_leads)} raw hits")
+            candidates.extend(osm_leads)
+            time.sleep(4.0)  # be polite to Overpass
 
-        # Google Places — scoped to stay under the free credit
-        if use_places:
-            if places_big_only and category["label"] not in config.BIG_TRADE_CATEGORIES:
-                continue
-            for city in places_metros:
-                if places_calls >= places_max:
-                    log(f"  Places cap reached ({places_max}) — skipping remainder")
-                    break
-                places_leads = fetch_places(category, city)
-                places_calls += 1
-                if places_leads:
-                    log(f"  Places [{city}]: {len(places_leads)} hits")
-                candidates.extend(places_leads)
-                time.sleep(0.2)
+            # Google Places — scoped to stay under the free credit
+            if use_places and (not places_big_only or category["label"] in config.BIG_TRADE_CATEGORIES):
+                for city in region["places_metros"]:
+                    if places_calls >= places_max:
+                        log(f"  Places cap reached ({places_max}) — skipping remainder")
+                        break
+                    places_leads = fetch_places(category, city, region)
+                    places_calls += 1
+                    if places_leads:
+                        log(f"  Places [{region['key']} · {city}]: {len(places_leads)} hits")
+                    candidates.extend(places_leads)
+                    time.sleep(0.2)
 
     if use_places:
         log(f"Places calls this run: {places_calls}")
+
+    # ---- Apollo organization search: iterate region × pages ----
+    if use_apollo:
+        apollo_max = getattr(config, "APOLLO_MAX_CALLS_PER_RUN", 12)
+        apollo_calls = 0
+        pages_per_region = getattr(config, "APOLLO_MAX_PAGES_PER_REGION", 3)
+        for region in regions:
+            log(f"Apollo: region {region['key']}")
+            for page in range(1, pages_per_region + 1):
+                if apollo_calls >= apollo_max:
+                    log(f"  Apollo cap reached ({apollo_max}) — skipping remainder")
+                    break
+                apollo_leads, est_pages = fetch_apollo_companies(region, page)
+                apollo_calls += 1
+                log(f"  Apollo [{region['key']} p{page}]: {len(apollo_leads)} hits "
+                    f"(est pool {est_pages * config.APOLLO_PAGE_SIZE if est_pages else '?'})")
+                candidates.extend(apollo_leads)
+                if est_pages and page >= est_pages:
+                    log(f"  Apollo [{region['key']}]: reached est page count, stopping")
+                    break
+                time.sleep(1.0)
+            if apollo_calls >= apollo_max:
+                break
+        log(f"Apollo calls this run: {apollo_calls}")
 
     log(f"Total raw candidates: {len(candidates)}")
 

@@ -15,36 +15,103 @@ Everything downstream (lead_generator.py, dashboard.html) reads from here.
 TARGET_REVENUE_MIN = 3_000_000
 TARGET_REVENUE_MAX = 9_000_000
 
-# BC cities/regions to farm. Order matters — earlier cities are checked first
-# when the daily quota is tight.
-BC_TARGET_AREAS = [
-    "Vancouver",
-    "Surrey",
-    "Burnaby",
-    "Richmond",
-    "Coquitlam",
-    "Langley",
-    "Abbotsford",
-    "Kelowna",
-    "Victoria",
-    "Saanich",
-    "Nanaimo",
-    "Kamloops",
-    "Chilliwack",
-    "Prince George",
-    "Delta",
-    "Maple Ridge",
-    "New Westminster",
-    "North Vancouver",
-    "West Vancouver",
-    "Port Coquitlam",
-    "Vernon",
-    "Penticton",
-    "Courtenay",
-    "Campbell River",
-    "Squamish",
-    "Whistler",
+# Target regions. The agent farms each region against the full category list.
+#
+# Each entry:
+#   key            — short slug used in logs and lead.region
+#   iso_code       — ISO 3166-2 (Overpass admin area filter)
+#   admin_level    — OSM admin_level for the area=> .region binding
+#                     (province for CA, state for US — both are 4)
+#   country        — country name written onto each lead
+#   province       — province / state written onto each lead
+#   target_areas   — list of city names accepted as `addr:city`
+#   places_metros  — metros to query via Google Places (cost-capped subset)
+#   places_suffix  — appended to Places query (e.g. "British Columbia")
+#   apollo_locations — strings handed to Apollo's person_locations filter
+#   research       — region-specific registry URLs for the "Research" row
+#                    in the dashboard
+TARGET_REGIONS = [
+    {
+        "key": "BC",
+        "iso_code": "CA-BC",
+        "admin_level": 4,
+        "country": "Canada",
+        "province": "BC",
+        "target_areas": [
+            "Vancouver", "Surrey", "Burnaby", "Richmond", "Coquitlam", "Langley",
+            "Abbotsford", "Kelowna", "Victoria", "Saanich", "Nanaimo", "Kamloops",
+            "Chilliwack", "Prince George", "Delta", "Maple Ridge", "New Westminster",
+            "North Vancouver", "West Vancouver", "Port Coquitlam", "Vernon",
+            "Penticton", "Courtenay", "Campbell River", "Squamish", "Whistler",
+        ],
+        "places_metros": ["Vancouver", "Surrey", "Burnaby", "Victoria", "Richmond"],
+        "places_suffix": "British Columbia",
+        "apollo_locations": [
+            "British Columbia", "Greater Vancouver Metropolitan Area",
+            "Greater Victoria Metropolitan Area", "Kelowna", "Kamloops",
+        ],
+        "research": {
+            "registry": "https://www.bcregistry.gov.bc.ca/search?q={q}",
+            "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_bc",
+        },
+    },
+    {
+        "key": "AB",
+        "iso_code": "CA-AB",
+        "admin_level": 4,
+        "country": "Canada",
+        "province": "AB",
+        "target_areas": [
+            "Calgary", "Edmonton", "Red Deer", "Lethbridge", "Medicine Hat",
+            "Grande Prairie", "Airdrie", "St. Albert", "Spruce Grove", "Leduc",
+            "Fort McMurray", "Okotoks", "Sherwood Park", "Camrose", "Cochrane",
+            "Lloydminster", "Beaumont", "Stony Plain", "Sylvan Lake", "Brooks",
+            "Wetaskiwin", "Chestermere",
+        ],
+        "places_metros": ["Calgary", "Edmonton", "Red Deer", "Lethbridge", "Sherwood Park"],
+        "places_suffix": "Alberta",
+        "apollo_locations": [
+            "Alberta", "Greater Calgary Metropolitan Area",
+            "Greater Edmonton Metropolitan Area", "Red Deer",
+        ],
+        "research": {
+            # Alberta Corporate Registry search lives behind a paywall; the
+            # public "corporate registration system" landing page is the best
+            # zero-cost stub we can deep-link to. OpenCorporates fills the gap.
+            "registry": "https://cores.reg.gov.ab.ca/cores/public/searchcorporation.aspx?q={q}",
+            "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_ab",
+        },
+    },
+    {
+        "key": "WA",
+        "iso_code": "US-WA",
+        "admin_level": 4,  # state in OSM is admin_level=4
+        "country": "United States",
+        "province": "WA",
+        "target_areas": [
+            "Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue", "Kent",
+            "Everett", "Renton", "Yakima", "Federal Way", "Spokane Valley",
+            "Bellingham", "Kennewick", "Auburn", "Pasco", "Marysville", "Redmond",
+            "Lakewood", "Shoreline", "Richland", "Kirkland", "Burien",
+            "Sammamish", "Olympia", "Lacey", "Edmonds", "Bremerton", "Puyallup",
+            "Lynnwood", "Bothell", "Issaquah", "Wenatchee",
+        ],
+        "places_metros": ["Seattle", "Spokane", "Tacoma", "Bellevue", "Vancouver"],
+        "places_suffix": "Washington",
+        "apollo_locations": [
+            "Washington, United States", "Greater Seattle Area",
+            "Spokane, Washington", "Tacoma, Washington",
+        ],
+        "research": {
+            "registry": "https://ccfs.sos.wa.gov/#/BusinessSearch/BusinessInformation?q={q}",
+            "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=us_wa",
+        },
+    },
 ]
+
+# Back-compat — older code expected a single flat BC list. Auto-derived from
+# TARGET_REGIONS so nothing else has to change.
+BC_TARGET_AREAS = TARGET_REGIONS[0]["target_areas"]
 
 # Trade categories. Each entry maps a human label to OpenStreetMap tags and
 # Google Places text-search query fragments.
@@ -88,10 +155,28 @@ TRADE_CATEGORIES = [
         "places_query": "general contractor construction",
     },
     {
-        "label": "Landscaping / Excavation",
+        "label": "Landscaping",
         "osm_craft": ["gardener"],
         "osm_shop": [],
-        "places_query": "landscaping excavation contractor",
+        "osm_tags": [["landuse", "plant_nursery"]],
+        "places_query": "landscaping contractor lawn maintenance",
+    },
+    {
+        "label": "Excavation / Earthworks",
+        "osm_craft": ["earthworks"],
+        "osm_shop": [],
+        "osm_tags": [
+            ["industrial", "excavation"],
+            ["industrial", "earthworks"],
+            ["industrial", "quarry"],
+        ],
+        "places_query": "excavation earthworks site preparation contractor",
+    },
+    {
+        "label": "Demolition / Site Prep",
+        "osm_craft": ["demolition"],
+        "osm_shop": [],
+        "places_query": "demolition site prep contractor",
     },
     {
         "label": "Painting",
@@ -214,6 +299,14 @@ TRADE_CATEGORIES = [
         "osm_shop": ["doityourself", "hardware", "paint", "fireplace", "bathroom_furnishing", "kitchen", "tiles"],
         "places_query": "building supply hardware trade wholesale",
     },
+    # --- Auto / collision ---
+    {
+        "label": "Auto Body / Collision Repair",
+        "osm_craft": ["car_body_repair", "car_painter"],
+        "osm_shop": ["car_repair"],
+        "osm_tags": [["amenity", "car_repair"]],
+        "places_query": "auto body collision repair shop",
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -235,15 +328,46 @@ PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 # Places Text Search is billed at ~$32 / 1000 requests. Google provides a
 # $200/mo free credit, which covers ~6,250 calls/month (~200/day).
 #
-# To stay inside the free credit, we:
-#   1. Only query the top few metros (not every city in BC_TARGET_AREAS)
-#   2. Only query the BIG_TRADE_CATEGORIES (higher-revenue trades)
-#
-# Default = 5 metros × ~10 big categories = 50 calls/day = ~1,500/mo = FREE.
-PLACES_TOP_METROS = ["Vancouver", "Surrey", "Burnaby", "Victoria", "Richmond"]
+# Across 3 regions × 5 metros × ~12 big cats = 180 calls/day = ~5,400/mo,
+# which still fits inside the $200 free credit with headroom. Each region
+# carries its own metro list — see TARGET_REGIONS[*]["places_metros"].
+PLACES_TOP_METROS = TARGET_REGIONS[0]["places_metros"]  # back-compat alias
 PLACES_BIG_CATEGORIES_ONLY = True
 # Safety cap — hard stop on Places calls per run, even if config drifts.
-PLACES_MAX_CALLS_PER_RUN = 80
+PLACES_MAX_CALLS_PER_RUN = 220
+
+# --- Apollo.io (organization search) ---
+# Apollo's /api/v1/mixed_companies/api_search returns companies matching an
+# ICP filter (industry × geo × employee band). Leave the key blank to skip
+# Apollo entirely; set MARKETING_HERO_APOLLO_KEY in the environment to enable.
+# Cost: included in Apollo's paid plan ($49–$99/mo). Each call returns up
+# to ~25 organizations; we cap calls per run below to keep the rolling
+# quota sane.
+APOLLO_API_KEY = ""  # prefer env var MARKETING_HERO_APOLLO_KEY
+APOLLO_API_BASE_URL = "https://api.apollo.io/api/v1"
+APOLLO_ORG_SEARCH_PATH = "/mixed_companies/api_search"
+
+# Apollo industry keywords — feed into q_organization_keyword_tags. Broader
+# than TRADE_CATEGORIES on purpose: Apollo's taxonomy doesn't map 1:1 to OSM.
+APOLLO_INDUSTRY_KEYWORDS = [
+    "construction", "specialty trade contractors", "building materials",
+    "civil engineering", "manufacturing", "fabrication", "industrial",
+    "facilities services", "wholesale building materials",
+    "plumbing", "hvac", "electrical contractor", "roofing", "concrete",
+    "landscaping", "excavation", "demolition", "millwork", "cabinetry",
+    "auto body", "collision repair", "printing", "sign manufacturing",
+]
+
+# Employee-band brackets that approximate the $3–9M CAD revenue band — sweet
+# spot is ~10–100 employees for trades/manufacturing.
+APOLLO_EMPLOYEE_RANGES = ["11,20", "21,50", "51,100"]
+
+# Cap per run — Apollo paid plans have monthly call limits; this keeps a
+# daily run from burning the entire month's quota in one shot. Across 3
+# regions, ~3 pages each = 9 calls/day = ~270/mo.
+APOLLO_MAX_CALLS_PER_RUN = 12
+APOLLO_PAGE_SIZE = 25
+APOLLO_MAX_PAGES_PER_REGION = 3
 
 # ---------------------------------------------------------------------------
 # DAILY QUOTA
@@ -283,8 +407,19 @@ BIG_TRADE_CATEGORIES = {
     "Sawmill / Wood Products",
     "Brewery / Distillery / Winery",
     "Cabinet / Millwork",
+    "Excavation / Earthworks",
+    "Demolition / Site Prep",
+    "Concrete / Masonry",
+    "Auto Body / Collision Repair",
 }
-URBAN_METROS = {"Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Coquitlam", "Langley"}
+URBAN_METROS = {
+    # BC
+    "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Coquitlam", "Langley",
+    # AB
+    "Calgary", "Edmonton", "Red Deer", "Sherwood Park", "St. Albert",
+    # WA
+    "Seattle", "Bellevue", "Tacoma", "Spokane", "Redmond", "Kirkland",
+}
 
 # Minimum fit score required to include a lead in the output (0–100).
 MIN_FIT_SCORE = 25
