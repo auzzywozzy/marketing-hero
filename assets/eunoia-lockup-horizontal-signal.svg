@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="1200" height="360" role="img" aria-label="Eunoia Consulting horizontal lockup">
+  <title>Eunoia Consulting · Horizontal Lockup</title>
+  <style>
+    .wm { font: 900 88px/1 "Mont", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.04em; fill: #E8E2D6; }
+  </style>
+  <g transform="translate(20 30) scale(1.2)" fill="#E8E2D6">
+    <path d="M 14 12 L 86 12 L 86 26 C 76 32 62 26 48 26 C 34 26 22 30 14 30 Z"/>
+    <path d="M 14 40 C 26 38 40 46 52 46 C 62 46 70 42 76 42 L 76 52 C 70 56 60 56 48 54 C 34 52 22 56 14 56 Z"/>
+    <path d="M 14 68 C 26 64 42 72 56 72 C 68 72 80 66 86 64 L 86 88 L 14 88 Z"/>
+  </g>
+  <text class="wm" x="180" y="115">EUNOIA</text>
+</svg>
