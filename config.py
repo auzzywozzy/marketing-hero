@@ -16,10 +16,9 @@ TARGET_REVENUE_MIN = 3_000_000
 TARGET_REVENUE_MAX = 9_000_000
 
 # Target regions. The agent farms each region against the full category list.
-# ICP narrowed 2026-06-03: BC only for the single-scope-trade + bad-website
-# hunt that feeds the SEO-audit → website-redesign outreach play. The AB and
-# WA region records below are kept in source (commented out) so they can be
-# re-enabled in one edit if/when that pipeline reopens.
+# ICP refocus 2026-06-03: BC + Alberta for the single-scope-trade + bad-website
+# hunt that feeds the SEO-audit → website-redesign outreach play. Washington
+# is retired (Seattle metro orgs trended too large + cross-border friction).
 #
 # Each entry:
 #   key            — short slug used in logs and lead.region
@@ -59,13 +58,6 @@ TARGET_REGIONS = [
             "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_bc",
         },
     },
-    # --- PAUSED REGIONS ---
-    # Alberta (CA-AB) and Washington (US-WA) are paused for the BC single-
-    # scope-trade hunt. Existing AB + WA leads stay on file but no new ones
-    # get pulled. To reactivate: move these dicts back into TARGET_REGIONS.
-]
-
-PAUSED_REGIONS = [
     {
         "key": "AB",
         "iso_code": "CA-AB",
@@ -90,32 +82,11 @@ PAUSED_REGIONS = [
             "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_ab",
         },
     },
-    {
-        "key": "WA",
-        "iso_code": "US-WA",
-        "admin_level": 4,
-        "country": "United States",
-        "province": "WA",
-        "target_areas": [
-            "Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue", "Kent",
-            "Everett", "Renton", "Yakima", "Federal Way", "Spokane Valley",
-            "Bellingham", "Kennewick", "Auburn", "Pasco", "Marysville", "Redmond",
-            "Lakewood", "Shoreline", "Richland", "Kirkland", "Burien",
-            "Sammamish", "Olympia", "Lacey", "Edmonds", "Bremerton", "Puyallup",
-            "Lynnwood", "Bothell", "Issaquah", "Wenatchee",
-        ],
-        "places_metros": ["Seattle", "Spokane", "Tacoma", "Bellevue", "Vancouver"],
-        "places_suffix": "Washington",
-        "apollo_locations": [
-            "Washington, United States", "Greater Seattle Area",
-            "Spokane, Washington", "Tacoma, Washington",
-        ],
-        "research": {
-            "registry": "https://ccfs.sos.wa.gov/#/BusinessSearch/BusinessInformation?q={q}",
-            "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=us_wa",
-        },
-    },
 ]
+
+# Empty list — Washington was retired 2026-06-03. Kept as a constant so any
+# code that still references PAUSED_REGIONS doesn't crash.
+PAUSED_REGIONS = []
 
 # Back-compat — older code expected a single flat BC list. Auto-derived from
 # TARGET_REGIONS so nothing else has to change.
