@@ -14,6 +14,23 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
+  /* Self-hosted Eunoia display font — Mont (DEMO weights: 200 + 900) */
+  @font-face {
+    font-family: "Mont";
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url("assets/fonts/Mont-HeavyDEMO.otf") format("opentype");
+  }
+  @font-face {
+    font-family: "Mont";
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url("assets/fonts/Mont-ExtraLightDEMO.otf") format("opentype");
+  }
+</style>
+<style>
   :root {
     /* Eunoia brand stack — LOCKED 2026-05-29 */
     --obsidian:    #0A0A0B;  /* page background · primary ink */
@@ -117,15 +134,18 @@
   }
   header .title-block { flex: 1 1 auto; min-width: 280px; }
   header h1 {
-    margin: 0 0 6px 0;
+    margin: 0 0 8px 0;
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 24px;
+    /* Mont DEMO ships Heavy 900 + ExtraLight 200 only — use 900 to actually
+       trigger the Mont file (anything else falls back to Plex Sans). */
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.05;
     color: var(--obsidian);
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     text-transform: none;
   }
-  header h1 .accent { color: var(--obsidian); font-weight: 700; }
+  header h1 .accent { color: var(--obsidian); font-weight: 900; }
   header .sub {
     color: var(--steel);
     font-size: 13px;
