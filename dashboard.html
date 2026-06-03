@@ -106,12 +106,13 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Horizontal cobalt → black gradient. Lifted cobalt-navy on the left
-       — distinctly brighter than the body's #0E1530 so the Five Talents
-       navy logo separates from the band. Sweeps through mid navy and
-       fades to true black on the right under the Marketing Hero
-       wordmark, where the product mark reads as the dominant element. */
-    background: linear-gradient(95deg, #324A8C 0%, #2A3D78 18%, #1A2348 48%, #060814 82%, #000000 100%);
+    /* Horizontal cobalt → black gradient. Left side lifted into a real
+       cobalt so the Marketing Hero wordmark + tagline read cleanly in
+       Signal cream over it. Middle is mid-navy where the cream Five
+       Talents pill sits. Right edge fades to true black where the
+       Eunoia three-wavy-bands lockup is placed — Signal cream on black
+       gives the brand identity its strongest read. */
+    background: linear-gradient(95deg, #3B5BB5 0%, #324A8C 22%, #1F2A55 50%, #060814 82%, #000000 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
@@ -126,36 +127,49 @@
     gap: 28px;
     flex-wrap: wrap;
   }
-  header .logos {
+  /* Title block grows to fill the available space on the LEFT, pushing
+     the Five Talents pill and the Eunoia far-right cell to the right. */
+  header .title-block {
+    flex: 1 1 auto;
+    min-width: 320px;
+    max-width: 640px;
+  }
+
+  /* Five Talents — sits inside a Signal cream pill in the middle of the
+     header. The cream backdrop restores the FT logo's natural readability
+     without needing any filters that mess with brand colours. */
+  header .ft-pill {
+    flex: 0 0 auto;
+    background: var(--signal);
+    padding: 11px 22px;
+    border-radius: 100px;
     display: flex;
     align-items: center;
-    gap: 22px;
-    flex: 0 0 auto;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55),
+      0 8px 22px -8px rgba(0, 0, 0, 0.55),
+      0 1px 2px 0 rgba(0, 0, 0, 0.35);
   }
-  header .logos .eunoia-lockup {
+  header .ft-pill img {
+    height: 28px;
+    width: auto;
+    display: block;
+    filter: none;  /* native colours read fine on cream */
+  }
+
+  /* Eunoia lockup — pushed all the way to the right, sitting on the
+     near-black end of the gradient. Signal cream on black is the
+     brand's strongest read. */
+  header .eunoia-cell {
+    flex: 0 0 auto;
+    margin-left: 8px;
+  }
+  header .eunoia-cell .eunoia-lockup {
     height: 44px;
     width: auto;
     color: var(--signal);
     display: block;
   }
-  header .logos img {
-    height: 44px;
-    width: auto;
-    max-width: 220px;
-    object-fit: contain;
-    /* Five Talents mark ships as deep navy + orange on transparent.
-       On the cobalt-navy band we still want lift but less aggressively
-       than before — the lighter bg already gives separation, so we
-       dial brightness back from 1.7 to 1.35 so the navy doesn't wash
-       to pure white. */
-    filter: brightness(1.35) saturate(1.05);
-  }
-  header .logos .logo-divider {
-    width: 1px;
-    height: 32px;
-    background: rgba(232, 226, 214, 0.22);
-  }
-  header .title-block { flex: 1 1 auto; min-width: 280px; }
 
   /* Marketing Hero — SaaS-style logo
      Three ascending bars (growth/peak) + "Marketing Hero" wordmark.
@@ -1250,19 +1264,6 @@
 </head>
 <body>
 <header>
-  <div class="logos">
-    <svg class="eunoia-lockup" viewBox="0 0 600 180" role="img" aria-label="Eunoia Consulting">
-      <title>Eunoia Consulting</title>
-      <g transform="translate(20 30) scale(1.2)" fill="currentColor">
-        <path d="M 14 12 L 86 12 L 86 26 C 76 32 62 26 48 26 C 34 26 22 30 14 30 Z"/>
-        <path d="M 14 40 C 26 38 40 46 52 46 C 62 46 70 42 76 42 L 76 52 C 70 56 60 56 48 54 C 34 52 22 56 14 56 Z"/>
-        <path d="M 14 68 C 26 64 42 72 56 72 C 68 72 80 66 86 64 L 86 88 L 14 88 Z"/>
-      </g>
-      <text x="180" y="115" fill="currentColor" style="font: 900 88px/1 'Mont', 'IBM Plex Sans', system-ui, sans-serif; letter-spacing: 0.04em;">EUNOIA</text>
-    </svg>
-    <div class="logo-divider"></div>
-    <img src="assets/Five+Talents+Marketing+Logo+-+Horizontal.webp" alt="Five Talents Marketing" onerror="this.style.display='none'; var d=this.previousElementSibling; if(d && d.classList.contains('logo-divider')) d.style.display='none';" />
-  </div>
   <div class="title-block">
     <div class="tagline">Built by Eunoia · Building Systems for Growth</div>
     <h1 class="mh-logo" aria-label="Marketing Hero">
@@ -1277,6 +1278,20 @@
       <span class="mh-wordmark">Marketing Hero</span>
     </h1>
     <div class="sub">BC &amp; AB single-scope trades — Electrical, HVAC, Plumbing, Carpentry, Prefab, Roofing, GC, Concrete &amp; Masonry · $3&ndash;9M revenue band · SEO-audit outreach play.</div>
+  </div>
+  <div class="ft-pill">
+    <img src="assets/Five+Talents+Marketing+Logo+-+Horizontal.webp" alt="Five Talents Marketing" onerror="this.parentElement.style.display='none';" />
+  </div>
+  <div class="eunoia-cell">
+    <svg class="eunoia-lockup" viewBox="0 0 600 180" role="img" aria-label="Eunoia Consulting">
+      <title>Eunoia Consulting</title>
+      <g transform="translate(20 30) scale(1.2)" fill="currentColor">
+        <path d="M 14 12 L 86 12 L 86 26 C 76 32 62 26 48 26 C 34 26 22 30 14 30 Z"/>
+        <path d="M 14 40 C 26 38 40 46 52 46 C 62 46 70 42 76 42 L 76 52 C 70 56 60 56 48 54 C 34 52 22 56 14 56 Z"/>
+        <path d="M 14 68 C 26 64 42 72 56 72 C 68 72 80 66 86 64 L 86 88 L 14 88 Z"/>
+      </g>
+      <text x="180" y="115" fill="currentColor" style="font: 900 88px/1 'Mont', 'IBM Plex Sans', system-ui, sans-serif; letter-spacing: 0.04em;">EUNOIA</text>
+    </svg>
   </div>
 </header>
 
