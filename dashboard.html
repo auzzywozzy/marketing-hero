@@ -899,8 +899,8 @@
       </div>
 
       <div class="slider-group">
-        <label>One-time setup / project fee (avg) <span class="value" id="val-setup">$3,500</span></label>
-        <input type="range" id="sl-setup" min="0" max="25000" value="3500" step="500">
+        <label>One-time setup / project fee (avg) <span class="value" id="val-setup">$4,000</span></label>
+        <input type="range" id="sl-setup" min="0" max="25000" value="4000" step="500">
       </div>
 
       <div class="slider-group">
@@ -921,7 +921,7 @@
       </div>
       <div id="service-mix"></div>
       <div style="margin-top: 10px; font-size: 11px; color: var(--ink-dim);">
-        Total: <span id="mix-total">100</span>% • Weighted avg deal: <span id="mix-weighted" style="color: var(--ink);">$0</span>
+        Total: <span id="mix-total">100</span>% • Weighted avg project fee: <span id="mix-weighted" style="color: var(--ink);">$4,000</span>
       </div>
       <button class="ghost" style="margin-top: 10px;" onclick="resetMix()">Reset to defaults</button>
     </div>
@@ -1064,8 +1064,8 @@
    Both deals are one-time website builds (no monthly recurring).
    ============================================================ */
 const SERVICES = [
-  { key: "site6", label: "6-Page Website Build", monthly: 0, setup: 4000, defaultMix: 50 },
-  { key: "site4", label: "4-Page Website Build", monthly: 0, setup: 3000, defaultMix: 50 },
+  { key: "site6", label: "6-Page Website Build", monthly: 0, setup: 4000, defaultMix: 100 },
+  { key: "site4", label: "4-Page Website Build", monthly: 0, setup: 3000, defaultMix: 0   },
 ];
 
 /* ============================================================
@@ -1471,7 +1471,7 @@ function recompute() {
   }
 
   document.getElementById("mix-total").textContent = c.mixTotal;
-  document.getElementById("mix-weighted").textContent = fmtMoney(c.dealMonthly);
+  document.getElementById("mix-weighted").textContent = fmtMoney(c.dealSetup);
 
   /* Revenue chart — gradient area fills (canvas height fixed at 320 covers
      the chart-box visible area regardless of when Chart.js resizes) */
