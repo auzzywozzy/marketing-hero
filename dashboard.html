@@ -68,21 +68,23 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Layered: top brushed-metal sheen + brand-spanning steel gradient.
-       Stops:
-         #D8D3C8 — warm cream-steel  (Eunoia Signal-leaning side)
+    /* Layered: top obsidian fade + brand-spanning steel gradient (flipped).
+       Brand gradient stops (left → right after flip):
+         #ABB2C9 — cool navy-tinted steel (Eunoia side, Five Talents-leaning)
          #C5CBD3 — neutral steel-light (the locked token)
-         #ABB2C9 — cool navy-tinted steel (Five Talents navy lightened) */
+         #D8D3C8 — warm cream-steel  (Five Talents side, Eunoia Signal-leaning)
+       Top fade is now black → transparent so the top edge vignettes
+       darker instead of a bright brushed-metal highlight. */
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 42%),
-      linear-gradient(112deg, #D8D3C8 0%, #C5CBD3 50%, #ABB2C9 100%);
+      linear-gradient(180deg, rgba(10,10,11,0.28) 0%, rgba(10,10,11,0) 55%),
+      linear-gradient(112deg, #ABB2C9 0%, #C5CBD3 50%, #D8D3C8 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
        below so the band reads as elevated/floating */
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.55),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(10, 10, 11, 0.18),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.12),
       0 4px 10px -4px rgba(10, 10, 11, 0.32),
       0 18px 38px -16px rgba(10, 10, 11, 0.55);
     display: flex;
