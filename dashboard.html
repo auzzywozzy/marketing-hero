@@ -594,6 +594,22 @@
     animation: pulse 2.4s ease-in-out infinite;
   }
   .status-strip .ss-spacer { flex: 1 1 auto; }
+  .status-strip .ss-btn {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--slate);
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .status-strip .ss-btn:hover { color: var(--signal); border-color: var(--signal); }
+  .status-strip .ss-btn.primary { color: var(--signal); border-color: rgba(232,226,214,0.32); }
+  .status-strip .ss-btn.primary:hover { background: rgba(232,226,214,0.06); }
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(127,184,154,0.55); }
     50%      { box-shadow: 0 0 0 6px rgba(127,184,154,0); }
@@ -840,11 +856,13 @@
   <span class="ss-sep">·</span>
   <span class="ss-item"><span>Leads</span><span class="ss-val" id="ss-leads">—</span></span>
   <span class="ss-sep">·</span>
-  <span class="ss-item"><span>Sources</span><span class="ss-val" id="ss-sources">OSM · Apollo · Places</span></span>
-  <span class="ss-sep">·</span>
   <span class="ss-item"><span>Regions</span><span class="ss-val">BC · AB · WA</span></span>
+  <span class="ss-sep">·</span>
+  <span class="ss-item"><span>Baseline</span><span class="ss-val" id="ss-baseline">Default</span></span>
   <span class="ss-spacer"></span>
   <span class="ss-item"><span>Last Sync</span><span class="ss-val" id="ss-sync">—</span></span>
+  <button class="ss-btn primary" id="bb-set-btn" type="button" title="Snapshot the current slider scenario as the new baseline. KPI delta pills will compute change vs this point.">Set baseline</button>
+  <button class="ss-btn" id="bb-reset-btn" type="button" title="Discard the custom baseline and return all sliders to their built-in defaults.">Reset</button>
 </div>
 
 <!-- Load the generated data file. If it's missing, we show a setup message. -->
@@ -1917,11 +1935,106 @@ if (_showMoreBtn) {
 document.getElementById("export-csv-btn").addEventListener("click", exportCsv);
 
 /* ============================================================
+   Baseline persistence — "Set as baseline" button + reset
+   ============================================================ */
+const BASELINE_KEY = "mh_baseline_v1";
+const STATIC_SLIDER_IDS = [
+  "sl-leads-day", "sl-working-days", "sl-reply-rate", "sl-meeting-rate", "sl-close-rate",
+  "sl-deal-size", "sl-contract", "sl-setup", "sl-cogs", "sl-overhead",
+];
+
+function captureSliderState() {
+  const state = {};
+  for (const id of STATIC_SLIDER_IDS) {
+    const el = document.getElementById(id);
+    if (el) state[id] = +el.value;
+  }
+  state._mix = {};
+  for (const svc of SERVICES) {
+    const el = document.getElementById("mix-" + svc.key);
+    if (el) state._mix[svc.key] = +el.value;
+  }
+  return state;
+}
+
+function applySliderState(state) {
+  if (!state) return;
+  for (const id of STATIC_SLIDER_IDS) {
+    if (state[id] == null) continue;
+    const el = document.getElementById(id);
+    if (el) {
+      el.value = state[id];
+      paintSliderFill(el);
+    }
+  }
+  if (state._mix) {
+    for (const svc of SERVICES) {
+      if (state._mix[svc.key] == null) continue;
+      const el = document.getElementById("mix-" + svc.key);
+      if (el) {
+        el.value = state._mix[svc.key];
+        paintSliderFill(el);
+        const lbl = document.getElementById("mix-val-" + svc.key);
+        if (lbl) lbl.textContent = state._mix[svc.key] + "%";
+      }
+    }
+  }
+  // Static slider value labels — reuse the formatters from the sliders[] array
+  for (const [sl, lbl, fmt] of sliders) {
+    const el = document.getElementById(sl);
+    const out = document.getElementById(lbl);
+    if (el && out) out.textContent = fmt(el.value);
+  }
+}
+
+function saveBaselineState(state) {
+  try { localStorage.setItem(BASELINE_KEY, JSON.stringify(state)); }
+  catch (e) { console.warn("Could not save baseline:", e); }
+}
+function loadBaselineState() {
+  try {
+    const raw = localStorage.getItem(BASELINE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+function paintBaselineStatus() {
+  const el = document.getElementById("ss-baseline");
+  if (el) el.textContent = loadBaselineState() ? "Custom" : "Default";
+}
+
+/* ============================================================
    Initial paint
    ============================================================ */
-// Snapshot the BASELINE (current slider defaults) before any user input so
-// the KPI delta pills can show "vs default scenario" deltas.
+// Snapshot the HTML default slider values BEFORE restoring any saved
+// baseline — used by the Reset button to roll all the way back.
+window.MH_HTML_DEFAULTS = captureSliderState();
+
+// If the user has previously clicked "Set baseline", restore those slider
+// values now so the page opens at the saved scenario.
+const _savedBaseline = loadBaselineState();
+if (_savedBaseline) applySliderState(_savedBaseline);
+
+// MH_BASELINE = the canonical "baseline scenario" used by KPI delta pills.
+// After applying any saved state above, the current sliders ARE the
+// baseline, so compute() captures the right numbers.
 window.MH_BASELINE = compute();
+paintBaselineStatus();
+
+// Wire the baseline buttons
+document.getElementById("bb-set-btn").addEventListener("click", () => {
+  const snapshot = captureSliderState();
+  saveBaselineState(snapshot);
+  window.MH_BASELINE = compute();
+  paintBaselineStatus();
+  recompute();
+});
+document.getElementById("bb-reset-btn").addEventListener("click", () => {
+  try { localStorage.removeItem(BASELINE_KEY); } catch (e) {}
+  applySliderState(window.MH_HTML_DEFAULTS);
+  window.MH_BASELINE = compute();
+  paintBaselineStatus();
+  recompute();
+});
 
 if (DATA.length) renderDistributions();
 renderOutreachKpis();
