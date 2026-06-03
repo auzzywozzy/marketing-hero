@@ -2859,3 +2859,9 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-06-02T18:40:48] Total raw candidates: 1409
 [2026-06-02T18:40:48] Run complete. Added: 500, Updated: 382, Total on file: 868
 [2026-06-02 18:40:48.63] Run complete, deploying... 
+[main 867653e] Daily lead refresh 2026-06-02 18:40:48.73
+ 3 files changed, 24300 insertions(+), 368 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   5cd85cb..867653e  main -> main
+[2026-06-02 18:40:48.73] Deployed to live dashboard 
+[2026-06-02 18:40:50.98] Done 

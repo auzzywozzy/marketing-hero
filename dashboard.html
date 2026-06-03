@@ -741,6 +741,27 @@
     background: var(--slate);
     flex: 0 0 6px;
   }
+  /* Website-quality pill — the SEO-audit outreach signal */
+  .wq {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    background: var(--steel-deep);
+    color: var(--slate);
+  }
+  .wq.wq-MISSING     { color: var(--bad);  border-color: rgba(199,107,107,0.45); background: rgba(199,107,107,0.10); }
+  .wq.wq-DEAD        { color: var(--bad);  border-color: rgba(199,107,107,0.45); background: rgba(199,107,107,0.10); }
+  .wq.wq-SOCIAL_ONLY { color: var(--warn); border-color: rgba(201,166,107,0.45); background: rgba(201,166,107,0.10); }
+  .wq.wq-FREE_TIER   { color: var(--warn); border-color: rgba(201,166,107,0.45); background: rgba(201,166,107,0.10); }
+  .wq.wq-WEAK        { color: var(--info); border-color: rgba(143,168,196,0.45); background: rgba(143,168,196,0.10); }
+  .wq.wq-HAS_DOMAIN  { color: var(--slate); }
+  .wq.wq-OK          { color: var(--good); border-color: rgba(127,184,154,0.35); background: rgba(127,184,154,0.08); }
   .status-cell.s-new       .dot { background: var(--slate); }
   .status-cell.s-contacted .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
   .status-cell.s-replied   .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
@@ -1071,6 +1092,17 @@
           <option value="closed">Closed</option>
           <option value="dead">Dead</option>
         </select>
+        <select id="filter-website">
+          <option value="">All websites</option>
+          <option value="BAD">Needs help (Missing / Dead / Free-tier / Weak)</option>
+          <option value="MISSING">Missing only</option>
+          <option value="DEAD">Dead only</option>
+          <option value="FREE_TIER">Free-tier only</option>
+          <option value="SOCIAL_ONLY">Social-only</option>
+          <option value="WEAK">Weak only</option>
+          <option value="HAS_DOMAIN">Unprobed</option>
+          <option value="OK">OK (good site)</option>
+        </select>
         <button class="export-btn" id="export-csv-btn" title="Download current filter as CSV">⬇ Export CSV</button>
         <span class="data-stamp" id="data-stamp">&nbsp;</span>
       </div>
@@ -1082,6 +1114,7 @@
               <th data-sort="name">Company</th>
               <th data-sort="trade">Trade</th>
               <th data-sort="city">City</th>
+              <th data-sort="website_quality">Site</th>
               <th>Status</th>
               <th>Contact</th>
               <th>Research</th>
@@ -1719,17 +1752,40 @@ function scoreBadge(s) {
   return '<span class="badge cool">COOL ' + s + '</span>';
 }
 
+/* Website-quality pill — labels mirror the agent's classifier grades */
+const WQ_LABELS = {
+  MISSING:     "Missing",
+  DEAD:        "Dead",
+  SOCIAL_ONLY: "Social",
+  FREE_TIER:   "Free-tier",
+  WEAK:        "Weak",
+  HAS_DOMAIN:  "Unprobed",
+  OK:          "OK",
+};
+function websitePill(grade) {
+  if (!grade) return '<span style="color: var(--slate);">—</span>';
+  const label = WQ_LABELS[grade] || grade;
+  return `<span class="wq wq-${grade}">${label}</span>`;
+}
+
+const WQ_BAD = new Set(["MISSING", "DEAD", "SOCIAL_ONLY", "FREE_TIER", "WEAK"]);
 function filteredLeads() {
   const q = document.getElementById("search").value.toLowerCase().trim();
   const ft = document.getElementById("filter-trade").value;
   const fc = document.getElementById("filter-city").value;
   const ms = +document.getElementById("filter-min-score").value;
   const fs = document.getElementById("filter-status").value;
+  const fw = document.getElementById("filter-website").value;
   return DATA.filter(l => {
     if (ft && l.trade !== ft) return false;
     if (fc && l.city !== fc) return false;
     if (l.fit_score < ms) return false;
     if (fs && (getEntry(l.id).status || "new") !== fs) return false;
+    if (fw) {
+      const g = l.website_quality || "";
+      if (fw === "BAD") { if (!WQ_BAD.has(g)) return false; }
+      else if (g !== fw) return false;
+    }
     if (q) {
       const blob = (l.name + " " + l.trade + " " + l.city + " " + l.address).toLowerCase();
       if (!blob.includes(q)) return false;
@@ -1838,6 +1894,7 @@ function renderTable() {
       <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--slate); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
       <td>${escapeHtml(l.trade)}</td>
       <td>${escapeHtml(l.city)}</td>
+      <td>${websitePill(l.website_quality)}</td>
       <td>
         <span class="status-cell s-${status}"><span class="dot"></span>
         <select class="status-select s-${status}" data-lead-id="${escapeHtml(l.id)}" aria-label="Status for ${escapeHtml(l.name)}">${statusOpts}</select>
@@ -1951,7 +2008,7 @@ for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
   });
 }
 // Table filters — also reset the page window
-for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status"]) {
+for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status", "filter-website"]) {
   document.getElementById(id).addEventListener("input", () => {
     _maxRows = _pageSize;
     renderOutreachKpis();

@@ -74,6 +74,9 @@ def empty_lead() -> dict:
         "fit_score": 0,
         "score_breakdown": {},
         "research_urls": {},
+        # Website-quality signal — see config.WEBSITE_NEEDS_HELP_WEIGHTS
+        "website_quality": "",       # MISSING | DEAD | SOCIAL_ONLY | FREE_TIER | WEAK | HAS_DOMAIN | OK
+        "website_probed_at": "",     # ISO timestamp of last HTTP probe
         "status": "new",         # new | contacted | qualified | closed | dead
         "notes": "",
     }
@@ -502,6 +505,120 @@ def _region_for_lead(lead: dict) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
+# WEBSITE QUALITY — URL classifier + optional HTTP probe
+# ---------------------------------------------------------------------------
+
+def _hostname(url: str) -> str:
+    """Best-effort lowercase hostname extraction without requiring scheme."""
+    if not url:
+        return ""
+    u = url.strip()
+    if not u:
+        return ""
+    if not u.startswith(("http://", "https://")):
+        u = "http://" + u
+    try:
+        host = urllib.parse.urlparse(u).hostname or ""
+    except Exception:
+        host = ""
+    return host.lower().lstrip(".").removeprefix("www.")
+
+
+def classify_website_url(url: str) -> str:
+    """Classify a lead's website by URL pattern alone (no network call).
+
+    Returns one of: MISSING | SOCIAL_ONLY | FREE_TIER | HAS_DOMAIN
+    """
+    if not url or not str(url).strip():
+        return "MISSING"
+    host = _hostname(url)
+    if not host:
+        return "MISSING"
+    for d in getattr(config, "SOCIAL_ONLY_DOMAINS", []):
+        if host == d or host.endswith("." + d):
+            return "SOCIAL_ONLY"
+    for d in getattr(config, "FREE_TIER_DOMAINS", []):
+        if host == d or host.endswith("." + d):
+            return "FREE_TIER"
+    return "HAS_DOMAIN"
+
+
+def probe_website(url: str, timeout: int | None = None) -> str:
+    """HTTP-probe a website to refine its quality grade.
+
+    Returns one of: MISSING | DEAD | SOCIAL_ONLY | FREE_TIER | WEAK | OK
+
+    Falls through to URL classification for anything we don't need to fetch
+    (missing / social-only / free-tier already settle the score). For real
+    domains we GET the homepage, look for: SSL, viewport meta, <title>,
+    <h1>, and meta description. >=4/5 signals = OK; otherwise WEAK; any
+    transport / 4xx / 5xx failure = DEAD.
+    """
+    base = classify_website_url(url)
+    if base != "HAS_DOMAIN":
+        return base
+    if timeout is None:
+        timeout = getattr(config, "WEBSITE_PROBE_TIMEOUT", 8)
+
+    target = url.strip()
+    if not target.startswith(("http://", "https://")):
+        target = "https://" + target
+    try:
+        req = urllib.request.Request(
+            target,
+            headers={
+                "User-Agent": "Mozilla/5.0 (MarketingHero website probe; +https://eunoiaconsulting.net)",
+                "Accept": "text/html",
+            },
+        )
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            final_url = resp.geturl() or target
+            body_bytes = resp.read(40_000)  # first 40KB is enough for <head>
+        body = body_bytes.decode("utf-8", errors="ignore").lower()
+        has_ssl = final_url.startswith("https://")
+        has_viewport = 'name="viewport"' in body or "name='viewport'" in body
+        has_title = "<title" in body
+        has_desc = 'name="description"' in body or "name='description'" in body
+        has_h1 = "<h1" in body
+        signals = sum([has_ssl, has_viewport, has_title, has_desc, has_h1])
+        return "OK" if signals >= 4 else "WEAK"
+    except urllib.error.HTTPError as e:
+        if e.code and e.code >= 400:
+            return "DEAD"
+        return "WEAK"
+    except Exception:
+        return "DEAD"
+
+
+def website_probe_enabled() -> bool:
+    return os.environ.get("MARKETING_HERO_PROBE_WEBSITES", "").strip() in ("1", "true", "yes", "on")
+
+
+def _needs_reprobe(lead: dict) -> bool:
+    stamp = lead.get("website_probed_at") or ""
+    if not stamp:
+        return True
+    try:
+        last = dt.datetime.fromisoformat(stamp)
+    except Exception:
+        return True
+    days = (dt.datetime.now() - last).days
+    return days >= getattr(config, "PROBE_REFRESH_DAYS", 14)
+
+
+def assess_website(lead: dict) -> str:
+    """Compute the lead's website_quality grade. Uses URL-pattern only by
+    default; if MARKETING_HERO_PROBE_WEBSITES=1, additionally HTTP-probes
+    HAS_DOMAIN leads to refine to OK / WEAK / DEAD."""
+    url = lead.get("website", "")
+    grade = classify_website_url(url)
+    if grade == "HAS_DOMAIN" and website_probe_enabled():
+        grade = probe_website(url)
+        lead["website_probed_at"] = dt.datetime.now().isoformat(timespec="seconds")
+    return grade
+
+
+# ---------------------------------------------------------------------------
 # SCORING
 # ---------------------------------------------------------------------------
 
@@ -559,9 +676,17 @@ def score_lead(lead: dict) -> None:
         except Exception:
             pass
 
-    if lead["trade"] in config.BIG_TRADE_CATEGORIES:
-        score += config.SCORE_WEIGHTS["big_trade_category"]
-        breakdown["big_trade_category"] = config.SCORE_WEIGHTS["big_trade_category"]
+    # Priority-trade boost (the 9 single-scope trades for the SEO outreach
+    # play). Back-compat: read PRIORITY_TRADES if defined, else fall back to
+    # BIG_TRADE_CATEGORIES.
+    priority_set = getattr(config, "PRIORITY_TRADES", config.BIG_TRADE_CATEGORIES)
+    priority_wt = config.SCORE_WEIGHTS.get(
+        "priority_trade",
+        config.SCORE_WEIGHTS.get("big_trade_category", 10),
+    )
+    if lead["trade"] in priority_set:
+        score += priority_wt
+        breakdown["priority_trade"] = priority_wt
 
     if lead["city"] in config.URBAN_METROS:
         score += config.SCORE_WEIGHTS["urban_metro"]
@@ -572,6 +697,23 @@ def score_lead(lead: dict) -> None:
     if isinstance(reviews, (int, float)) and reviews >= 50:
         score += config.SCORE_WEIGHTS["review_count_proxy"]
         breakdown["review_count_proxy"] = config.SCORE_WEIGHTS["review_count_proxy"]
+
+    # Website-needs-help — central to the SEO-audit + redesign outreach play.
+    # assess_website() classifies the URL and (if MARKETING_HERO_PROBE_WEBSITES
+    # is set) HTTP-probes HAS_DOMAIN leads to refine OK / WEAK / DEAD.
+    grade = lead.get("website_quality")
+    if not grade or grade not in config.WEBSITE_NEEDS_HELP_WEIGHTS:
+        grade = assess_website(lead)
+        lead["website_quality"] = grade
+    elif website_probe_enabled() and grade == "HAS_DOMAIN" and _needs_reprobe(lead):
+        # Periodic re-probe of HAS_DOMAIN leads — sites can break or upgrade.
+        grade = probe_website(lead.get("website", ""))
+        lead["website_quality"] = grade
+        lead["website_probed_at"] = dt.datetime.now().isoformat(timespec="seconds")
+    wt = config.WEBSITE_NEEDS_HELP_WEIGHTS.get(grade, 0)
+    if wt:
+        score += wt
+        breakdown[f"website_{grade.lower()}"] = wt
 
     lead["fit_score"] = min(score, 100)
     lead["score_breakdown"] = breakdown

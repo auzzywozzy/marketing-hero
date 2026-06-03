@@ -16,6 +16,10 @@ TARGET_REVENUE_MIN = 3_000_000
 TARGET_REVENUE_MAX = 9_000_000
 
 # Target regions. The agent farms each region against the full category list.
+# ICP narrowed 2026-06-03: BC only for the single-scope-trade + bad-website
+# hunt that feeds the SEO-audit → website-redesign outreach play. The AB and
+# WA region records below are kept in source (commented out) so they can be
+# re-enabled in one edit if/when that pipeline reopens.
 #
 # Each entry:
 #   key            — short slug used in logs and lead.region
@@ -55,6 +59,13 @@ TARGET_REGIONS = [
             "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_bc",
         },
     },
+    # --- PAUSED REGIONS ---
+    # Alberta (CA-AB) and Washington (US-WA) are paused for the BC single-
+    # scope-trade hunt. Existing AB + WA leads stay on file but no new ones
+    # get pulled. To reactivate: move these dicts back into TARGET_REGIONS.
+]
+
+PAUSED_REGIONS = [
     {
         "key": "AB",
         "iso_code": "CA-AB",
@@ -75,9 +86,6 @@ TARGET_REGIONS = [
             "Greater Edmonton Metropolitan Area", "Red Deer",
         ],
         "research": {
-            # Alberta Corporate Registry search lives behind a paywall; the
-            # public "corporate registration system" landing page is the best
-            # zero-cost stub we can deep-link to. OpenCorporates fills the gap.
             "registry": "https://cores.reg.gov.ab.ca/cores/public/searchcorporation.aspx?q={q}",
             "opencorporates": "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_ab",
         },
@@ -85,7 +93,7 @@ TARGET_REGIONS = [
     {
         "key": "WA",
         "iso_code": "US-WA",
-        "admin_level": 4,  # state in OSM is admin_level=4
+        "admin_level": 4,
         "country": "United States",
         "province": "WA",
         "target_areas": [
@@ -150,9 +158,26 @@ TRADE_CATEGORIES = [
     },
     {
         "label": "General Contracting",
-        "osm_craft": ["builder", "carpenter"],
+        "osm_craft": ["builder"],
         "osm_shop": ["trade"],
         "places_query": "general contractor construction",
+    },
+    {
+        "label": "Carpentry",
+        "osm_craft": ["carpenter"],
+        "osm_shop": [],
+        "places_query": "carpenter framing finish carpentry contractor",
+    },
+    {
+        "label": "Prefabrication",
+        "osm_craft": [],
+        "osm_shop": [],
+        "osm_tags": [
+            ["building", "prefabricated"],
+            ["industrial", "prefab"],
+            ["man_made", "prefab"],
+        ],
+        "places_query": "prefabricated modular construction panelized builder",
     },
     {
         "label": "Landscaping",
@@ -399,43 +424,112 @@ MAX_TOTAL_LEADS = 2000
 # ---------------------------------------------------------------------------
 
 SCORE_WEIGHTS = {
-    "has_website": 15,
-    "has_phone": 5,
-    "has_email": 5,
-    "multi_location_hint": 20,  # multiple branches or service areas mentioned
-    "established_years": 10,    # start_date tag present and > 5 years old
-    "commercial_indicator": 10, # "commercial", "residential+commercial" keywords
-    "big_trade_category": 10,   # HVAC, electrical, roofing = higher avg revenue
-    "urban_metro": 15,          # Vancouver / Surrey / Victoria etc. = larger market
-    "review_count_proxy": 10,   # richer data on OSM = more established biz
+    # Profile-completeness signals (still useful — operating businesses)
+    "has_website":          5,   # was 15 — bad/missing websites are now the TARGET
+    "has_phone":            5,
+    "has_email":            5,
+    "multi_location_hint": 15,   # was 20
+    "established_years":   10,
+    "commercial_indicator":10,
+    # Trade + geography — bumped to favour priority trades in BC metros
+    "priority_trade":      20,   # was big_trade_category(10) — see PRIORITY_TRADES
+    "urban_metro":         10,   # was 15
+    "review_count_proxy":   5,   # was 10
+    # NEW — website needs help (the SEO-audit + redesign outreach play)
+    # Weight applied via WEBSITE_NEEDS_HELP_WEIGHTS by quality grade.
 }
 
-BIG_TRADE_CATEGORIES = {
-    "HVAC / Heating",
+# The 9 single-scope trades that the SEO-audit → redesign outreach play
+# targets. Leads in these categories get the "priority_trade" score boost.
+# Carpentry + Prefabrication added 2026-06-03.
+PRIORITY_TRADES = {
     "Electrical",
-    "Roofing",
+    "HVAC / Heating",
     "Plumbing",
+    "Carpentry",
+    "Prefabrication",
+    "Roofing",
     "General Contracting",
-    "Manufacturing / Factory",
-    "Metal Fabrication / Welding",
-    "Sawmill / Wood Products",
-    "Brewery / Distillery / Winery",
-    "Cabinet / Millwork",
-    "Excavation / Earthworks",
-    "Demolition / Site Prep",
     "Concrete / Masonry",
 }
+
+# Back-compat alias for any code that still imports BIG_TRADE_CATEGORIES.
+BIG_TRADE_CATEGORIES = PRIORITY_TRADES
 URBAN_METROS = {
-    # BC
-    "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Coquitlam", "Langley",
-    # AB
+    # BC (active hunt)
+    "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Coquitlam",
+    "Langley", "Abbotsford", "Kelowna", "Saanich",
+    # AB + WA kept here so existing leads still score urban-metro correctly
+    # even while those regions are paused at the agent level.
     "Calgary", "Edmonton", "Red Deer", "Sherwood Park", "St. Albert",
-    # WA
     "Seattle", "Bellevue", "Tacoma", "Spokane", "Redmond", "Kirkland",
 }
 
 # Minimum fit score required to include a lead in the output (0–100).
 MIN_FIT_SCORE = 25
+
+# ---------------------------------------------------------------------------
+# WEBSITE QUALITY SCORING — supports the "free SEO audit" outreach play
+# ---------------------------------------------------------------------------
+#
+# Every lead gets a website_quality grade (URL-pattern classification, always
+# runs). If MARKETING_HERO_PROBE_WEBSITES=1 in the environment, the agent
+# additionally fetches each lead's homepage with a short timeout and refines
+# the grade (DEAD, WEAK, OK based on HTML signals).
+#
+# Grade meaning (rank by outreach-pitch attractiveness, highest first):
+#   MISSING      — no website at all; perfect "you don't have a site" pitch
+#   DEAD         — URL returns 4xx/5xx or connection error
+#   SOCIAL_ONLY  — Facebook / Instagram / LinkedIn URL listed as their "site"
+#   FREE_TIER    — wixsite.com, wordpress.com, weebly.com, etc.
+#   WEAK         — alive but missing modern signals (no viewport, no SSL,
+#                  no description meta, etc.) — strong SEO-audit pitch
+#   HAS_DOMAIN   — has a real domain; quality unknown until probed
+#   OK           — modern site with full signals; lower outreach priority
+
+WEBSITE_NEEDS_HELP_WEIGHTS = {
+    "MISSING":     25,
+    "DEAD":        22,
+    "SOCIAL_ONLY": 22,
+    "FREE_TIER":   18,
+    "WEAK":        12,
+    "HAS_DOMAIN":   5,
+    "OK":           0,
+}
+
+# Domains that indicate a free / template / weak-tier website. Includes a
+# couple of common builder platforms whose free tier most BC trades end up on.
+FREE_TIER_DOMAINS = [
+    "wixsite.com", "wix.com",
+    "wordpress.com",
+    "weebly.com",
+    "godaddysites.com",
+    "business.site",        # Google Business Profile microsites
+    "jimdofree.com", "jimdosite.com",
+    "webnode.com",
+    "simdif.com",
+    "yola.com", "yolasite.com",
+    "site123.com", "site123.me",
+    "strikingly.com",
+    "mywebsite.com",        # Vistaprint
+]
+
+# URLs whose "website" field is actually a social profile — not a real site.
+SOCIAL_ONLY_DOMAINS = [
+    "facebook.com", "fb.com", "fb.me",
+    "instagram.com",
+    "linkedin.com",
+    "x.com", "twitter.com",
+    "yelp.com", "yelp.ca",
+]
+
+# Opt-in HTTP probe of each lead's website to refine the quality grade. Set
+# MARKETING_HERO_PROBE_WEBSITES=1 in the environment to enable. Even with
+# probing, results are cached per-lead via `website_probed_at` so re-runs
+# only re-probe leads older than PROBE_REFRESH_DAYS.
+WEBSITE_PROBE_TIMEOUT = 8        # seconds per HEAD/GET attempt
+WEBSITE_PROBE_MAX_PER_RUN = 200  # safety cap so one run can't probe forever
+PROBE_REFRESH_DAYS = 14          # re-probe a lead at most every N days
 
 # ---------------------------------------------------------------------------
 # OUTPUT PATHS (relative to this file)
