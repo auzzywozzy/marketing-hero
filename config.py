@@ -299,14 +299,9 @@ TRADE_CATEGORIES = [
         "osm_shop": ["doityourself", "hardware", "paint", "fireplace", "bathroom_furnishing", "kitchen", "tiles"],
         "places_query": "building supply hardware trade wholesale",
     },
-    # --- Auto / collision ---
-    {
-        "label": "Auto Body / Collision Repair",
-        "osm_craft": ["car_body_repair", "car_painter"],
-        "osm_shop": ["car_repair"],
-        "osm_tags": [["amenity", "car_repair"]],
-        "places_query": "auto body collision repair shop",
-    },
+    # Auto Body / Collision Repair retired 2026-06-02 — OSM auto_repair tags
+    # pulled in too many small independent shops that fall well below the
+    # $3M revenue band and don't fit the trades/ops ICP.
 ]
 
 # ---------------------------------------------------------------------------
@@ -364,7 +359,8 @@ APOLLO_INDUSTRY_KEYWORDS = [
     "facilities services",
     "glass, ceramics & concrete",
     "wholesale building materials",
-    "automotive",
+    # "automotive" retired with the Auto Body category — Apollo's automotive
+    # taxonomy pulled in dealerships, parts retailers, and other non-ICP orgs.
     "printing",
     "wine and spirits",
     "food production",
@@ -428,7 +424,6 @@ BIG_TRADE_CATEGORIES = {
     "Excavation / Earthworks",
     "Demolition / Site Prep",
     "Concrete / Masonry",
-    "Auto Body / Collision Repair",
 }
 URBAN_METROS = {
     # BC

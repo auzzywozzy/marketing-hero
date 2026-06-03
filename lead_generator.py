@@ -427,8 +427,6 @@ _APOLLO_INDUSTRY_MAP = [
     ("millwork",         "Cabinet / Millwork"),
     ("metal fab",        "Metal Fabrication / Welding"),
     ("welding",          "Metal Fabrication / Welding"),
-    ("auto body",        "Auto Body / Collision Repair"),
-    ("collision",        "Auto Body / Collision Repair"),
     ("printing",         "Printing / Signs"),
     ("sign",             "Printing / Signs"),
     ("brewery",          "Brewery / Distillery / Winery"),
