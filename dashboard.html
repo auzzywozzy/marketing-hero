@@ -19,6 +19,7 @@
     --obsidian:    #0A0A0B;  /* page background · primary ink */
     --steel:       #353B47;  /* cards · elevated surfaces */
     --steel-deep:  #1A1F28;  /* inputs · sub-panels */
+    --steel-light: #C5CBD3;  /* lifted steel — top hero band */
     --signal:      #E8E2D6;  /* primary type on dark · accent */
     --slate:       #8B95A2;  /* borders · captions · secondary text */
     --border:      rgba(139, 149, 162, 0.18);
@@ -65,8 +66,10 @@
   }
   header {
     padding: 28px 36px 26px;
-    background: var(--signal);
-    border-bottom: 1px solid rgba(10, 10, 11, 0.12);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%),
+      var(--steel-light);
+    border-bottom: 1px solid rgba(10, 10, 11, 0.18);
     display: flex;
     align-items: center;
     gap: 28px;
@@ -866,8 +869,8 @@
       <h2>Economics</h2>
 
       <div class="slider-group">
-        <label>Avg deal size / mo (CAD) <span class="value" id="val-deal-size">$6,400</span></label>
-        <input type="range" id="sl-deal-size" min="1500" max="15000" value="6400" step="100">
+        <label>Avg deal size / mo (CAD) <span class="value" id="val-deal-size">$0</span></label>
+        <input type="range" id="sl-deal-size" min="0" max="15000" value="0" step="100">
       </div>
 
       <div class="slider-group">
@@ -876,8 +879,8 @@
       </div>
 
       <div class="slider-group">
-        <label>One-time setup / project fee (avg) <span class="value" id="val-setup">$4,500</span></label>
-        <input type="range" id="sl-setup" min="0" max="25000" value="4500" step="500">
+        <label>One-time setup / project fee (avg) <span class="value" id="val-setup">$3,500</span></label>
+        <input type="range" id="sl-setup" min="0" max="25000" value="3500" step="500">
       </div>
 
       <div class="slider-group">
@@ -894,7 +897,7 @@
     <div class="panel" style="margin-top: 18px;">
       <h2>Service Mix</h2>
       <div style="color: var(--ink-dim); font-size: 12px; margin-bottom: 10px;">
-        Split of signed deals across Five Talents services. Auto-recomputes deal size.
+        Split of signed deals across the two website packages. Auto-recomputes project fee.
       </div>
       <div id="service-mix"></div>
       <div style="margin-top: 10px; font-size: 11px; color: var(--ink-dim);">
@@ -1037,15 +1040,12 @@
 
 <script>
 /* ============================================================
-   Five Talents service catalogue — must match the PDF proposal.
+   Five Talents service catalogue — current offering.
+   Both deals are one-time website builds (no monthly recurring).
    ============================================================ */
 const SERVICES = [
-  { key: "compounding", label: "Compounding",    monthly: 2000,  setup: 0,     defaultMix: 20 },
-  { key: "dominion",    label: "Dominion (CMO)", monthly: 7500,  setup: 0,     defaultMix: 20 },
-  { key: "order",       label: "Order (COO)",    monthly: 9000,  setup: 0,     defaultMix: 10 },
-  { key: "multiplier",  label: "Multiplier (AI)",monthly: 1500,  setup: 12000, defaultMix: 15 },
-  { key: "cornerstone", label: "Cornerstone",    monthly: 300,   setup: 14000, defaultMix: 15 },
-  { key: "herald",      label: "Herald (SEO)",   monthly: 3500,  setup: 0,     defaultMix: 20 },
+  { key: "site6", label: "6-Page Website Build", monthly: 0, setup: 4000, defaultMix: 50 },
+  { key: "site4", label: "4-Page Website Build", monthly: 0, setup: 3000, defaultMix: 50 },
 ];
 
 /* ============================================================
