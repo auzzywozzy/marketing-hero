@@ -345,17 +345,33 @@ PLACES_MAX_CALLS_PER_RUN = 220
 # quota sane.
 APOLLO_API_KEY = ""  # prefer env var MARKETING_HERO_APOLLO_KEY
 APOLLO_API_BASE_URL = "https://api.apollo.io/api/v1"
-APOLLO_ORG_SEARCH_PATH = "/mixed_companies/api_search"
+# /organizations/search is Apollo's canonical org-search endpoint. The
+# mixed_companies/* paths exist too but return the same data with an extra
+# "accounts" key (saved-account state). We don't need that here.
+APOLLO_ORG_SEARCH_PATH = "/organizations/search"
 
-# Apollo industry keywords — feed into q_organization_keyword_tags. Broader
-# than TRADE_CATEGORIES on purpose: Apollo's taxonomy doesn't map 1:1 to OSM.
+# Apollo industry tags — these are the exact strings from Apollo's fixed
+# industry taxonomy (`organization_industries` filter, NOT `q_*`). Strings
+# outside this taxonomy are silently dropped. Names match Apollo's UI labels
+# in lowercase.
 APOLLO_INDUSTRY_KEYWORDS = [
-    "construction", "specialty trade contractors", "building materials",
-    "civil engineering", "manufacturing", "fabrication", "industrial",
-    "facilities services", "wholesale building materials",
-    "plumbing", "hvac", "electrical contractor", "roofing", "concrete",
-    "landscaping", "excavation", "demolition", "millwork", "cabinetry",
-    "auto body", "collision repair", "printing", "sign manufacturing",
+    "construction",
+    "building materials",
+    "civil engineering",
+    "mechanical or industrial engineering",
+    "electrical/electronic manufacturing",
+    "machinery",
+    "facilities services",
+    "glass, ceramics & concrete",
+    "wholesale building materials",
+    "automotive",
+    "printing",
+    "wine and spirits",
+    "food production",
+    "packaging and containers",
+    # Excluded on purpose: "mining & metals" pulls gold/silver/mineral
+    # extraction firms (Skeena Gold, Inca One Gold, etc.) which don't match
+    # the trades / ops ICP. Re-add only if pursuing extraction-adjacent work.
 ]
 
 # Employee-band brackets that approximate the $3–9M CAD revenue band — sweet
@@ -374,7 +390,9 @@ APOLLO_MAX_PAGES_PER_REGION = 3
 # ---------------------------------------------------------------------------
 
 # Max NEW leads to add per run (prevents the JSON blob from ballooning).
-MAX_NEW_LEADS_PER_RUN = 200
+# Bumped to 500 after the 3-region widening — the first widened OSM-only
+# run capped out at 200 with hundreds left on the floor.
+MAX_NEW_LEADS_PER_RUN = 500
 
 # Max total leads to keep on file. Oldest low-score leads get pruned when
 # exceeded. Set to None for unlimited.

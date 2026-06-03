@@ -315,7 +315,10 @@ def fetch_apollo_companies(region: dict, page: int) -> tuple[list[dict], int]:
         "per_page": config.APOLLO_PAGE_SIZE,
         "organization_locations": region["apollo_locations"],
         "organization_num_employees_ranges": list(config.APOLLO_EMPLOYEE_RANGES),
-        "q_organization_keyword_tags": list(config.APOLLO_INDUSTRY_KEYWORDS),
+        # `organization_industries` is the only Apollo filter that actually
+        # constrains by taxonomy. q_organization_keyword_tags is a loose
+        # text search that returns recruiting / design / publishing noise.
+        "organization_industries": list(config.APOLLO_INDUSTRY_KEYWORDS),
     }
     headers = {
         "Cache-Control": "no-cache",
