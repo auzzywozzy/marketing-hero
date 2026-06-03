@@ -106,11 +106,12 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Horizontal navy → black gradient. Slightly lifted navy on the left
-       (a few shades above the body's #0E1530) for the partnership logos,
-       sweeping to true black under the Marketing Hero wordmark on the
-       right so the product mark reads as the dominant element. */
-    background: linear-gradient(95deg, #1E2A50 0%, #14193A 38%, #060814 78%, #000000 100%);
+    /* Horizontal cobalt → black gradient. Lifted cobalt-navy on the left
+       — distinctly brighter than the body's #0E1530 so the Five Talents
+       navy logo separates from the band. Sweeps through mid navy and
+       fades to true black on the right under the Marketing Hero
+       wordmark, where the product mark reads as the dominant element. */
+    background: linear-gradient(95deg, #324A8C 0%, #2A3D78 18%, #1A2348 48%, #060814 82%, #000000 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
@@ -143,9 +144,11 @@
     max-width: 220px;
     object-fit: contain;
     /* Five Talents mark ships as deep navy + orange on transparent.
-       On a dark navy band it disappears, so lift it: brightness pushes
-       the navy toward cobalt and the orange toward saturated amber. */
-    filter: brightness(1.7) saturate(1.05);
+       On the cobalt-navy band we still want lift but less aggressively
+       than before — the lighter bg already gives separation, so we
+       dial brightness back from 1.7 to 1.35 so the navy doesn't wash
+       to pure white. */
+    filter: brightness(1.35) saturate(1.05);
   }
   header .logos .logo-divider {
     width: 1px;
