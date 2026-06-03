@@ -476,6 +476,316 @@
     transition: border-color 0.12s, color 0.12s;
   }
   .export-btn:hover { border-color: var(--signal); color: var(--signal); }
+
+  /* ============================================================
+     PREMIUM PASS — sliders, status strip, sparklines, icons,
+     table polish, depth, motion, footer
+     ============================================================ */
+
+  /* 1 · Custom range sliders ------------------------------------ */
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    height: 22px;
+    cursor: pointer;
+  }
+  input[type=range]:focus { outline: none; }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--signal) 0%, var(--signal) var(--sl-fill, 50%), rgba(139,149,162,0.22) var(--sl-fill, 50%), rgba(139,149,162,0.22) 100%);
+  }
+  input[type=range]::-moz-range-track {
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(139,149,162,0.22);
+  }
+  input[type=range]::-moz-range-progress {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--signal);
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--signal);
+    margin-top: -5px;
+    box-shadow:
+      0 0 0 1px rgba(10,10,11,0.6),
+      0 0 0 4px rgba(232,226,214,0.08),
+      0 2px 6px -1px rgba(0,0,0,0.4);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover,
+  input[type=range]:focus::-webkit-slider-thumb {
+    box-shadow:
+      0 0 0 1px rgba(10,10,11,0.6),
+      0 0 0 6px rgba(232,226,214,0.14),
+      0 2px 8px -1px rgba(0,0,0,0.5);
+    transform: scale(1.08);
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--signal);
+    border: none;
+    box-shadow: 0 0 0 1px rgba(10,10,11,0.6), 0 2px 6px -1px rgba(0,0,0,0.4);
+  }
+
+  /* 2 · System status strip ------------------------------------- */
+  .status-strip {
+    background: var(--obsidian);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 36px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .status-strip .ss-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .status-strip .ss-item .ss-val { color: var(--signal); font-weight: 500; }
+  .status-strip .ss-item .ss-sep { color: rgba(139,149,162,0.35); margin: 0 4px; }
+  .status-strip .ss-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 0 0 rgba(127,184,154,0.6);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .status-strip .ss-spacer { flex: 1 1 auto; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(127,184,154,0.55); }
+    50%      { box-shadow: 0 0 0 6px rgba(127,184,154,0); }
+  }
+
+  /* 3 · KPI tile upgrade (sparkline + delta + lift) -------------- */
+  .kpi {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.04) inset,
+      0 1px 2px 0 rgba(0,0,0,0.3);
+  }
+  .kpi:hover {
+    transform: translateY(-1px);
+    border-color: rgba(139,149,162,0.32);
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.06) inset,
+      0 8px 24px -10px rgba(0,0,0,0.55);
+  }
+  .kpi .kpi-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .kpi .delta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 100px;
+    color: var(--slate);
+    background: rgba(139,149,162,0.10);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .kpi .delta.up   { color: var(--good); background: rgba(127,184,154,0.10); border-color: rgba(127,184,154,0.30); }
+  .kpi .delta.down { color: var(--bad);  background: rgba(199,107,107,0.10); border-color: rgba(199,107,107,0.30); }
+  .kpi .delta.flat { color: var(--slate); }
+  .kpi .spark {
+    margin-top: 8px;
+    width: 100%;
+    height: 26px;
+    display: block;
+    opacity: 0.85;
+  }
+
+  /* 4 · Icons + status dots ------------------------------------- */
+  .ic {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -2px;
+  }
+  td .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-bottom: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--slate);
+    transition: color 0.12s, background 0.12s;
+  }
+  td .contact-link:hover { color: var(--signal); background: rgba(232,226,214,0.06); }
+  .status-select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 12px) 50%, calc(100% - 8px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 22px;
+  }
+  .status-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-cell .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--slate);
+    flex: 0 0 6px;
+  }
+  .status-cell.s-new       .dot { background: var(--slate); }
+  .status-cell.s-contacted .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
+  .status-cell.s-replied   .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
+  .status-cell.s-meeting   .dot { background: var(--warn); box-shadow: 0 0 0 2px rgba(201,166,107,0.18); }
+  .status-cell.s-closed    .dot { background: var(--good); box-shadow: 0 0 0 2px rgba(127,184,154,0.18); }
+  .status-cell.s-dead      .dot { background: var(--bad);  box-shadow: 0 0 0 2px rgba(199,107,107,0.18); }
+
+  /* 5 · Table polish — sticky header, zebra, hover, sort indicators */
+  #leads-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background: linear-gradient(180deg, #232830 0%, var(--steel) 100%);
+    box-shadow: 0 1px 0 0 var(--border-strong);
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  #leads-table thead th[data-sort] { padding-right: 22px; position: sticky; }
+  #leads-table thead th[data-sort]::after {
+    content: "↕";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(139,149,162,0.4);
+    font-size: 10px;
+    transition: color 0.12s;
+  }
+  #leads-table thead th[data-sort].sort-asc::after  { content: "↑"; color: var(--signal); }
+  #leads-table thead th[data-sort].sort-desc::after { content: "↓"; color: var(--signal); }
+  #leads-table tbody tr {
+    transition: background 0.12s;
+  }
+  #leads-table tbody tr:nth-child(odd of :not(.notes-row)) {
+    background: rgba(232,226,214,0.015);
+  }
+  #leads-table tbody tr:hover:not(.notes-row) {
+    background: rgba(232,226,214,0.04);
+  }
+  #leads-table tbody td {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  .table-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 4px 0;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .table-meta button {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--slate);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .table-meta button:hover { color: var(--signal); border-color: var(--signal); }
+
+  /* 6 · Depth — refined surfaces + hairlines + backdrop blur ----- */
+  .panel, .chart-box {
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.04) inset,
+      0 1px 2px 0 rgba(0,0,0,0.3),
+      0 12px 32px -16px rgba(0,0,0,0.55);
+    backdrop-filter: blur(20px) saturate(115%);
+    -webkit-backdrop-filter: blur(20px) saturate(115%);
+  }
+  .panel { background: rgba(53,59,71,0.72); }
+  .chart-box { background: rgba(53,59,71,0.72); }
+  header { box-shadow: 0 1px 0 0 rgba(10,10,11,0.06) inset, 0 4px 24px -12px rgba(10,10,11,0.35); }
+
+  /* 7 · Entrance motion ----------------------------------------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .anim {
+    opacity: 0;
+    animation: fadeUp 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .anim.d1  { animation-delay: 0.05s; }
+  .anim.d2  { animation-delay: 0.12s; }
+  .anim.d3  { animation-delay: 0.20s; }
+  .anim.d4  { animation-delay: 0.28s; }
+  .anim.d5  { animation-delay: 0.36s; }
+  @media (prefers-reduced-motion: reduce) {
+    .anim { opacity: 1; animation: none; }
+    .status-strip .ss-dot { animation: none; }
+    input[type=range]::-webkit-slider-thumb { transition: none; }
+  }
+
+  /* 9 · Footer system bar --------------------------------------- */
+  footer.system-bar {
+    margin-top: 28px;
+    padding: 18px 36px 28px;
+    border-top: 1px solid var(--border);
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  footer.system-bar .sep { color: rgba(139,149,162,0.35); }
+  footer.system-bar a { color: var(--slate); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+  footer.system-bar a:hover { color: var(--signal); border-bottom-color: var(--signal); }
+  footer.system-bar .ss-spacer { flex: 1 1 auto; }
 </style>
 </head>
 <body>
@@ -496,9 +806,21 @@
   <div class="title-block">
     <div class="tagline">Built by Eunoia · Building Systems for Growth</div>
     <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
-    <div class="sub">BC trades, manufacturers &amp; trade-based businesses, $3&ndash;9M revenue band · Live profit modelling from daily lead feed.</div>
+    <div class="sub">BC, AB &amp; WA trades, manufacturers &amp; trade-based businesses, $3&ndash;9M revenue band · Live profit modelling from daily lead feed.</div>
   </div>
 </header>
+
+<div class="status-strip">
+  <span class="ss-item"><span class="ss-dot"></span><span>Live</span></span>
+  <span class="ss-sep">·</span>
+  <span class="ss-item"><span>Leads</span><span class="ss-val" id="ss-leads">—</span></span>
+  <span class="ss-sep">·</span>
+  <span class="ss-item"><span>Sources</span><span class="ss-val" id="ss-sources">OSM · Apollo · Places</span></span>
+  <span class="ss-sep">·</span>
+  <span class="ss-item"><span>Regions</span><span class="ss-val">BC · AB · WA</span></span>
+  <span class="ss-spacer"></span>
+  <span class="ss-item"><span>Last Sync</span><span class="ss-val" id="ss-sync">—</span></span>
+</div>
 
 <!-- Load the generated data file. If it's missing, we show a setup message. -->
 <script src="data/leads.js" onerror="window.MARKETING_HERO_DATA=null;"></script>
@@ -510,7 +832,7 @@
 
 <div class="grid">
   <!-- LEFT: SLIDERS -->
-  <aside>
+  <aside class="anim d1">
     <div class="panel">
       <h2>Funnel Assumptions</h2>
 
@@ -584,42 +906,50 @@
 
   <!-- RIGHT: KPIs + CHARTS + TABLE -->
   <main>
-    <div class="kpis">
+    <div class="kpis anim d1">
       <div class="kpi">
         <div class="label">Qualified leads / mo</div>
-        <div class="value" id="kpi-qualified">0</div>
+        <div class="kpi-row"><div class="value" id="kpi-qualified" data-anim="int">0</div><div class="delta flat" id="dlt-qualified">—</div></div>
+        <svg class="spark" id="sp-qualified" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">New clients / mo</div>
-        <div class="value good" id="kpi-clients">0</div>
+        <div class="kpi-row"><div class="value good" id="kpi-clients" data-anim="dec">0</div><div class="delta flat" id="dlt-clients">—</div></div>
+        <svg class="spark" id="sp-clients" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">New MRR / mo</div>
-        <div class="value" id="kpi-new-mrr">$0</div>
+        <div class="kpi-row"><div class="value" id="kpi-new-mrr" data-anim="money">$0</div><div class="delta flat" id="dlt-new-mrr">—</div></div>
+        <svg class="spark" id="sp-new-mrr" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">Steady-state MRR</div>
-        <div class="value" id="kpi-steady-mrr">$0</div>
+        <div class="kpi-row"><div class="value" id="kpi-steady-mrr" data-anim="money">$0</div><div class="delta flat" id="dlt-steady-mrr">—</div></div>
+        <svg class="spark" id="sp-steady-mrr" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">Annual revenue</div>
-        <div class="value" id="kpi-annual">$0</div>
+        <div class="kpi-row"><div class="value" id="kpi-annual" data-anim="money">$0</div><div class="delta flat" id="dlt-annual">—</div></div>
+        <svg class="spark" id="sp-annual" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">Gross profit / yr</div>
-        <div class="value good" id="kpi-gross">$0</div>
+        <div class="kpi-row"><div class="value good" id="kpi-gross" data-anim="money">$0</div><div class="delta flat" id="dlt-gross">—</div></div>
+        <svg class="spark" id="sp-gross" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">Net profit / yr</div>
-        <div class="value" id="kpi-net">$0</div>
+        <div class="kpi-row"><div class="value" id="kpi-net" data-anim="money">$0</div><div class="delta flat" id="dlt-net">—</div></div>
+        <svg class="spark" id="sp-net" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
       <div class="kpi">
         <div class="label">Break-even leads / day</div>
-        <div class="value warn" id="kpi-breakeven">—</div>
+        <div class="kpi-row"><div class="value warn" id="kpi-breakeven">—</div><div class="delta flat" id="dlt-breakeven">—</div></div>
+        <svg class="spark" id="sp-breakeven" viewBox="0 0 100 26" preserveAspectRatio="none"></svg>
       </div>
     </div>
 
-    <div class="charts">
+    <div class="charts anim d2">
       <div class="chart-box">
         <h3>12-Month Revenue Build</h3>
         <canvas id="chart-revenue"></canvas>
@@ -638,7 +968,7 @@
       </div>
     </div>
 
-    <div class="panel">
+    <div class="panel anim d3">
       <h2>Lead Pipeline &amp; Outreach Sequencer</h2>
 
       <!-- Outreach funnel KPIs (click any tile to filter) -->
@@ -687,9 +1017,23 @@
       <div id="empty-row" class="no-data" style="display:none">
         No leads match the current filters.
       </div>
+      <div class="table-meta">
+        <div id="table-count">—</div>
+        <button id="show-more-btn" style="display:none" type="button">Show 200 more</button>
+      </div>
     </div>
   </main>
 </div>
+
+<footer class="system-bar anim d4">
+  <span>Built by Eunoia</span>
+  <span class="sep">·</span>
+  <span>Marketing Hero · Five Talents Lead &amp; Profit Dashboard</span>
+  <span class="ss-spacer"></span>
+  <span id="ft-sources">Sources OSM · Apollo · Google Places</span>
+  <span class="sep">·</span>
+  <span id="ft-version">v2026.06.02</span>
+</footer>
 
 <script>
 /* ============================================================
@@ -761,6 +1105,53 @@ if (GENERATED_AT) {
   document.getElementById("data-stamp").textContent = `${DATA.length} leads`;
 }
 
+/* Status strip — populate from the data feed */
+(function paintStatusStrip() {
+  const ssLeads = document.getElementById("ss-leads");
+  const ssSync = document.getElementById("ss-sync");
+  if (ssLeads) ssLeads.textContent = DATA.length.toLocaleString();
+  if (ssSync) {
+    if (GENERATED_AT) {
+      // "2026-06-02T18:40:48" → "2026-06-02 · 18:40"
+      const m = String(GENERATED_AT).match(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/);
+      ssSync.textContent = m ? `${m[1]} · ${m[2]}` : GENERATED_AT;
+    } else {
+      ssSync.textContent = "—";
+    }
+  }
+  const ftVer = document.getElementById("ft-version");
+  if (ftVer && GENERATED_AT) {
+    const datePart = String(GENERATED_AT).slice(0, 10);
+    ftVer.textContent = "v" + datePart;
+  }
+})();
+
+/* Source-of-truth sources list — keep status strip + footer in sync */
+(function paintSources() {
+  // We don't have source telemetry directly; infer from store metadata if
+  // future runs include it. For now, list the configured sources.
+  const sources = "OSM · Apollo · Places";
+  const el = document.getElementById("ss-sources");
+  if (el) el.textContent = sources;
+  const ft = document.getElementById("ft-sources");
+  if (ft) ft.textContent = "Sources " + sources;
+})();
+
+/* Slider track fill — paints the filled portion of the track using a
+   CSS variable so :runnable-track gradient can react. Keeps Firefox
+   happy via -moz-range-progress; webkit needs the explicit var. */
+function paintSliderFill(el) {
+  const min = +el.min || 0;
+  const max = +el.max || 100;
+  const val = +el.value;
+  const pct = ((val - min) / (max - min)) * 100;
+  el.style.setProperty("--sl-fill", pct + "%");
+}
+document.querySelectorAll("input[type=range]").forEach(el => {
+  paintSliderFill(el);
+  el.addEventListener("input", () => paintSliderFill(el));
+});
+
 /* ============================================================
    Slider wiring
    ============================================================ */
@@ -801,8 +1192,10 @@ function renderMix() {
   }
   for (const svc of SERVICES) {
     const r = document.getElementById(`mix-${svc.key}`);
+    paintSliderFill(r);
     r.addEventListener("input", () => {
       document.getElementById(`mix-val-${svc.key}`).textContent = r.value + "%";
+      paintSliderFill(r);
       recompute();
     });
   }
@@ -812,6 +1205,7 @@ function resetMix() {
     const r = document.getElementById(`mix-${svc.key}`);
     r.value = svc.defaultMix;
     document.getElementById(`mix-val-${svc.key}`).textContent = svc.defaultMix + "%";
+    paintSliderFill(r);
   }
   recompute();
 }
@@ -924,54 +1318,186 @@ function compute() {
    ============================================================ */
 let revChart, funnelChart, tradeChart, cityChart;
 
+/* --- Sparkline (mini-SVG polyline on a 100×26 viewBox) ----------- */
+function renderSpark(id, data, opts) {
+  const el = document.getElementById(id);
+  if (!el || !data || data.length < 2) return;
+  opts = opts || {};
+  const W = 100, H = 26, P = 1.5;
+  const min = Math.min(...data);
+  const max = Math.max(...data);
+  const span = max - min || 1;
+  const stepX = (W - P * 2) / (data.length - 1);
+  const pts = data.map((v, i) => {
+    const x = P + i * stepX;
+    const y = H - P - ((v - min) / span) * (H - P * 2);
+    return [x.toFixed(2), y.toFixed(2)];
+  });
+  const stroke = opts.stroke || "#E8E2D6";
+  const fill   = opts.fill   || "rgba(232,226,214,0.16)";
+  const linePath = "M " + pts.map(p => p.join(",")).join(" L ");
+  const areaPath = linePath + ` L ${pts[pts.length-1][0]},${H} L ${pts[0][0]},${H} Z`;
+  el.innerHTML =
+    `<path d="${areaPath}" fill="${fill}" stroke="none"/>` +
+    `<path d="${linePath}" fill="none" stroke="${stroke}" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<circle cx="${pts[pts.length-1][0]}" cy="${pts[pts.length-1][1]}" r="1.6" fill="${stroke}"/>`;
+}
+
+/* --- Delta pill (current vs baseline) ---------------------------- */
+function paintDelta(id, current, baseline, opts) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  opts = opts || {};
+  if (!isFinite(current) || !isFinite(baseline) || baseline === 0) {
+    el.textContent = "—";
+    el.className = "delta flat";
+    return;
+  }
+  const pct = ((current - baseline) / Math.abs(baseline)) * 100;
+  const inverted = !!opts.inverted; // true: lower-is-better (e.g. break-even)
+  const isUp = pct > 0.5;
+  const isDown = pct < -0.5;
+  // Quiet state when at baseline — keeps page calm on initial load
+  if (!isUp && !isDown) {
+    el.className = "delta flat";
+    el.textContent = "vs base";
+    return;
+  }
+  const positive = inverted ? isDown : isUp;
+  const negative = inverted ? isUp   : isDown;
+  const cls = positive ? "delta up" : (negative ? "delta down" : "delta flat");
+  const arrow = isUp ? "▲" : "▼";
+  const sign = pct >= 0 ? "+" : "";
+  el.className = cls;
+  el.textContent = `${arrow} ${sign}${pct.toFixed(Math.abs(pct) >= 100 ? 0 : 1)}%`;
+}
+
+/* --- Count-up animator (cancels on each call) -------------------- */
+const _animState = new WeakMap();
+function animateValue(el, target, formatter, duration) {
+  if (!el) return;
+  const prev = _animState.get(el) || { from: 0, raf: 0 };
+  if (prev.raf) cancelAnimationFrame(prev.raf);
+  const from = prev.current ?? 0;
+  const to = target;
+  duration = duration || 500;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - t, 3);
+    const v = from + (to - from) * eased;
+    el.textContent = formatter(v);
+    if (t < 1) {
+      const raf = requestAnimationFrame(tick);
+      _animState.set(el, { current: v, raf, from });
+    } else {
+      _animState.set(el, { current: to, raf: 0, from: to });
+    }
+  }
+  prev.raf = requestAnimationFrame(tick);
+  _animState.set(el, prev);
+}
+
 function recompute() {
   const c = compute();
 
-  document.getElementById("kpi-qualified").textContent = Math.round(c.meetings).toLocaleString();
-  document.getElementById("kpi-clients").textContent   = c.newClients.toFixed(1);
-  document.getElementById("kpi-new-mrr").textContent   = fmtMoney(c.newMRR);
-  document.getElementById("kpi-steady-mrr").textContent= fmtMoney(c.steadyMRR);
-  document.getElementById("kpi-annual").textContent    = fmtMoney(c.annualRev);
-  document.getElementById("kpi-gross").textContent     = fmtMoney(c.grossProfit);
+  // Animated count-up KPI values
+  animateValue(document.getElementById("kpi-qualified"), Math.round(c.meetings), v => Math.round(v).toLocaleString());
+  animateValue(document.getElementById("kpi-clients"),   c.newClients, v => v.toFixed(1));
+  animateValue(document.getElementById("kpi-new-mrr"),   c.newMRR,     fmtMoney);
+  animateValue(document.getElementById("kpi-steady-mrr"),c.steadyMRR,  fmtMoney);
+  animateValue(document.getElementById("kpi-annual"),    c.annualRev,  fmtMoney);
+  animateValue(document.getElementById("kpi-gross"),     c.grossProfit,fmtMoney);
+  animateValue(document.getElementById("kpi-net"),       c.netProfit,  fmtMoney);
+
   const netEl = document.getElementById("kpi-net");
-  netEl.textContent = fmtMoney(c.netProfit);
   netEl.className = "value " + (c.netProfit >= 0 ? "good" : "");
   if (c.netProfit < 0) netEl.style.color = "var(--bad)"; else netEl.style.color = "";
   document.getElementById("kpi-breakeven").textContent =
     isFinite(c.breakEvenLeads) ? c.breakEvenLeads.toFixed(1) + " / day" : "—";
 
+  // KPI sparklines + deltas — built from the 12-month series so they
+  // actually MEAN something. Each KPI shows the ramp through year 1.
+  const monthlyClients = c.months.map((_, i) => c.newClients);            // flat = monthly cohort size
+  const cumClients = monthlyClients.map((v, i) => v * (i + 1));
+  const cumMRR = c.mrrSeries;
+  const cumRev = c.revSeries.map((_, i) =>
+    c.revSeries.slice(0, i + 1).reduce((a, b) => a + b, 0));
+  const cumGross = cumRev.map(r => r * (1 - num("sl-cogs") / 100));
+  const cumNet = cumGross.map((g, i) => g - num("sl-overhead") * (i + 1));
+
+  renderSpark("sp-qualified",  Array.from({length: 12}, () => c.meetings));
+  renderSpark("sp-clients",    monthlyClients);
+  renderSpark("sp-new-mrr",    Array.from({length: 12}, () => c.newMRR));
+  renderSpark("sp-steady-mrr", cumMRR);
+  renderSpark("sp-annual",     cumRev);
+  renderSpark("sp-gross",      cumGross);
+  renderSpark("sp-net",        cumNet);
+  renderSpark("sp-breakeven",  Array.from({length: 12}, () => isFinite(c.breakEvenLeads) ? c.breakEvenLeads : 0));
+
+  // Deltas — current scenario vs "baseline" (defaults). Baseline gets
+  // computed once and stashed in window.MH_BASELINE on first paint.
+  const base = window.MH_BASELINE;
+  if (base) {
+    paintDelta("dlt-qualified",   c.meetings,    base.meetings);
+    paintDelta("dlt-clients",     c.newClients,  base.newClients);
+    paintDelta("dlt-new-mrr",     c.newMRR,      base.newMRR);
+    paintDelta("dlt-steady-mrr",  c.steadyMRR,   base.steadyMRR);
+    paintDelta("dlt-annual",      c.annualRev,   base.annualRev);
+    paintDelta("dlt-gross",       c.grossProfit, base.grossProfit);
+    paintDelta("dlt-net",         c.netProfit,   base.netProfit);
+    paintDelta("dlt-breakeven",   c.breakEvenLeads, base.breakEvenLeads, {inverted: true});
+  }
+
   document.getElementById("mix-total").textContent = c.mixTotal;
   document.getElementById("mix-weighted").textContent = fmtMoney(c.dealMonthly);
 
-  /* Revenue chart */
+  /* Revenue chart — gradient area fills (canvas height fixed at 320 covers
+     the chart-box visible area regardless of when Chart.js resizes) */
+  const _revCanvas = document.getElementById("chart-revenue");
+  const _revCtx = _revCanvas.getContext("2d");
+  const gradSignal = _revCtx.createLinearGradient(0, 0, 0, 320);
+  gradSignal.addColorStop(0, "rgba(232, 226, 214, 0.34)");
+  gradSignal.addColorStop(1, "rgba(232, 226, 214, 0.00)");
+  const gradSlate = _revCtx.createLinearGradient(0, 0, 0, 320);
+  gradSlate.addColorStop(0, "rgba(139, 149, 162, 0.24)");
+  gradSlate.addColorStop(1, "rgba(139, 149, 162, 0.00)");
   const revData = {
     labels: c.months,
     datasets: [
       {
         label: "Monthly revenue",
         data: c.revSeries,
-        backgroundColor: "rgba(232, 226, 214, 0.18)",
+        backgroundColor: gradSignal,
         borderColor: "#E8E2D6",
-        borderWidth: 2,
+        borderWidth: 1.75,
         fill: true,
-        tension: 0.25,
+        tension: 0.35,
         pointBackgroundColor: "#E8E2D6",
-        pointRadius: 2,
+        pointBorderColor: "rgba(10,10,11,0.6)",
+        pointBorderWidth: 1,
+        pointRadius: 0,
+        pointHoverRadius: 4,
       },
       {
         label: "Active MRR",
         data: c.mrrSeries,
         borderColor: "#8B95A2",
-        backgroundColor: "rgba(139, 149, 162, 0.12)",
-        borderWidth: 2,
+        backgroundColor: gradSlate,
+        borderWidth: 1.5,
+        borderDash: [3, 3],
         fill: true,
-        tension: 0.25,
+        tension: 0.35,
         pointBackgroundColor: "#8B95A2",
-        pointRadius: 2,
+        pointBorderColor: "rgba(10,10,11,0.6)",
+        pointBorderWidth: 1,
+        pointRadius: 0,
+        pointHoverRadius: 4,
       },
     ],
   };
-  if (revChart) { revChart.data = revData; revChart.update(); }
+  if (revChart) { revChart.data = revData; revChart.update("none"); }
   else {
     revChart = new Chart(document.getElementById("chart-revenue"), {
       type: "line",
@@ -980,17 +1506,19 @@ function recompute() {
     });
   }
 
-  /* Funnel chart */
+  /* Funnel chart — Obsidian → Signal stair-step */
   const fData = {
     labels: ["Leads", "Replies", "Meetings", "Clients"],
     datasets: [{
       label: "Monthly count",
       data: [c.leadsMonth, c.replies, c.meetings, c.newClients],
       backgroundColor: ["#353B47", "#5B6472", "#8B95A2", "#E8E2D6"],
-      borderRadius: 4,
+      borderRadius: 6,
+      borderSkipped: false,
+      maxBarThickness: 64,
     }],
   };
-  if (funnelChart) { funnelChart.data = fData; funnelChart.update(); }
+  if (funnelChart) { funnelChart.data = fData; funnelChart.update("none"); }
   else {
     funnelChart = new Chart(document.getElementById("chart-funnel"), {
       type: "bar",
@@ -1002,35 +1530,59 @@ function recompute() {
 
 function chartOpts(money) {
   const tickFont = { family: "'IBM Plex Mono', ui-monospace, monospace", size: 10 };
-  const legendFont = { family: "'IBM Plex Mono', ui-monospace, monospace", size: 10 };
+  const legendFont = { family: "'IBM Plex Mono', ui-monospace, monospace", size: 10.5, weight: "500" };
   return {
     responsive: true,
     maintainAspectRatio: false,
+    animation: { duration: 700, easing: "easeOutCubic" },
+    interaction: { mode: "index", intersect: false },
     plugins: {
-      legend: { labels: { color: "#8B95A2", font: legendFont, boxWidth: 12 } },
+      legend: {
+        labels: {
+          color: "#8B95A2",
+          font: legendFont,
+          boxWidth: 10,
+          boxHeight: 10,
+          usePointStyle: true,
+          pointStyle: "circle",
+          padding: 14,
+        },
+      },
       tooltip: {
-        backgroundColor: "#0A0A0B",
-        borderColor: "rgba(139, 149, 162, 0.32)",
+        backgroundColor: "rgba(10, 10, 11, 0.96)",
+        borderColor: "rgba(139, 149, 162, 0.28)",
         borderWidth: 1,
-        titleColor: "#E8E2D6",
+        titleColor: "#8B95A2",
         bodyColor: "#E8E2D6",
-        titleFont: { family: "'IBM Plex Mono', ui-monospace, monospace", size: 10 },
-        bodyFont:  { family: "'IBM Plex Sans', system-ui, sans-serif", size: 12 },
-        padding: 10,
+        titleFont: { family: "'IBM Plex Mono', ui-monospace, monospace", size: 10, weight: "500" },
+        bodyFont:  { family: "'IBM Plex Sans', system-ui, sans-serif", size: 12.5, weight: "500" },
+        titleMarginBottom: 6,
+        padding: 12,
+        cornerRadius: 6,
+        displayColors: true,
+        boxPadding: 4,
         callbacks: money ? {
-          label: ctx => ctx.dataset.label + ": " + fmtMoney(ctx.raw),
-        } : {},
+          label: ctx => " " + ctx.dataset.label + "  " + fmtMoney(ctx.raw),
+        } : {
+          label: ctx => " " + ctx.dataset.label + "  " + (ctx.raw || 0).toLocaleString(),
+        },
       },
     },
     scales: {
-      x: { ticks: { color: "#8B95A2", font: tickFont }, grid: { color: "rgba(139, 149, 162, 0.12)" } },
+      x: {
+        border: { color: "rgba(139, 149, 162, 0.18)" },
+        ticks: { color: "#8B95A2", font: tickFont, padding: 6 },
+        grid: { color: "rgba(139, 149, 162, 0.06)", drawTicks: false, lineWidth: 0.5 },
+      },
       y: {
+        border: { color: "rgba(139, 149, 162, 0.18)" },
         ticks: {
           color: "#8B95A2",
           font: tickFont,
+          padding: 8,
           callback: v => money ? fmtMoney(v) : v.toLocaleString(),
         },
-        grid: { color: "rgba(139, 149, 162, 0.12)" },
+        grid: { color: "rgba(139, 149, 162, 0.08)", drawTicks: false, lineWidth: 0.5 },
       },
     },
   };
@@ -1144,6 +1696,17 @@ function renderOutreachKpis() {
   }
 }
 
+/* SVG icon set — monoline, 14px, currentColor */
+const IC = {
+  ext:    '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3 7 9"/></svg>',
+  phone:  '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5c0 5 4 9 9 9l1-2.5-3-1-1 1.5c-1.5-.5-3-2-3.5-3.5L7.5 5l-1-3z"/></svg>',
+  mail:   '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2 4.5 6 4.5 6-4.5"/></svg>',
+  edit:   '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2.5 13.5 5 6 12.5l-3 .5.5-3z"/><path d="M10 3.5 12.5 6"/></svg>',
+};
+
+let _pageSize = 100;
+let _maxRows = 100;
+
 function renderTable() {
   let rows = filteredLeads();
   rows.sort((a, b) => {
@@ -1154,39 +1717,61 @@ function renderTable() {
     return 0;
   });
 
+  // Sort-indicator state on the THs
+  for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
+    th.classList.remove("sort-asc", "sort-desc");
+    if (th.dataset.sort === sortKey) {
+      th.classList.add(sortDir === -1 ? "sort-desc" : "sort-asc");
+    }
+  }
+
   const body = document.getElementById("leads-body");
   body.innerHTML = "";
   const empty = document.getElementById("empty-row");
+  const meta = document.getElementById("table-count");
+  const more = document.getElementById("show-more-btn");
   if (!rows.length) {
     empty.style.display = "block";
+    if (meta) meta.textContent = "0 rows";
+    if (more) more.style.display = "none";
     return;
   }
   empty.style.display = "none";
-  for (const l of rows.slice(0, 400)) {
+
+  const visible = Math.min(_maxRows, rows.length);
+  if (meta) meta.textContent = `${visible.toLocaleString()} of ${rows.length.toLocaleString()} rows`;
+  if (more) more.style.display = visible < rows.length ? "" : "none";
+
+  for (const l of rows.slice(0, visible)) {
     const entry = getEntry(l.id);
     const status = entry.status || "new";
+    const statusLabel = (STATUS_OPTIONS.find(o => o.key === status) || {label: status}).label;
     const hasNotes = !!(entry.notes && entry.notes.trim());
     const tr = document.createElement("tr");
-    const contact = [
-      l.website ? `<a href="${l.website}" target="_blank">site</a>` : "",
-      l.phone ? `<a href="tel:${l.phone}">📞</a>` : "",
-      l.email ? `<a href="mailto:${l.email}">✉</a>` : "",
-    ].filter(Boolean).join(" ");
+    const contactBits = [];
+    if (l.website) contactBits.push(`<a class="contact-link" href="${l.website}" target="_blank" rel="noopener" title="Website">${IC.ext}<span>Site</span></a>`);
+    if (l.phone)   contactBits.push(`<a class="contact-link" href="tel:${l.phone}" title="${escapeHtml(l.phone)}">${IC.phone}</a>`);
+    if (l.email)   contactBits.push(`<a class="contact-link" href="mailto:${l.email}" title="${escapeHtml(l.email)}">${IC.mail}</a>`);
+    const contact = contactBits.join(" ");
     const research = Object.entries(l.research_urls || {})
-      .map(([k, v]) => `<a href="${v}" target="_blank">${k}</a>`).join(" ");
+      .map(([k, v]) => `<a class="contact-link" href="${v}" target="_blank" rel="noopener">${escapeHtml(k)}</a>`).join(" ");
     const statusOpts = STATUS_OPTIONS.map(o =>
       `<option value="${o.key}" ${o.key === status ? "selected" : ""}>${o.label}</option>`
     ).join("");
     tr.innerHTML = `
       <td class="score">${scoreBadge(l.fit_score)}</td>
-      <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--ink-dim); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
+      <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--slate); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
       <td>${escapeHtml(l.trade)}</td>
       <td>${escapeHtml(l.city)}</td>
-      <td><select class="status-select s-${status}" data-lead-id="${escapeHtml(l.id)}">${statusOpts}</select></td>
-      <td>${contact || '<span style="color: var(--ink-dim);">—</span>'}</td>
+      <td>
+        <span class="status-cell s-${status}"><span class="dot"></span>
+        <select class="status-select s-${status}" data-lead-id="${escapeHtml(l.id)}" aria-label="Status for ${escapeHtml(l.name)}">${statusOpts}</select>
+        </span>
+      </td>
+      <td>${contact || '<span style="color: var(--slate);">—</span>'}</td>
       <td>${research}</td>
-      <td style="color: var(--ink-dim); font-size: 11px;">${(l.discovered_at || "").slice(0, 10)}</td>
-      <td><button class="notes-toggle ${hasNotes ? "has-notes" : ""}" data-lead-id="${escapeHtml(l.id)}" title="${hasNotes ? "Has notes" : "Add note"}">✎</button></td>
+      <td style="color: var(--slate); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em;">${(l.discovered_at || "").slice(0, 10)}</td>
+      <td><button class="notes-toggle ${hasNotes ? "has-notes" : ""}" data-lead-id="${escapeHtml(l.id)}" title="${hasNotes ? "Has notes" : "Add note"}">${IC.edit}</button></td>
     `;
     body.appendChild(tr);
   }
@@ -1290,10 +1875,19 @@ for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
     renderTable();
   });
 }
-// Table filters
+// Table filters — also reset the page window
 for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status"]) {
   document.getElementById(id).addEventListener("input", () => {
+    _maxRows = _pageSize;
     renderOutreachKpis();
+    renderTable();
+  });
+}
+// Show More button — reveal another page worth of rows
+const _showMoreBtn = document.getElementById("show-more-btn");
+if (_showMoreBtn) {
+  _showMoreBtn.addEventListener("click", () => {
+    _maxRows += _pageSize;
     renderTable();
   });
 }
@@ -1303,6 +1897,10 @@ document.getElementById("export-csv-btn").addEventListener("click", exportCsv);
 /* ============================================================
    Initial paint
    ============================================================ */
+// Snapshot the BASELINE (current slider defaults) before any user input so
+// the KPI delta pills can show "vs default scenario" deltas.
+window.MH_BASELINE = compute();
+
 if (DATA.length) renderDistributions();
 renderOutreachKpis();
 renderTable();
