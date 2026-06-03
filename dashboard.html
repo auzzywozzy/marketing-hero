@@ -65,11 +65,26 @@
     -moz-osx-font-smoothing: grayscale;
   }
   header {
-    padding: 28px 36px 26px;
+    position: relative;
+    z-index: 6;
+    padding: 30px 36px 28px;
+    /* Layered: top brushed-metal sheen + brand-spanning steel gradient.
+       Stops:
+         #D8D3C8 — warm cream-steel  (Eunoia Signal-leaning side)
+         #C5CBD3 — neutral steel-light (the locked token)
+         #ABB2C9 — cool navy-tinted steel (Five Talents navy lightened) */
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%),
-      var(--steel-light);
-    border-bottom: 1px solid rgba(10, 10, 11, 0.18);
+      linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 42%),
+      linear-gradient(112deg, #D8D3C8 0%, #C5CBD3 50%, #ABB2C9 100%);
+    border-bottom: 1px solid rgba(10, 10, 11, 0.22);
+    /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
+       bezel, then a big diffused drop shadow that bleeds onto the page
+       below so the band reads as elevated/floating */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+      0 4px 10px -4px rgba(10, 10, 11, 0.32),
+      0 18px 38px -16px rgba(10, 10, 11, 0.55);
     display: flex;
     align-items: center;
     gap: 28px;
@@ -542,9 +557,13 @@
 
   /* 2 · System status strip ------------------------------------- */
   .status-strip {
-    background: var(--obsidian);
+    position: relative;
+    z-index: 1;
+    /* Lifted just above pure Obsidian so the header's drop shadow has
+       something to paint on — sells the "header floats" effect. */
+    background: linear-gradient(180deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.85) 100%), #14181F;
     border-bottom: 1px solid var(--border);
-    padding: 10px 36px;
+    padding: 12px 36px;
     display: flex;
     align-items: center;
     gap: 28px;
@@ -554,6 +573,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--slate);
+    box-shadow: inset 0 1px 0 rgba(232,226,214,0.04);
   }
   .status-strip .ss-item {
     display: inline-flex;
