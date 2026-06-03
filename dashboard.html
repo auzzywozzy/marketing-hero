@@ -102,16 +102,16 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Layered: top obsidian fade + brand-spanning steel gradient (flipped).
-       Brand gradient stops (left → right after flip):
-         #ABB2C9 — cool navy-tinted steel (Eunoia side, Five Talents-leaning)
-         #C5CBD3 — neutral steel-light (the locked token)
-         #D8D3C8 — warm cream-steel  (Five Talents side, Eunoia Signal-leaning)
-       Top fade is now black → transparent so the top edge vignettes
-       darker instead of a bright brushed-metal highlight. */
+    /* Layered: top obsidian fade + brand-spanning steel gradient (deeper).
+       Brand gradient stops (left → right):
+         #6F77A0 — deep navy-steel    (Eunoia side, Five Talents-leaning)
+         #818A98 — mid Slate          (the brand Slate token)
+         #9A938A — deep warm steel    (Five Talents side, Eunoia-leaning)
+       Top fade darkened to rgba 10,10,11 at 42% so the upper edge
+       vignettes more strongly into the page above. */
     background:
-      linear-gradient(180deg, rgba(10,10,11,0.28) 0%, rgba(10,10,11,0) 55%),
-      linear-gradient(112deg, #ABB2C9 0%, #C5CBD3 50%, #D8D3C8 100%);
+      linear-gradient(180deg, rgba(10,10,11,0.42) 0%, rgba(10,10,11,0) 60%),
+      linear-gradient(112deg, #6F77A0 0%, #818A98 50%, #9A938A 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
@@ -135,7 +135,7 @@
   header .logos .eunoia-lockup {
     height: 44px;
     width: auto;
-    color: var(--obsidian);
+    color: var(--signal);
     display: block;
   }
   header .logos img {
@@ -147,7 +147,7 @@
   header .logos .logo-divider {
     width: 1px;
     height: 32px;
-    background: rgba(10, 10, 11, 0.18);
+    background: rgba(232, 226, 214, 0.25);
   }
   header .title-block { flex: 1 1 auto; min-width: 280px; }
   header h1 {
@@ -157,25 +157,24 @@
     font-weight: 900;
     font-size: 26px;
     line-height: 1.1;
-    color: var(--obsidian);
+    color: var(--signal);
     letter-spacing: -0.02em;
     text-transform: none;
   }
-  header h1 .accent { color: var(--obsidian); font-weight: 900; }
+  header h1 .accent { color: var(--signal); font-weight: 900; }
   header .sub {
-    color: var(--steel);
+    color: rgba(232, 226, 214, 0.78);
     font-size: 13px;
     max-width: 720px;
   }
   header .tagline {
-    color: var(--steel);
+    color: rgba(232, 226, 214, 0.70);
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.22em;
     font-weight: 500;
     margin-bottom: 10px;
-    opacity: 0.85;
   }
   .grid {
     display: grid;
