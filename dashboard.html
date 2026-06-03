@@ -65,8 +65,8 @@
   }
   header {
     padding: 28px 36px 26px;
-    background: transparent;
-    border-bottom: 1px solid var(--border);
+    background: var(--signal);
+    border-bottom: 1px solid rgba(10, 10, 11, 0.12);
     display: flex;
     align-items: center;
     gap: 28px;
@@ -75,13 +75,13 @@
   header .logos {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
     flex: 0 0 auto;
   }
   header .logos .eunoia-lockup {
     height: 44px;
     width: auto;
-    color: var(--signal);
+    color: var(--obsidian);
     display: block;
   }
   header .logos img {
@@ -93,7 +93,7 @@
   header .logos .logo-divider {
     width: 1px;
     height: 32px;
-    background: var(--border-strong);
+    background: rgba(10, 10, 11, 0.18);
   }
   header .title-block { flex: 1 1 auto; min-width: 280px; }
   header h1 {
@@ -101,24 +101,25 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 24px;
-    color: var(--signal);
+    color: var(--obsidian);
     letter-spacing: 0.01em;
     text-transform: none;
   }
-  header h1 .accent { color: var(--signal); font-weight: 700; }
+  header h1 .accent { color: var(--obsidian); font-weight: 700; }
   header .sub {
-    color: var(--slate);
+    color: var(--steel);
     font-size: 13px;
     max-width: 720px;
   }
   header .tagline {
-    color: var(--slate);
+    color: var(--steel);
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.22em;
     font-weight: 500;
     margin-bottom: 10px;
+    opacity: 0.85;
   }
   .grid {
     display: grid;
