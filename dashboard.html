@@ -883,6 +883,334 @@
   footer.system-bar a { color: var(--slate); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
   footer.system-bar a:hover { color: var(--signal); border-bottom-color: var(--signal); }
   footer.system-bar .ss-spacer { flex: 1 1 auto; }
+
+  /* ============================================================
+     ANALYTICS — Performance mode (toggle + KPIs + cohorts + modal)
+     ============================================================ */
+
+  /* Mode toggle pill — Forecast | Performance */
+  .mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    padding: 3px;
+    margin-bottom: 20px;
+    gap: 2px;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--slate);
+    padding: 7px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.15s, background 0.15s;
+  }
+  .mode-toggle button:hover { color: var(--signal); }
+  .mode-toggle button.active {
+    background: var(--signal);
+    color: var(--obsidian);
+  }
+  .mode-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .mode-row .mode-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .mode-row .mode-actions button {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--slate);
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .mode-row .mode-actions button:hover { color: var(--signal); border-color: var(--signal); }
+  .mode-row .mode-actions button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Performance KPI strip — sibling of .kpis with restrained styling */
+  .perf-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 900px) {
+    .perf-kpis { grid-template-columns: 1fr 1fr; }
+  }
+  .perf-kpi {
+    background: var(--steel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.04) inset,
+      0 1px 2px 0 rgba(0,0,0,0.3);
+  }
+  .perf-kpi:hover {
+    transform: translateY(-1px);
+    border-color: rgba(139,149,162,0.32);
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.06) inset,
+      0 8px 24px -10px rgba(0,0,0,0.55);
+  }
+  .perf-kpi .label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--slate);
+    margin-bottom: 10px;
+  }
+  .perf-kpi .value {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--signal);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .perf-kpi .sub {
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .perf-kpi .value.good { color: var(--good); }
+  .perf-kpi .value.warn { color: var(--warn); }
+  .perf-kpi .value.empty { color: var(--slate); font-weight: 500; }
+
+  /* Cohort tables — B3 */
+  .cohorts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 1100px) {
+    .cohorts { grid-template-columns: 1fr; }
+  }
+  .cohort {
+    background: var(--steel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.04) inset,
+      0 1px 2px 0 rgba(0,0,0,0.3);
+  }
+  .cohort h3 {
+    margin: 0 0 14px 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--signal);
+    font-weight: 500;
+  }
+  .cohort table { width: 100%; }
+  .cohort th, .cohort td {
+    padding: 8px 6px;
+    font-size: 12.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cohort th {
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    cursor: default;
+  }
+  .cohort td.k {
+    color: var(--signal);
+  }
+  .cohort td.num {
+    text-align: right;
+    color: var(--slate);
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .cohort td.rate {
+    text-align: right;
+    color: var(--signal);
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .cohort td.rate.empty { color: var(--slate); font-weight: 400; }
+  .cohort .meta {
+    margin-top: 12px;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Close-deal modal */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 11, 0.72);
+    backdrop-filter: blur(6px);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--steel);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 24px 26px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow:
+      0 1px 0 0 rgba(232,226,214,0.08) inset,
+      0 24px 48px -12px rgba(0,0,0,0.6);
+    color: var(--signal);
+  }
+  .modal h3 {
+    margin: 0 0 4px 0;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--signal);
+  }
+  .modal .modal-sub {
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .modal label {
+    display: block;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-top: 14px;
+  }
+  .modal label:first-of-type { margin-top: 0; }
+  .modal .pkg-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .modal .pkg-options label {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 10px 12px;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+    color: var(--signal);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .modal .pkg-options label input { margin: 0; accent-color: var(--signal); }
+  .modal .pkg-options label:has(input:checked) {
+    border-color: var(--signal);
+    background: rgba(232,226,214,0.06);
+  }
+  .modal input[type=text], .modal input[type=number], .modal input[type=date], .modal textarea {
+    width: 100%;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    color: var(--signal);
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+  .modal input:focus, .modal textarea:focus {
+    outline: none;
+    border-color: var(--signal);
+  }
+  .modal textarea {
+    min-height: 64px;
+    resize: vertical;
+  }
+  .modal .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .modal .actions button {
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+  }
+  .modal .actions button.cancel {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--slate);
+  }
+  .modal .actions button.cancel:hover { color: var(--signal); border-color: var(--signal); }
+  .modal .actions button.confirm {
+    background: var(--signal);
+    color: var(--obsidian);
+    border: 1px solid var(--signal);
+    font-weight: 600;
+  }
+  .modal .actions button.confirm:hover {
+    background: #FFFCF4;
+    border-color: #FFFCF4;
+  }
+  .modal .custom-amount-row { display: none; }
+  .modal .custom-amount-row.show { display: block; }
 </style>
 </head>
 <body>
@@ -1005,7 +1333,19 @@
 
   <!-- RIGHT: KPIs + CHARTS + TABLE -->
   <main>
-    <div class="kpis anim d1">
+    <div class="mode-row anim d1">
+      <div class="mode-toggle" role="tablist" aria-label="Dashboard mode">
+        <button id="mode-forecast-btn" class="active" role="tab" aria-selected="true">Forecast</button>
+        <button id="mode-performance-btn" role="tab" aria-selected="false">Performance</button>
+      </div>
+      <div class="mode-actions">
+        <button id="export-events-btn" type="button" title="Download the event log (every status change) as a CSV file">⬇ Export events</button>
+        <button id="sync-hubspot-btn" type="button" title="Wire this to your HubSpot account (currently a stub — outputs to console)">Sync to HubSpot</button>
+      </div>
+    </div>
+
+    <!-- Forecast KPI strip (existing) -->
+    <div class="kpis">
       <div class="kpi">
         <div class="label">Qualified leads / mo</div>
         <div class="kpi-row"><div class="value" id="kpi-qualified" data-anim="int">0</div><div class="delta flat" id="dlt-qualified">—</div></div>
@@ -1048,6 +1388,50 @@
       </div>
     </div>
 
+    <!-- Performance KPI strip — actual numbers from the event log -->
+    <div class="perf-kpis" id="perf-kpis" style="display: none;">
+      <div class="perf-kpi">
+        <div class="label">Pipeline value</div>
+        <div class="value" id="perf-pipeline">$0</div>
+        <div class="sub" id="perf-pipeline-sub">0 active leads</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Deals closed — month</div>
+        <div class="value good" id="perf-closed-month">0</div>
+        <div class="sub" id="perf-closed-month-sub">vs 0 last month</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Revenue — month</div>
+        <div class="value" id="perf-revenue-month">$0</div>
+        <div class="sub" id="perf-revenue-month-sub">$0 last month</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Revenue — YTD</div>
+        <div class="value" id="perf-revenue-ytd">$0</div>
+        <div class="sub" id="perf-revenue-ytd-sub">— deals total</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Avg deal — actual</div>
+        <div class="value" id="perf-avg-deal">—</div>
+        <div class="sub" id="perf-avg-deal-sub">across all closes</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Win rate</div>
+        <div class="value" id="perf-win-rate">—</div>
+        <div class="sub" id="perf-win-rate-sub">closed ÷ (closed + dead)</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Avg days to close</div>
+        <div class="value" id="perf-days-close">—</div>
+        <div class="sub" id="perf-days-close-sub">new → closed</div>
+      </div>
+      <div class="perf-kpi">
+        <div class="label">Active outreach</div>
+        <div class="value" id="perf-active">0</div>
+        <div class="sub" id="perf-active-sub">contacted · replied · meeting</div>
+      </div>
+    </div>
+
     <div class="charts anim d2">
       <div class="chart-box">
         <h3>12-Month Revenue Build</h3>
@@ -1064,6 +1448,40 @@
       <div class="chart-box">
         <h3>Leads by City</h3>
         <canvas id="chart-city"></canvas>
+      </div>
+    </div>
+
+    <!-- Cohort tables — only visible in Performance mode -->
+    <div class="cohorts" id="cohorts-section" style="display: none;">
+      <div class="cohort">
+        <h3>Close rate by trade</h3>
+        <table>
+          <thead>
+            <tr><th>Trade</th><th class="num">Closed</th><th class="num">Lost</th><th class="num">Rate</th></tr>
+          </thead>
+          <tbody id="cohort-trade"></tbody>
+        </table>
+        <div class="meta" id="cohort-trade-meta">— closed across — trades</div>
+      </div>
+      <div class="cohort">
+        <h3>Close rate by website grade</h3>
+        <table>
+          <thead>
+            <tr><th>Grade</th><th class="num">Closed</th><th class="num">Lost</th><th class="num">Rate</th></tr>
+          </thead>
+          <tbody id="cohort-website"></tbody>
+        </table>
+        <div class="meta" id="cohort-website-meta">— closed across — grades</div>
+      </div>
+      <div class="cohort">
+        <h3>Close rate by region</h3>
+        <table>
+          <thead>
+            <tr><th>Region</th><th class="num">Closed</th><th class="num">Lost</th><th class="num">Rate</th></tr>
+          </thead>
+          <tbody id="cohort-region"></tbody>
+        </table>
+        <div class="meta" id="cohort-region-meta">— closed across — regions</div>
       </div>
     </div>
 
@@ -1136,6 +1554,37 @@
   </main>
 </div>
 
+<!-- Close-deal modal — opens when status dropdown set to "closed" -->
+<div class="modal-backdrop" id="close-modal" role="dialog" aria-modal="true" aria-labelledby="close-modal-title">
+  <div class="modal">
+    <h3 id="close-modal-title">Close deal</h3>
+    <div class="modal-sub">Snapshot the package &amp; close date — feeds the Performance KPIs.</div>
+
+    <label>Package</label>
+    <div class="pkg-options">
+      <label><input type="radio" name="close-package" value="site6" checked> 6-Page · $4k</label>
+      <label><input type="radio" name="close-package" value="site4"> 4-Page · $3k</label>
+      <label><input type="radio" name="close-package" value="custom"> Custom</label>
+    </div>
+
+    <div class="custom-amount-row" id="custom-amount-row">
+      <label>Custom amount (CAD)</label>
+      <input type="number" id="close-modal-custom" min="0" step="100" placeholder="e.g. 5500" />
+    </div>
+
+    <label>Close date</label>
+    <input type="date" id="close-modal-date" />
+
+    <label>Notes (optional)</label>
+    <textarea id="close-modal-notes" placeholder="Anything worth remembering about this deal…"></textarea>
+
+    <div class="actions">
+      <button class="cancel" type="button" id="close-modal-cancel">Cancel</button>
+      <button class="confirm" type="button" id="close-modal-confirm">Confirm close</button>
+    </div>
+  </div>
+</div>
+
 <footer class="system-bar anim d4">
   <span>Built by Eunoia</span>
   <span class="sep">·</span>
@@ -1184,17 +1633,134 @@ function saveOutreach() {
 function getEntry(leadId) {
   return OUTREACH[leadId] || { status: "new", notes: "", updated_at: "" };
 }
+
+/* ============================================================
+   Event log — every status change appends a timestamped row.
+   Powers Performance-mode analytics, CSV export, future HubSpot sync.
+   ============================================================ */
+const EVENT_LOG_KEY = "mh_event_log_v1";
+
+function loadEvents() {
+  try {
+    const raw = localStorage.getItem(EVENT_LOG_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
+}
+function saveEvents(events) {
+  try { localStorage.setItem(EVENT_LOG_KEY, JSON.stringify(events)); }
+  catch (e) { console.warn("Could not save events:", e); }
+}
+function appendEvent(partial) {
+  const events = loadEvents();
+  events.push({
+    id: "evt-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+    ts: new Date().toISOString(),
+    ...partial,
+  });
+  saveEvents(events);
+}
+
 function setStatus(leadId, status) {
   const e = getEntry(leadId);
+  const prevStatus = e.status || "new";
+  if (prevStatus === status) return;
+
+  // Closing a deal opens a modal to capture package + value + date.
+  // The actual OUTREACH mutation + event happens on modal confirm.
+  if (status === "closed") {
+    openCloseDealModal(leadId, prevStatus);
+    return;
+  }
+
   OUTREACH[leadId] = { ...e, status, updated_at: new Date().toISOString() };
   saveOutreach();
+  const lead = DATA.find(l => l.id === leadId) || {};
+  appendEvent({
+    lead_id: leadId,
+    lead_name: lead.name || "",
+    trade: lead.trade || "",
+    region: lead.region || "",
+    website_quality: lead.website_quality || "",
+    from_status: prevStatus,
+    to_status: status,
+  });
   renderOutreachKpis();
   renderTable();
+  if (dashboardMode === "performance") renderPerformance();
 }
 function setNotes(leadId, notes) {
   const e = getEntry(leadId);
   OUTREACH[leadId] = { ...e, notes, updated_at: new Date().toISOString() };
   saveOutreach();
+}
+
+/* --- Close-deal modal --- */
+function openCloseDealModal(leadId, prevStatus) {
+  const lead = DATA.find(l => l.id === leadId);
+  const modal = document.getElementById("close-modal");
+  if (!lead || !modal) return;
+  modal.dataset.leadId = leadId;
+  modal.dataset.prevStatus = prevStatus;
+  document.getElementById("close-modal-title").textContent = "Close deal — " + lead.name;
+  // Defaults
+  document.querySelector('input[name="close-package"][value="site6"]').checked = true;
+  document.getElementById("close-modal-custom").value = "";
+  document.getElementById("custom-amount-row").classList.remove("show");
+  document.getElementById("close-modal-date").value = new Date().toISOString().slice(0, 10);
+  document.getElementById("close-modal-notes").value = "";
+  modal.classList.add("open");
+  // Focus the confirm button so Enter confirms
+  setTimeout(() => document.getElementById("close-modal-confirm").focus(), 50);
+}
+
+function closeCloseModal() {
+  document.getElementById("close-modal").classList.remove("open");
+}
+
+function confirmCloseModal() {
+  const modal = document.getElementById("close-modal");
+  const leadId = modal.dataset.leadId;
+  const prevStatus = modal.dataset.prevStatus || "new";
+  if (!leadId) { closeCloseModal(); return; }
+  const lead = DATA.find(l => l.id === leadId) || {};
+
+  const pkg = (document.querySelector('input[name="close-package"]:checked') || {}).value || "site6";
+  let dealValue = 0;
+  if (pkg === "site6") dealValue = 4000;
+  else if (pkg === "site4") dealValue = 3000;
+  else dealValue = +document.getElementById("close-modal-custom").value || 0;
+  const closeDate = document.getElementById("close-modal-date").value || new Date().toISOString().slice(0, 10);
+  const notes = document.getElementById("close-modal-notes").value.trim();
+
+  const e = getEntry(leadId);
+  OUTREACH[leadId] = { ...e, status: "closed", updated_at: new Date().toISOString(),
+                       notes: notes || e.notes || "" };
+  saveOutreach();
+
+  appendEvent({
+    lead_id: leadId,
+    lead_name: lead.name || "",
+    trade: lead.trade || "",
+    region: lead.region || "",
+    website_quality: lead.website_quality || "",
+    from_status: prevStatus,
+    to_status: "closed",
+    package: pkg,
+    deal_value: dealValue,
+    close_date: closeDate,
+    notes: notes,
+  });
+
+  closeCloseModal();
+  renderOutreachKpis();
+  renderTable();
+  if (dashboardMode === "performance") renderPerformance();
+}
+
+function cancelCloseModal() {
+  // OUTREACH wasn't mutated yet; we just need to reset the dropdown UI.
+  closeCloseModal();
+  renderTable();
 }
 
 /* ============================================================
@@ -2093,6 +2659,346 @@ function paintBaselineStatus() {
   const el = document.getElementById("ss-baseline");
   if (el) el.textContent = loadBaselineState() ? "Custom" : "Default";
 }
+
+/* ============================================================
+   PERFORMANCE MODE — actual analytics from the event log
+   ============================================================ */
+let dashboardMode = "forecast"; // "forecast" | "performance"
+
+const PIPELINE_OPEN = new Set(["contacted", "replied", "meeting"]);
+const STAGE_ORDER = { new: 0, contacted: 1, replied: 2, meeting: 3, closed: 4, dead: 0 };
+
+function _startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
+function _startOfPrevMonth(d) {
+  const dd = new Date(d.getFullYear(), d.getMonth() - 1, 1);
+  return dd;
+}
+function _startOfYear(d) { return new Date(d.getFullYear(), 0, 1); }
+
+function computePerformance() {
+  const events = loadEvents();
+  const now = new Date();
+  const som = _startOfMonth(now);
+  const spm = _startOfPrevMonth(now);
+  const soy = _startOfYear(now);
+
+  // For each lead, the LATEST status from events (else OUTREACH else "new")
+  const eventsByLead = {};
+  const firstSeenByLead = {};
+  for (const ev of events) {
+    if (!eventsByLead[ev.lead_id]) eventsByLead[ev.lead_id] = [];
+    eventsByLead[ev.lead_id].push(ev);
+    if (!firstSeenByLead[ev.lead_id] || ev.ts < firstSeenByLead[ev.lead_id]) {
+      firstSeenByLead[ev.lead_id] = ev.ts;
+    }
+  }
+  const currentStatus = {};
+  for (const l of DATA) {
+    const evs = eventsByLead[l.id];
+    if (evs && evs.length) {
+      // last event wins
+      currentStatus[l.id] = evs[evs.length - 1].to_status;
+    } else {
+      currentStatus[l.id] = getEntry(l.id).status || "new";
+    }
+  }
+
+  // All closed deals (with deal_value attached)
+  const closedEvents = events.filter(e => e.to_status === "closed" && +e.deal_value > 0);
+  const closedThisMonth = closedEvents.filter(e => new Date(e.close_date || e.ts) >= som);
+  const closedPrevMonth = closedEvents.filter(e => {
+    const d = new Date(e.close_date || e.ts);
+    return d >= spm && d < som;
+  });
+  const closedYTD = closedEvents.filter(e => new Date(e.close_date || e.ts) >= soy);
+
+  const revenueMonth = closedThisMonth.reduce((s, e) => s + (+e.deal_value || 0), 0);
+  const revenuePrevMonth = closedPrevMonth.reduce((s, e) => s + (+e.deal_value || 0), 0);
+  const revenueYTD = closedYTD.reduce((s, e) => s + (+e.deal_value || 0), 0);
+
+  const allDealValues = closedEvents.map(e => +e.deal_value).filter(v => v > 0);
+  const avgDealSize = allDealValues.length ? allDealValues.reduce((a, b) => a + b, 0) / allDealValues.length : 0;
+
+  // Win rate = closed / (closed + dead)
+  const closedCount = closedEvents.length;
+  const deadCount = Object.values(currentStatus).filter(s => s === "dead").length;
+  const winRate = (closedCount + deadCount) > 0 ? closedCount / (closedCount + deadCount) : null;
+
+  // Avg days to close — from first event ts to close event ts
+  const daysToClose = [];
+  for (const ev of closedEvents) {
+    const first = firstSeenByLead[ev.lead_id];
+    if (!first) continue;
+    const ms = new Date(ev.ts) - new Date(first);
+    if (ms >= 0) daysToClose.push(ms / (1000 * 60 * 60 * 24));
+  }
+  const avgDays = daysToClose.length ? daysToClose.reduce((a, b) => a + b, 0) / daysToClose.length : null;
+
+  // Active outreach
+  const activeOutreach = Object.values(currentStatus).filter(s => PIPELINE_OPEN.has(s)).length;
+
+  // Pipeline value: active leads × avg deal size (fallback to $3,500 mid)
+  const pipelineUnit = avgDealSize || 3500;
+  const pipelineValue = activeOutreach * pipelineUnit;
+
+  // Funnel actual — cumulative "reached at least this stage"
+  // Stage furthest reached per lead (from events; falls back to current status)
+  const furthest = {};
+  for (const l of DATA) {
+    let max = STAGE_ORDER[currentStatus[l.id]] || 0;
+    const evs = eventsByLead[l.id] || [];
+    for (const ev of evs) {
+      const idx = STAGE_ORDER[ev.to_status] || 0;
+      if (idx > max) max = idx;
+    }
+    furthest[l.id] = max;
+  }
+  const stage = [0, 0, 0, 0, 0]; // new, contacted, replied, meeting, closed
+  for (const v of Object.values(furthest)) stage[v]++;
+  const funnelActual = {
+    leads: DATA.length,
+    contacted: stage[1] + stage[2] + stage[3] + stage[4],
+    replied:   stage[2] + stage[3] + stage[4],
+    meeting:   stage[3] + stage[4],
+    closed:    stage[4],
+  };
+
+  return {
+    pipelineValue, activeOutreach,
+    closedMonth: closedThisMonth.length, closedPrev: closedPrevMonth.length,
+    revenueMonth, revenuePrevMonth, revenueYTD,
+    closedYTDCount: closedYTD.length, closedTotalCount: closedCount,
+    avgDealSize, winRate, avgDays,
+    funnelActual, currentStatus,
+  };
+}
+
+function computeCohorts() {
+  const perf = computePerformance();
+  const status = perf.currentStatus;
+  const BAD_WQ_PRIORITY = ["MISSING", "DEAD", "SOCIAL_ONLY", "FREE_TIER", "WEAK", "HAS_DOMAIN", "OK", ""];
+
+  function bucketAgg(keyFn) {
+    const buckets = {};
+    for (const l of DATA) {
+      const k = keyFn(l) || "—";
+      if (!buckets[k]) buckets[k] = { total: 0, closed: 0, dead: 0 };
+      buckets[k].total++;
+      const s = status[l.id];
+      if (s === "closed") buckets[k].closed++;
+      if (s === "dead")   buckets[k].dead++;
+    }
+    const rows = [];
+    for (const [k, v] of Object.entries(buckets)) {
+      const denom = v.closed + v.dead;
+      const rate = denom > 0 ? v.closed / denom : null;
+      rows.push({ key: k, total: v.total, closed: v.closed, dead: v.dead, rate });
+    }
+    return rows;
+  }
+
+  const byTrade = bucketAgg(l => l.trade);
+  // Top trades by total leads first, then close-rate descending within
+  byTrade.sort((a, b) => (b.rate ?? -1) - (a.rate ?? -1) || b.total - a.total);
+  const byWebsite = bucketAgg(l => l.website_quality || "—");
+  byWebsite.sort((a, b) => {
+    // Custom order: MISSING, DEAD, SOCIAL_ONLY, FREE_TIER, WEAK, HAS_DOMAIN, OK
+    const ia = BAD_WQ_PRIORITY.indexOf(a.key);
+    const ib = BAD_WQ_PRIORITY.indexOf(b.key);
+    if (ia !== ib) return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
+    return b.total - a.total;
+  });
+  const byRegion = bucketAgg(l => l.region || "—");
+  byRegion.sort((a, b) => b.total - a.total);
+
+  return { byTrade, byWebsite, byRegion };
+}
+
+const WQ_DISPLAY = {
+  MISSING: "Missing", DEAD: "Dead", SOCIAL_ONLY: "Social",
+  FREE_TIER: "Free-tier", WEAK: "Weak", HAS_DOMAIN: "Unprobed", OK: "OK",
+};
+
+function renderPerformanceKpis(p) {
+  function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+  setText("perf-pipeline",     fmtMoney(p.pipelineValue));
+  setText("perf-pipeline-sub", `${p.activeOutreach.toLocaleString()} active leads`);
+
+  setText("perf-closed-month",     p.closedMonth.toLocaleString());
+  setText("perf-closed-month-sub", `vs ${p.closedPrev.toLocaleString()} last month`);
+
+  setText("perf-revenue-month",     fmtMoney(p.revenueMonth));
+  setText("perf-revenue-month-sub", `${fmtMoney(p.revenuePrevMonth)} last month`);
+
+  setText("perf-revenue-ytd",     fmtMoney(p.revenueYTD));
+  setText("perf-revenue-ytd-sub", `${p.closedYTDCount.toLocaleString()} deals YTD`);
+
+  setText("perf-avg-deal",     p.avgDealSize ? fmtMoney(p.avgDealSize) : "—");
+  setText("perf-avg-deal-sub", p.closedTotalCount ? `${p.closedTotalCount} deals total` : "no closes yet");
+
+  setText("perf-win-rate",     p.winRate != null ? (p.winRate * 100).toFixed(0) + "%" : "—");
+  setText("perf-win-rate-sub", "closed ÷ (closed + dead)");
+
+  setText("perf-days-close",     p.avgDays != null ? p.avgDays.toFixed(0) + " d" : "—");
+  setText("perf-days-close-sub", p.avgDays != null ? "new → closed" : "no closes yet");
+
+  setText("perf-active",     p.activeOutreach.toLocaleString());
+  setText("perf-active-sub", "contacted · replied · meeting");
+
+  // Empty-state styling — soften values when there's no signal yet
+  const emptyish = !p.closedTotalCount;
+  for (const id of ["perf-avg-deal", "perf-win-rate", "perf-days-close"]) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle("empty", emptyish);
+  }
+}
+
+function renderCohorts() {
+  const co = computeCohorts();
+
+  function paintCohort(tbodyId, metaId, rows, formatKey) {
+    const tbody = document.getElementById(tbodyId);
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    for (const r of rows.slice(0, 8)) {
+      const tr = document.createElement("tr");
+      const rateClass = r.rate == null ? "rate empty" : "rate";
+      const rateTxt = r.rate == null ? "—" : (r.rate * 100).toFixed(0) + "%";
+      tr.innerHTML = `
+        <td class="k">${escapeHtml(formatKey(r.key))}</td>
+        <td class="num">${r.closed}</td>
+        <td class="num">${r.dead}</td>
+        <td class="${rateClass}">${rateTxt}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+    const meta = document.getElementById(metaId);
+    if (meta) {
+      const totalClosed = rows.reduce((a, r) => a + r.closed, 0);
+      meta.textContent = `${totalClosed} closed across ${rows.length} buckets`;
+    }
+  }
+  paintCohort("cohort-trade",   "cohort-trade-meta",   co.byTrade,   k => k);
+  paintCohort("cohort-website", "cohort-website-meta", co.byWebsite, k => WQ_DISPLAY[k] || k);
+  paintCohort("cohort-region",  "cohort-region-meta",  co.byRegion,  k => k);
+}
+
+function renderFunnelOverlay(p, forecastCounts) {
+  // Replace the funnel chart's data with side-by-side forecast + actual bars
+  const fData = {
+    labels: ["Leads", "Replies", "Meetings", "Clients"],
+    datasets: [
+      {
+        label: "Forecast (monthly)",
+        data: [forecastCounts.leadsMonth, forecastCounts.replies, forecastCounts.meetings, forecastCounts.newClients],
+        backgroundColor: "rgba(139, 149, 162, 0.35)",
+        borderColor: "rgba(139, 149, 162, 0.55)",
+        borderWidth: 1,
+        borderRadius: 4,
+        maxBarThickness: 32,
+      },
+      {
+        label: "Actual (lifetime)",
+        data: [p.funnelActual.leads, p.funnelActual.replied, p.funnelActual.meeting, p.funnelActual.closed],
+        backgroundColor: "#E8E2D6",
+        borderRadius: 4,
+        maxBarThickness: 32,
+      },
+    ],
+  };
+  if (funnelChart) { funnelChart.data = fData; funnelChart.update("none"); }
+}
+
+function renderPerformance() {
+  const p = computePerformance();
+  renderPerformanceKpis(p);
+  renderCohorts();
+  // Funnel overlay needs the forecast counts — pull from the current compute()
+  const c = compute();
+  renderFunnelOverlay(p, {
+    leadsMonth: c.leadsMonth, replies: c.replies, meetings: c.meetings, newClients: c.newClients,
+  });
+}
+
+function setMode(mode) {
+  dashboardMode = mode;
+  const isPerf = mode === "performance";
+  document.getElementById("mode-forecast-btn").classList.toggle("active", !isPerf);
+  document.getElementById("mode-performance-btn").classList.toggle("active", isPerf);
+  document.getElementById("mode-forecast-btn").setAttribute("aria-selected", String(!isPerf));
+  document.getElementById("mode-performance-btn").setAttribute("aria-selected", String(isPerf));
+  document.querySelector(".kpis").style.display = isPerf ? "none" : "";
+  document.getElementById("perf-kpis").style.display = isPerf ? "grid" : "none";
+  document.getElementById("cohorts-section").style.display = isPerf ? "grid" : "none";
+  if (isPerf) {
+    renderPerformance();
+  } else {
+    // Restore forecast funnel
+    recompute();
+  }
+}
+
+/* --- CSV export of event log --- */
+function exportEventsCsv() {
+  const events = loadEvents();
+  const headers = ["ts","lead_id","lead_name","trade","region","website_quality","from_status","to_status","package","deal_value","close_date","notes"];
+  const esc = s => {
+    const v = String(s ?? "");
+    return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+  };
+  const lines = [headers.join(",")];
+  for (const ev of events) {
+    lines.push(headers.map(h => esc(ev[h] ?? "")).join(","));
+  }
+  if (!events.length) {
+    // Empty file with just the header so the user gets a template
+  }
+  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `marketing-hero-events-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+}
+
+/* --- HubSpot sync — stub. Wired to console + a clean integration point
+       so when you set MARKETING_HERO_HUBSPOT_TOKEN we can POST events to
+       /crm/v3/objects/deals (or whatever shape your account expects). --- */
+function syncToHubspot() {
+  const events = loadEvents();
+  const closes = events.filter(e => e.to_status === "closed" && +e.deal_value > 0);
+  console.log("[HubSpot sync — STUB]");
+  console.log(`  Would push ${events.length} events (${closes.length} closed deals) to HubSpot.`);
+  console.log("  Wire-up notes:");
+  console.log("    1. Backend route (e.g. Vercel function) that holds the HubSpot private app token.");
+  console.log("    2. For each close event, POST /crm/v3/objects/deals with amount=deal_value,");
+  console.log("       dealstage=closedwon, closedate=close_date.");
+  console.log("    3. Optionally upsert the company first via /crm/v3/objects/companies.");
+  console.log("    4. Persist last-synced timestamp here so we only POST new events.");
+  console.log("  Sample payload for first close event:", closes[0] || "(no closes yet)");
+  alert(`HubSpot sync stub — wired but not connected yet.\n\n${events.length} events on file (${closes.length} closes).\n\nOpen the browser console to see the dry-run details.`);
+}
+
+// Wire all the controls
+document.getElementById("mode-forecast-btn").addEventListener("click", () => setMode("forecast"));
+document.getElementById("mode-performance-btn").addEventListener("click", () => setMode("performance"));
+document.getElementById("export-events-btn").addEventListener("click", exportEventsCsv);
+document.getElementById("sync-hubspot-btn").addEventListener("click", syncToHubspot);
+
+// Close-deal modal wiring
+document.getElementById("close-modal-confirm").addEventListener("click", confirmCloseModal);
+document.getElementById("close-modal-cancel").addEventListener("click", cancelCloseModal);
+document.querySelectorAll('input[name="close-package"]').forEach(r => {
+  r.addEventListener("change", () => {
+    document.getElementById("custom-amount-row").classList.toggle("show", r.value === "custom" && r.checked);
+  });
+});
+// Click on the backdrop (outside the modal) cancels
+document.getElementById("close-modal").addEventListener("click", e => {
+  if (e.target.id === "close-modal") cancelCloseModal();
+});
 
 /* ============================================================
    Initial paint
