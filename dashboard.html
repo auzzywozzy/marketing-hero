@@ -14,7 +14,24 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
-  /* Self-hosted Eunoia display font — Mont (DEMO weights: 200 + 900) */
+  /* Self-hosted Eunoia display font — Satoshi (variable, 300–900) */
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+    src: url("assets/fonts/Satoshi-Variable.woff2") format("woff2-variations"),
+         url("assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 300 900;
+    font-style: italic;
+    font-display: swap;
+    src: url("assets/fonts/Satoshi-VariableItalic.woff2") format("woff2-variations"),
+         url("assets/fonts/Satoshi-VariableItalic.woff2") format("woff2");
+  }
+  /* Mont kept available as a secondary display option (DEMO Heavy + ExtraLight only) */
   @font-face {
     font-family: "Mont";
     font-weight: 900;
@@ -57,7 +74,7 @@
     --accent:  var(--signal);
     --accent-2: var(--info);
 
-    --font-display: 'Mont', 'IBM Plex Sans', system-ui, sans-serif;
+    --font-display: 'Satoshi', 'Mont', 'IBM Plex Sans', system-ui, sans-serif;
     --font-body:    'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     --font-mono:    'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   }
@@ -136,13 +153,13 @@
   header h1 {
     margin: 0 0 8px 0;
     font-family: var(--font-display);
-    /* Mont DEMO ships Heavy 900 + ExtraLight 200 only — use 900 to actually
-       trigger the Mont file (anything else falls back to Plex Sans). */
-    font-weight: 900;
+    /* Satoshi is variable; 700 reads as a clean strong title without the
+       chunky weight of Mont Heavy. */
+    font-weight: 700;
     font-size: 26px;
-    line-height: 1.05;
+    line-height: 1.1;
     color: var(--obsidian);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     text-transform: none;
   }
   header h1 .accent { color: var(--obsidian); font-weight: 900; }
