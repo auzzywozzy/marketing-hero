@@ -2569,3 +2569,155 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-06-02T08:34:35] Total raw candidates: 246
 [2026-06-02T08:34:35] Run complete. Added: 0, Updated: 168, Total on file: 168
 [2026-06-02  8:34:35.45] Run complete, deploying... 
+[2026-06-02 17:29:54.21] Starting Marketing Hero daily run 
+[2026-06-02T17:29:54] Loaded store: 168 existing leads
+[2026-06-02T17:29:54] Sources active: OSM
+[2026-06-02T17:29:54] Regions: BC, AB, WA (80 target cities)
+[2026-06-02T17:29:54] Categories: 27
+[2026-06-02T17:29:54] Category: Plumbing
+[2026-06-02T17:30:06]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-06-02T17:30:14]   OSM [BC]: 14 raw hits
+[2026-06-02T17:30:23] Interrupted
+[2026-06-02 17:30:45.13] Starting Marketing Hero daily run 
+[2026-06-02T18:04:25] Loaded store: 168 existing leads
+[2026-06-02T18:04:25] Sources active: OSM + Google Places + Apollo
+[2026-06-02T18:04:25] Regions: BC, AB, WA (80 target cities)
+[2026-06-02T18:04:25] Categories: 27
+[2026-06-02T18:04:25] Places scope: 14 cats × 15 metros (across 3 regions) = 210 calls (cap 220)
+[2026-06-02T18:04:25] Category: Plumbing
+[2026-06-02T18:04:27]   OSM [BC]: 14 raw hits
+[2026-06-02T18:04:37]   OSM [AB]: 13 raw hits
+[2026-06-02T18:04:49]   OSM [WA]: 28 raw hits
+[2026-06-02T18:04:55] Category: HVAC / Heating
+[2026-06-02T18:04:58]   OSM [BC]: 13 raw hits
+[2026-06-02T18:05:19]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-06-02T18:05:27]   OSM [AB]: 9 raw hits
+[2026-06-02T18:05:37]   OSM [WA]: 41 raw hits
+[2026-06-02T18:05:42] Category: Electrical
+[2026-06-02T18:05:44]   OSM [BC]: 8 raw hits
+[2026-06-02T18:05:54]   OSM [AB]: 7 raw hits
+[2026-06-02T18:06:04]   OSM [WA]: 22 raw hits
+[2026-06-02T18:06:09] Category: Roofing
+[2026-06-02T18:06:14]   OSM [BC]: 5 raw hits
+[2026-06-02T18:06:21]   OSM [AB]: 4 raw hits
+[2026-06-02T18:06:30]   OSM [WA]: 28 raw hits
+[2026-06-02T18:06:36] Category: General Contracting
+[2026-06-02T18:07:01]   OSM [BC]: 28 raw hits
+[2026-06-02T18:07:13]   OSM [AB]: 13 raw hits
+[2026-06-02T18:07:30]   OSM [WA]: 95 raw hits
+[2026-06-02T18:07:36] Category: Landscaping
+[2026-06-02T18:07:41]   OSM [BC]: 5 raw hits
+[2026-06-02T18:07:51]   OSM [AB]: 5 raw hits
+[2026-06-02T18:08:05]   OSM [WA]: 22 raw hits
+[2026-06-02T18:08:09] Category: Excavation / Earthworks
+[2026-06-02T18:08:12]   OSM [BC]: 0 raw hits
+[2026-06-02T18:08:21]   OSM [AB]: 0 raw hits
+[2026-06-02T18:08:33]   OSM [WA]: 0 raw hits
+[2026-06-02T18:08:38] Category: Demolition / Site Prep
+[2026-06-02T18:08:40]   OSM [BC]: 0 raw hits
+[2026-06-02T18:08:50]   OSM [AB]: 0 raw hits
+[2026-06-02T18:08:56]   OSM [WA]: 0 raw hits
+[2026-06-02T18:09:02] Category: Painting
+[2026-06-02T18:09:03]   OSM [BC]: 7 raw hits
+[2026-06-02T18:09:08]   OSM [AB]: 6 raw hits
+[2026-06-02T18:09:16]   OSM [WA]: 7 raw hits
+[2026-06-02T18:09:20] Category: Flooring / Tile
+[2026-06-02T18:09:23]   OSM [BC]: 1 raw hits
+[2026-06-02T18:09:28]   OSM [AB]: 3 raw hits
+[2026-06-02T18:09:34]   OSM [WA]: 6 raw hits
+[2026-06-02T18:09:38] Category: Drywall / Plastering
+[2026-06-02T18:09:39]   OSM [BC]: 0 raw hits
+[2026-06-02T18:09:44]   OSM [AB]: 0 raw hits
+[2026-06-02T18:09:49]   OSM [WA]: 1 raw hits
+[2026-06-02T18:09:53] Category: Concrete / Masonry
+[2026-06-02T18:09:57]   OSM [BC]: 3 raw hits
+[2026-06-02T18:10:06]   OSM [AB]: 1 raw hits
+[2026-06-02T18:10:17]   OSM [WA]: 5 raw hits
+[2026-06-02T18:10:22] Category: Windows / Doors
+[2026-06-02T18:10:24]   OSM [BC]: 1 raw hits
+[2026-06-02T18:10:30]   OSM [AB]: 6 raw hits
+[2026-06-02T18:10:44]   OSM [WA]: 16 raw hits
+[2026-06-02T18:10:48] Category: Garage Doors
+[2026-06-02T18:10:48]   OSM [BC]: 0 raw hits
+[2026-06-02T18:10:52]   OSM [AB]: 0 raw hits
+[2026-06-02T18:10:56]   OSM [WA]: 0 raw hits
+[2026-06-02T18:11:00] Category: Fencing / Decking
+[2026-06-02T18:11:01]   OSM [BC]: 0 raw hits
+[2026-06-02T18:11:06]   OSM [AB]: 0 raw hits
+[2026-06-02T18:11:11]   OSM [WA]: 1 raw hits
+[2026-06-02T18:11:15] Category: Solar
+[2026-06-02T18:11:16]   OSM [BC]: 0 raw hits
+[2026-06-02T18:11:25]   OSM [AB]: 0 raw hits
+[2026-06-02T18:11:30]   OSM [WA]: 1 raw hits
+[2026-06-02T18:11:34] Category: Pool / Spa
+[2026-06-02T18:11:34]   OSM [BC]: 0 raw hits
+[2026-06-02T18:11:38]   OSM [AB]: 0 raw hits
+[2026-06-02T18:11:42]   OSM [WA]: 0 raw hits
+[2026-06-02T18:11:46] Category: Glass / Glazing
+[2026-06-02T18:11:49]   OSM [BC]: 5 raw hits
+[2026-06-02T18:11:55]   OSM [AB]: 1 raw hits
+[2026-06-02T18:12:01]   OSM [WA]: 5 raw hits
+[2026-06-02T18:12:05] Category: Insulation / Scaffolding
+[2026-06-02T18:12:07]   OSM [BC]: 1 raw hits
+[2026-06-02T18:12:15]   OSM [AB]: 0 raw hits
+[2026-06-02T18:12:20]   OSM [WA]: 4 raw hits
+[2026-06-02T18:12:24] Category: Metal Fabrication / Welding
+[2026-06-02T18:12:34]   OSM [BC]: 4 raw hits
+[2026-06-02T18:12:48]   OSM [AB]: 8 raw hits
+[2026-06-02T18:13:02]   OSM [WA]: 19 raw hits
+[2026-06-02T18:13:08] Category: Cabinet / Millwork
+[2026-06-02T18:13:10]   OSM [BC]: 0 raw hits
+[2026-06-02T18:13:32]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-06-02T18:13:39]   OSM [AB]: 0 raw hits
+[2026-06-02T18:13:48]   OSM [WA]: 1 raw hits
+[2026-06-02T18:13:54] Category: Manufacturing / Factory
+[2026-06-02T18:14:14]   OSM [BC]: 41 raw hits
+[2026-06-02T18:14:43]   OSM [AB]: 8 raw hits
+[2026-06-02T18:14:59]   OSM [WA]: 21 raw hits
+[2026-06-02T18:15:04] Category: Sawmill / Wood Products
+[2026-06-02T18:15:07]   OSM [BC]: 2 raw hits
+[2026-06-02T18:15:16]   OSM [AB]: 0 raw hits
+[2026-06-02T18:15:35]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-06-02T18:15:47]   OSM [WA]: 0 raw hits
+[2026-06-02T18:15:53] Category: Brewery / Distillery / Winery
+[2026-06-02T18:16:01]   OSM [BC]: 47 raw hits
+[2026-06-02T18:16:10]   OSM [AB]: 33 raw hits
+[2026-06-02T18:16:25]   OSM [WA]: 63 raw hits
+[2026-06-02T18:16:30] Category: Printing / Signs
+[2026-06-02T18:16:40]   OSM [BC]: 5 raw hits
+[2026-06-02T18:16:46]   OSM [AB]: 4 raw hits
+[2026-06-02T18:16:56]   OSM [WA]: 27 raw hits
+[2026-06-02T18:17:00] Category: Trade Supply / Hardware
+[2026-06-02T18:17:12]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-06-02T18:17:58]   OSM [BC]: 57 raw hits
+[2026-06-02T18:18:22]   OSM [AB]: 73 raw hits
+[2026-06-02T18:18:51]   OSM [WA]: 93 raw hits
+[2026-06-02T18:18:55] Category: Auto Body / Collision Repair
+[2026-06-02T18:19:07]   OSM [BC]: 108 raw hits
+[2026-06-02T18:19:19]   OSM [AB]: 98 raw hits
+[2026-06-02T18:19:31]   OSM [WA]: 85 raw hits
+[2026-06-02T18:19:38] Places calls this run: 210
+[2026-06-02T18:19:38] Apollo: region BC
+[2026-06-02T18:19:38]   ! Apollo HTTP 404 [BC p1]: 
+[2026-06-02T18:19:38]   Apollo [BC p1]: 0 hits (est pool ?)
+[2026-06-02T18:19:39]   ! Apollo HTTP 404 [BC p2]: 
+[2026-06-02T18:19:39]   Apollo [BC p2]: 0 hits (est pool ?)
+[2026-06-02T18:19:41]   ! Apollo HTTP 404 [BC p3]: 
+[2026-06-02T18:19:41]   Apollo [BC p3]: 0 hits (est pool ?)
+[2026-06-02T18:19:42] Apollo: region AB
+[2026-06-02T18:19:42]   ! Apollo HTTP 404 [AB p1]: 
+[2026-06-02T18:19:42]   Apollo [AB p1]: 0 hits (est pool ?)
+[2026-06-02T18:19:43]   ! Apollo HTTP 404 [AB p2]: 
+[2026-06-02T18:19:43]   Apollo [AB p2]: 0 hits (est pool ?)
+[2026-06-02T18:19:44]   ! Apollo HTTP 404 [AB p3]: 
+[2026-06-02T18:19:44]   Apollo [AB p3]: 0 hits (est pool ?)
+[2026-06-02T18:19:45] Apollo: region WA
+[2026-06-02T18:19:45]   ! Apollo HTTP 404 [WA p1]: 
+[2026-06-02T18:19:45]   Apollo [WA p1]: 0 hits (est pool ?)
+[2026-06-02T18:19:46]   ! Apollo HTTP 404 [WA p2]: 
+[2026-06-02T18:19:46]   Apollo [WA p2]: 0 hits (est pool ?)
+[2026-06-02T18:19:48]   ! Apollo HTTP 404 [WA p3]: 
+[2026-06-02T18:19:48]   Apollo [WA p3]: 0 hits (est pool ?)
+[2026-06-02T18:19:49] Apollo calls this run: 9
+[2026-06-02T18:19:49] Total raw candidates: 1238
+[2026-06-02T18:19:49] Run complete. Added: 200, Updated: 59, Total on file: 368
