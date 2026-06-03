@@ -106,26 +106,20 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Layered: top navy fade + brand-spanning soft-blue/cream gradient.
-       Stops (left → right):
-         #B8C0D8 — soft light cobalt   (Eunoia side, cool FT-leaning)
-         #C5C8D3 — neutral steel-light (mid)
-         #D3CFC2 — warm cream-steel    (Five Talents side, where the FT
-                                        navy + orange logo pops cleanly)
-       Top fade tuned to the new deep-navy tone so the upper edge
-       vignettes into the page above. */
-    background:
-      linear-gradient(180deg, rgba(14,21,48,0.18) 0%, rgba(14,21,48,0) 55%),
-      linear-gradient(112deg, #B8C0D8 0%, #C5C8D3 50%, #D3CFC2 100%);
+    /* Horizontal navy → black gradient. Slightly lifted navy on the left
+       (a few shades above the body's #0E1530) for the partnership logos,
+       sweeping to true black under the Marketing Hero wordmark on the
+       right so the product mark reads as the dominant element. */
+    background: linear-gradient(95deg, #1E2A50 0%, #14193A 38%, #060814 78%, #000000 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
        below so the band reads as elevated/floating */
     box-shadow:
-      inset 0 1px 0 rgba(10, 10, 11, 0.18),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.12),
-      0 4px 10px -4px rgba(10, 10, 11, 0.32),
-      0 18px 38px -16px rgba(10, 10, 11, 0.55);
+      inset 0 1px 0 rgba(232, 226, 214, 0.06),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+      0 4px 10px -4px rgba(0, 0, 0, 0.55),
+      0 18px 38px -16px rgba(0, 0, 0, 0.65);
     display: flex;
     align-items: center;
     gap: 28px;
@@ -140,7 +134,7 @@
   header .logos .eunoia-lockup {
     height: 44px;
     width: auto;
-    color: var(--obsidian);
+    color: var(--signal);
     display: block;
   }
   header .logos img {
@@ -148,11 +142,15 @@
     width: auto;
     max-width: 220px;
     object-fit: contain;
+    /* Five Talents mark ships as deep navy + orange on transparent.
+       On a dark navy band it disappears, so lift it: brightness pushes
+       the navy toward cobalt and the orange toward saturated amber. */
+    filter: brightness(1.7) saturate(1.05);
   }
   header .logos .logo-divider {
     width: 1px;
     height: 32px;
-    background: rgba(14, 21, 48, 0.22);
+    background: rgba(232, 226, 214, 0.22);
   }
   header .title-block { flex: 1 1 auto; min-width: 280px; }
 
@@ -166,7 +164,7 @@
     align-items: center;
     gap: 11px;
     margin-bottom: 6px;
-    color: var(--obsidian);
+    color: var(--signal);
     user-select: none;
   }
   .mh-logo .mh-mark {
@@ -191,18 +189,18 @@
     font-weight: 900;
     font-size: 22px;
     line-height: 1.1;
-    color: var(--obsidian);
+    color: var(--signal);
     letter-spacing: -0.02em;
     text-transform: none;
   }
-  header h1 .accent { color: var(--obsidian); font-weight: 900; }
+  header h1 .accent { color: var(--signal); font-weight: 900; }
   header .sub {
-    color: rgba(14, 21, 48, 0.62);
+    color: rgba(232, 226, 214, 0.68);
     font-size: 13px;
     max-width: 720px;
   }
   header .tagline {
-    color: rgba(14, 21, 48, 0.55);
+    color: rgba(232, 226, 214, 0.55);
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
