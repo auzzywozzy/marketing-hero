@@ -49,15 +49,18 @@
 </style>
 <style>
   :root {
-    /* Eunoia brand stack — LOCKED 2026-05-29 */
-    --obsidian:    #0A0A0B;  /* page background · primary ink */
-    --steel:       #353B47;  /* cards · elevated surfaces */
-    --steel-deep:  #1A1F28;  /* inputs · sub-panels */
-    --steel-light: #C5CBD3;  /* lifted steel — top hero band */
-    --signal:      #E8E2D6;  /* primary type on dark · accent */
-    --slate:       #8B95A2;  /* borders · captions · secondary text */
-    --border:      rgba(139, 149, 162, 0.18);
-    --border-strong: rgba(139, 149, 162, 0.32);
+    /* Brand stack — Five Talents aligned (deep navy + cobalt + orange).
+       Cream Signal kept as type-on-dark for the classic premium pairing. */
+    --obsidian:    #0E1530;  /* deep navy — page background · dark ink */
+    --steel:       #2A3460;  /* mid navy — cards · elevated surfaces */
+    --steel-deep:  #0A1228;  /* deeper navy — inputs · sub-panels */
+    --steel-light: #C5CBD3;  /* lifted steel — header band */
+    --signal:      #E8E2D6;  /* cream — primary type on dark */
+    --slate:       #7E8AA8;  /* cool slate-blue — borders · muted text */
+    --cobalt:      #3B4DA0;  /* FT secondary blue — accent surfaces */
+    --accent:      #EA7A3C;  /* FT orange — single-use accent */
+    --border:      rgba(126, 138, 168, 0.18);
+    --border-strong: rgba(126, 138, 168, 0.32);
 
     /* Functional / data-viz only — muted, never brand */
     --good: #7FB89A;
@@ -65,13 +68,14 @@
     --bad:  #C76B6B;
     --info: #8FA8C4;
 
-    /* Aliases — kept so legacy var() refs still resolve */
+    /* Aliases — kept so legacy var() refs still resolve.
+       Note: --accent above is the FT orange; legacy code that wanted the
+       "Signal-as-accent" pattern reads --ink for that. */
     --bg:      var(--obsidian);
     --panel:   var(--steel);
     --panel-2: var(--steel-deep);
     --ink:     var(--signal);
     --ink-dim: var(--slate);
-    --accent:  var(--signal);
     --accent-2: var(--info);
 
     --font-display: 'Satoshi', 'Mont', 'IBM Plex Sans', system-ui, sans-serif;
@@ -92,8 +96,8 @@
     min-height: 100vh;
     background-color: var(--obsidian);
     background-image:
-      radial-gradient(1100px 460px at 12% -120px, rgba(53, 59, 71, 0.55) 0%, rgba(10, 10, 11, 0) 70%),
-      linear-gradient(180deg, #14181F 0%, #0A0A0B 520px);
+      radial-gradient(1100px 460px at 12% -120px, rgba(59, 77, 160, 0.22) 0%, rgba(14, 21, 48, 0) 70%),
+      linear-gradient(180deg, #18204A 0%, #0E1530 520px);
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -102,16 +106,17 @@
     position: relative;
     z-index: 6;
     padding: 30px 36px 28px;
-    /* Layered: top obsidian fade + brand-spanning steel gradient (deeper).
-       Brand gradient stops (left → right):
-         #6F77A0 — deep navy-steel    (Eunoia side, Five Talents-leaning)
-         #818A98 — mid Slate          (the brand Slate token)
-         #9A938A — deep warm steel    (Five Talents side, Eunoia-leaning)
-       Top fade darkened to rgba 10,10,11 at 42% so the upper edge
-       vignettes more strongly into the page above. */
+    /* Layered: top navy fade + brand-spanning soft-blue/cream gradient.
+       Stops (left → right):
+         #B8C0D8 — soft light cobalt   (Eunoia side, cool FT-leaning)
+         #C5C8D3 — neutral steel-light (mid)
+         #D3CFC2 — warm cream-steel    (Five Talents side, where the FT
+                                        navy + orange logo pops cleanly)
+       Top fade tuned to the new deep-navy tone so the upper edge
+       vignettes into the page above. */
     background:
-      linear-gradient(180deg, rgba(10,10,11,0.42) 0%, rgba(10,10,11,0) 60%),
-      linear-gradient(112deg, #6F77A0 0%, #818A98 50%, #9A938A 100%);
+      linear-gradient(180deg, rgba(14,21,48,0.18) 0%, rgba(14,21,48,0) 55%),
+      linear-gradient(112deg, #B8C0D8 0%, #C5C8D3 50%, #D3CFC2 100%);
     border-bottom: 1px solid rgba(10, 10, 11, 0.22);
     /* "Pushed-out" effect — brushed-metal top highlight, subtle bottom
        bezel, then a big diffused drop shadow that bleeds onto the page
@@ -135,7 +140,7 @@
   header .logos .eunoia-lockup {
     height: 44px;
     width: auto;
-    color: var(--signal);
+    color: var(--obsidian);
     display: block;
   }
   header .logos img {
@@ -147,28 +152,62 @@
   header .logos .logo-divider {
     width: 1px;
     height: 32px;
-    background: rgba(232, 226, 214, 0.25);
+    background: rgba(14, 21, 48, 0.22);
   }
   header .title-block { flex: 1 1 auto; min-width: 280px; }
+
+  /* Marketing Hero watermark logo — chevron mark + wordmark + orange dot */
+  .mh-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    color: var(--obsidian);
+  }
+  .mh-logo .mh-mark {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    display: block;
+  }
+  .mh-logo .mh-wordmark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 19px;
+    letter-spacing: 0.005em;
+    color: currentColor;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .mh-logo .mh-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: 0 0 6px;
+    margin-left: -4px;
+    margin-bottom: -2px;
+    box-shadow: 0 0 0 0 rgba(234, 122, 60, 0);
+  }
   header h1 {
     margin: 0 0 8px 0;
     font-family: var(--font-display);
     /* Satoshi Black 900 — full weight on the variable axis. */
     font-weight: 900;
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1.1;
-    color: var(--signal);
+    color: var(--obsidian);
     letter-spacing: -0.02em;
     text-transform: none;
   }
-  header h1 .accent { color: var(--signal); font-weight: 900; }
+  header h1 .accent { color: var(--obsidian); font-weight: 900; }
   header .sub {
-    color: rgba(232, 226, 214, 0.78);
+    color: rgba(14, 21, 48, 0.62);
     font-size: 13px;
     max-width: 720px;
   }
   header .tagline {
-    color: rgba(232, 226, 214, 0.70);
+    color: rgba(14, 21, 48, 0.55);
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
@@ -1230,7 +1269,17 @@
   </div>
   <div class="title-block">
     <div class="tagline">Built by Eunoia · Building Systems for Growth</div>
-    <h1>Marketing <span class="accent">Hero</span> — Five Talents Lead &amp; Profit Dashboard</h1>
+    <h1 class="mh-logo" aria-label="Marketing Hero">
+      <svg class="mh-mark" viewBox="0 0 32 32" role="img" aria-hidden="true">
+        <title>Marketing Hero</title>
+        <!-- Geometric chevron: hero peak / upward growth.
+             Two bars converge at the apex; tip carries the orange accent dot. -->
+        <path d="M 4 28 L 16 4 L 28 28 L 22 28 L 16 14 L 10 28 Z" fill="currentColor"/>
+        <circle cx="16" cy="3.5" r="2.6" fill="#EA7A3C"/>
+      </svg>
+      <span class="mh-wordmark">MARKETING HERO</span>
+      <span class="mh-dot" aria-hidden="true"></span>
+    </h1>
     <div class="sub">BC &amp; AB single-scope trades — Electrical, HVAC, Plumbing, Carpentry, Prefab, Roofing, GC, Concrete &amp; Masonry · $3&ndash;9M revenue band · SEO-audit outreach play.</div>
   </div>
 </header>
