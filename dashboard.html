@@ -157,12 +157,13 @@
     filter: none;  /* native colours read fine on cream */
   }
 
-  /* Eunoia lockup — pushed all the way to the right, sitting on the
-     near-black end of the gradient. Signal cream on black is the
-     brand's strongest read. */
+  /* Eunoia lockup — pushed all the way to the far-right edge via
+     margin-left: auto so the empty space between the FT pill and
+     Eunoia sits as the breathing room of the black portion of the
+     gradient. Signal cream on black is the brand's strongest read. */
   header .eunoia-cell {
     flex: 0 0 auto;
-    margin-left: 8px;
+    margin-left: auto;
   }
   header .eunoia-cell .eunoia-lockup {
     height: 44px;
