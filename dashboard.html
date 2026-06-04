@@ -101,6 +101,12 @@
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Defensive: kill any page-level horizontal scroll. The leads-table
+       wrapper has its own overflow-x: auto so internal scroll is preserved.
+       Without this, a single misbehaving inline element could push the
+       body past 100vw and create awkward clipping at the viewport edges
+       (which the user saw on a MacBook viewport). */
+    overflow-x: hidden;
   }
   header {
     position: relative;
@@ -128,11 +134,19 @@
     flex-wrap: wrap;
   }
   /* Title block grows to fill the available space on the LEFT, pushing
-     the Five Talents pill and the Eunoia far-right cell to the right. */
+     the Five Talents pill and the Eunoia far-right cell to the right.
+     min-width: 0 lets the flex child actually shrink past its natural
+     content size — without it, long sub-text strings can force the
+     header wider than the viewport on narrow screens. */
   header .title-block {
     flex: 1 1 auto;
-    min-width: 320px;
+    min-width: 0;
     max-width: 640px;
+  }
+  header .title-block .sub {
+    /* Long sub copy wraps cleanly inside the constrained block instead
+       of forcing horizontal overflow. */
+    overflow-wrap: anywhere;
   }
 
   /* Five Talents — sits inside a Signal cream pill in the middle of the
@@ -140,6 +154,7 @@
      without needing any filters that mess with brand colours. */
   header .ft-pill {
     flex: 0 0 auto;
+    min-width: 0;
     background: var(--signal);
     padding: 11px 22px;
     border-radius: 100px;
@@ -157,12 +172,14 @@
     filter: none;  /* native colours read fine on cream */
   }
 
-  /* Eunoia lockup — pushed all the way to the far-right edge via
-     margin-left: auto so the empty space between the FT pill and
-     Eunoia sits as the breathing room of the black portion of the
-     gradient. Signal cream on black is the brand's strongest read. */
+  /* Eunoia lockup — pushed to the far-right via margin-left: auto so
+     the empty space between the FT pill and Eunoia sits as the
+     breathing room of the black portion of the gradient. Signal cream
+     on black is the brand's strongest read. min-width: 0 prevents the
+     EUNOIA wordmark SVG from forcing a wider header at narrow widths. */
   header .eunoia-cell {
     flex: 0 0 auto;
+    min-width: 0;
     margin-left: auto;
   }
   header .eunoia-cell .eunoia-lockup {
