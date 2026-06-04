@@ -971,8 +971,9 @@
     footer.system-bar { padding: 16px 26px 22px; }
     .mode-row { gap: 12px; }
 
-    /* Outreach pipeline tiles — 7 across at this width need to be tight */
-    .outreach-kpis { gap: 6px; }
+    /* Outreach pipeline tiles — drop 7-col to 4-col so labels stay
+       readable inside the narrower main column at MacBook widths. */
+    .outreach-kpis { grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .ok-tile { padding: 9px 11px; }
     .ok-tile .ok-label { font-size: 9.5px; letter-spacing: 0.14em; }
     .ok-tile .ok-value { font-size: 17px; }
@@ -980,23 +981,33 @@
     /* KPI tiles slightly denser */
     .kpi, .perf-kpi { padding: 14px 16px; }
     .cohort { padding: 18px; }
+
+    /* Cohorts go 1-col here. Three cohort tables side-by-side need
+       ~720px combined; at the 14"–16" MacBook main-column widths
+       there's no margin for the row labels to breathe. */
+    .cohorts { grid-template-columns: 1fr; gap: 16px; }
   }
 
   /* MacBook 13" (1200–1280 effective viewports) — more aggressive:
-     narrow the slider aside from 380→340px, drop title-block max-width,
-     compact the KPI strip and shorten charts. */
+     stack the charts and narrow the slider aside. */
   @media (max-width: 1280px) {
-    .grid { grid-template-columns: 340px 1fr; padding: 16px 24px; }
+    .grid { grid-template-columns: 320px 1fr; padding: 14px 20px; gap: 16px; }
 
     header { padding: 22px 22px 20px; gap: 18px; }
     header .title-block { max-width: 480px; }
     header h1.mh-logo .mh-wordmark { font-size: 20px; }
     header .sub { font-size: 12.5px; max-width: 480px; }
 
-    .status-strip { padding: 10px 22px; gap: 16px; }
-    footer.system-bar { padding: 14px 22px 20px; }
+    .status-strip { padding: 10px 20px; gap: 16px; }
+    footer.system-bar { padding: 14px 20px 20px; }
 
-    /* Outreach tiles fully compressed */
+    /* Charts go 1-col so each chart gets the full main-column width
+       (was the visible cut-off symptom on the user's MacBook — Funnel
+       Waterfall + Leads by City were overflowing the right edge of
+       the 2-col layout). */
+    .charts { grid-template-columns: 1fr; gap: 14px; }
+
+    /* Outreach tiles fully compressed — keep 4-col from the 1440 rule */
     .outreach-kpis { gap: 5px; }
     .ok-tile { padding: 8px 9px; }
     .ok-tile .ok-value { font-size: 16px; }
@@ -1016,6 +1027,11 @@
 
     /* Lead table padding */
     #leads-table th, #leads-table td { padding: 9px 9px; }
+
+    /* Lead pipeline + cohorts already stacked at 1440; ensure main
+       column min-width prevents 320px aside from squeezing it too far */
+    .grid > main { min-width: 0; }
+    .grid > aside { min-width: 0; }
   }
 
   /* Tablets / narrow laptops — title block goes full width so the
