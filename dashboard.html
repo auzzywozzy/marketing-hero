@@ -941,6 +941,66 @@
      footer, KPI density, and table padding tuning for smaller widths.
      ============================================================ */
 
+  /* MacBook 14"–16" range (1280–1440 effective viewports) — keep the
+     three-column header layout but tighten paddings, outreach tile
+     density, and the title-block max-width so the proportions hold up
+     on a 1440px MBA without leaving the inner content stranded. */
+  @media (max-width: 1440px) {
+    header { padding: 26px 28px 22px; gap: 22px; }
+    header .title-block { max-width: 540px; }
+
+    .grid { padding: 18px 26px; gap: 20px; }
+    .status-strip { padding: 10px 26px; }
+    footer.system-bar { padding: 16px 26px 22px; }
+    .mode-row { gap: 12px; }
+
+    /* Outreach pipeline tiles — 7 across at this width need to be tight */
+    .outreach-kpis { gap: 6px; }
+    .ok-tile { padding: 9px 11px; }
+    .ok-tile .ok-label { font-size: 9.5px; letter-spacing: 0.14em; }
+    .ok-tile .ok-value { font-size: 17px; }
+
+    /* KPI tiles slightly denser */
+    .kpi, .perf-kpi { padding: 14px 16px; }
+    .cohort { padding: 18px; }
+  }
+
+  /* MacBook 13" (1200–1280 effective viewports) — more aggressive:
+     narrow the slider aside from 380→340px, drop title-block max-width,
+     compact the KPI strip and shorten charts. */
+  @media (max-width: 1280px) {
+    .grid { grid-template-columns: 340px 1fr; padding: 16px 24px; }
+
+    header { padding: 22px 22px 20px; gap: 18px; }
+    header .title-block { max-width: 480px; }
+    header h1.mh-logo .mh-wordmark { font-size: 20px; }
+    header .sub { font-size: 12.5px; max-width: 480px; }
+
+    .status-strip { padding: 10px 22px; gap: 16px; }
+    footer.system-bar { padding: 14px 22px 20px; }
+
+    /* Outreach tiles fully compressed */
+    .outreach-kpis { gap: 5px; }
+    .ok-tile { padding: 8px 9px; }
+    .ok-tile .ok-value { font-size: 16px; }
+
+    /* KPI tiles compact */
+    .kpi, .perf-kpi { padding: 13px 15px; }
+    .kpi .value, .perf-kpi .value { font-size: 22px; }
+
+    /* Charts shorter to recover vertical space */
+    .chart-box { height: 300px; padding: 16px; }
+    .chart-box h3 { font-size: 11px; letter-spacing: 0.20em; }
+
+    /* Controls bar density */
+    .controls-bar { gap: 8px; }
+    .controls-bar select { padding: 8px; font-size: 12px; }
+    .controls-bar input[type=text] { font-size: 12px; padding: 8px 10px; }
+
+    /* Lead table padding */
+    #leads-table th, #leads-table td { padding: 9px 9px; }
+  }
+
   /* Tablets / narrow laptops — title block goes full width so the
      FT pill + Eunoia wrap to a second row beneath it. */
   @media (max-width: 1100px) {
