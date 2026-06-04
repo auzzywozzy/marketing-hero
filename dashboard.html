@@ -958,22 +958,32 @@
      footer, KPI density, and table padding tuning for smaller widths.
      ============================================================ */
 
-  /* MacBook 14"–16" range (1280–1440 effective viewports) — keep the
-     three-column header layout but tighten paddings, outreach tile
-     density, and the title-block max-width so the proportions hold up
-     on a 1440px MBA without leaving the inner content stranded. */
+  /* Wide laptops / smaller external displays (≤1600 covers MBP 14"
+     at 1512 default-scaled and most "More Space" MBA settings).
+     Stack the multi-column grids inside the main column so nothing
+     overflows the available width on a MacBook viewport. */
+  @media (max-width: 1600px) {
+    .charts { grid-template-columns: 1fr; gap: 16px; }
+    .cohorts { grid-template-columns: 1fr; gap: 16px; }
+    .outreach-kpis { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .grid > main, .grid > aside { min-width: 0; }
+  }
+
+  /* MacBook 14"–16" range (≤1440 effective viewports) — narrow the
+     slider aside, tighten paddings, compress tile density. */
   @media (max-width: 1440px) {
     header { padding: 26px 28px 22px; gap: 22px; }
     header .title-block { max-width: 540px; }
 
-    .grid { padding: 18px 26px; gap: 20px; }
+    /* Narrow the aside earlier so the main column always has room */
+    .grid { grid-template-columns: 340px 1fr; padding: 18px 26px; gap: 20px; }
     .status-strip { padding: 10px 26px; }
     footer.system-bar { padding: 16px 26px 22px; }
     .mode-row { gap: 12px; }
 
-    /* Outreach pipeline tiles — drop 7-col to 4-col so labels stay
-       readable inside the narrower main column at MacBook widths. */
-    .outreach-kpis { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    /* Stack ALL multi-col grids inside main so nothing can overflow */
+    .charts { grid-template-columns: 1fr; gap: 16px; }
+
     .ok-tile { padding: 9px 11px; }
     .ok-tile .ok-label { font-size: 9.5px; letter-spacing: 0.14em; }
     .ok-tile .ok-value { font-size: 17px; }
@@ -981,11 +991,6 @@
     /* KPI tiles slightly denser */
     .kpi, .perf-kpi { padding: 14px 16px; }
     .cohort { padding: 18px; }
-
-    /* Cohorts go 1-col here. Three cohort tables side-by-side need
-       ~720px combined; at the 14"–16" MacBook main-column widths
-       there's no margin for the row labels to breathe. */
-    .cohorts { grid-template-columns: 1fr; gap: 16px; }
   }
 
   /* MacBook 13" (1200–1280 effective viewports) — more aggressive:
