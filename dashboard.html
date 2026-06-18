@@ -829,6 +829,26 @@
   .wq.wq-WEAK        { color: var(--info); border-color: rgba(143,168,196,0.45); background: rgba(143,168,196,0.10); }
   .wq.wq-HAS_DOMAIN  { color: var(--slate); }
   .wq.wq-OK          { color: var(--good); border-color: rgba(127,184,154,0.35); background: rgba(127,184,154,0.08); }
+  /* Best-fit offer track — which Eunoia rung this lead matches.
+     Flagship (10-Hour) carries the FT-orange accent; Lead Rescue is warn
+     (the "leak" pill); Fractional Ops is good (the destination). */
+  .track {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    background: var(--steel-deep);
+    color: var(--slate);
+    white-space: nowrap;
+  }
+  .track.track-ten_hour    { color: var(--accent); border-color: rgba(234,122,60,0.50); background: rgba(234,122,60,0.10); }
+  .track.track-lead_rescue { color: var(--warn);   border-color: rgba(201,166,107,0.45); background: rgba(201,166,107,0.10); }
+  .track.track-frac_ops    { color: var(--good);   border-color: rgba(127,184,154,0.45); background: rgba(127,184,154,0.10); }
   .status-cell.s-new       .dot { background: var(--slate); }
   .status-cell.s-contacted .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
   .status-cell.s-replied   .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
@@ -1811,6 +1831,12 @@
           <option value="HAS_DOMAIN">Unprobed</option>
           <option value="OK">OK (good site)</option>
         </select>
+        <select id="filter-track" title="Best-fit Eunoia offer track">
+          <option value="">All tracks</option>
+          <option value="ten_hour">10-Hour Guarantee</option>
+          <option value="lead_rescue">Lead Rescue</option>
+          <option value="frac_ops">Fractional Ops</option>
+        </select>
         <button class="export-btn" id="export-csv-btn" title="Download current filter as CSV">⬇ Export CSV</button>
         <span class="data-stamp" id="data-stamp">&nbsp;</span>
       </div>
@@ -1823,6 +1849,7 @@
               <th data-sort="trade">Trade</th>
               <th data-sort="city">City</th>
               <th data-sort="website_quality">Site</th>
+              <th data-sort="best_fit_track">Track</th>
               <th>Status</th>
               <th>Contact</th>
               <th>Research</th>
@@ -1852,8 +1879,9 @@
 
     <label>Package</label>
     <div class="pkg-options">
-      <label><input type="radio" name="close-package" value="site6" checked> 6-Page · $4k</label>
-      <label><input type="radio" name="close-package" value="site4"> 4-Page · $3k</label>
+      <label><input type="radio" name="close-package" value="ten_hour" checked> 10-Hour Guarantee · $9.5k</label>
+      <label><input type="radio" name="close-package" value="lead_rescue"> Lead Rescue · $2.5k</label>
+      <label><input type="radio" name="close-package" value="frac_ops"> Fractional Ops · $6k/mo</label>
       <label><input type="radio" name="close-package" value="custom"> Custom</label>
     </div>
 
@@ -1887,12 +1915,18 @@
 
 <script>
 /* ============================================================
-   Five Talents service catalogue — current offering.
-   Both deals are one-time website builds (no monthly recurring).
+   Eunoia Consulting offer ladder — current catalogue.
+   One path, not a menu. Pricing pulled from eunoiaconsulting.net.
+     • Lead Rescue           — $2,500 CAD fixed (2-week build)
+     • 10-Hour Guarantee     — $9,500 CAD fixed, 50/50 split (flagship)
+     • Fractional Operations — $6,000 CAD / month (3 seats, application-only)
+   Keep this array in sync with config.py:TRACKS and with the close-deal
+   modal package list below.
    ============================================================ */
 const SERVICES = [
-  { key: "site6", label: "6-Page Website Build", monthly: 0, setup: 4000, defaultMix: 100 },
-  { key: "site4", label: "4-Page Website Build", monthly: 0, setup: 3000, defaultMix: 0   },
+  { key: "lead_rescue", label: "Lead Rescue",           monthly: 0,    setup: 2500, defaultMix: 30 },
+  { key: "ten_hour",    label: "10-Hour Guarantee",     monthly: 0,    setup: 9500, defaultMix: 60 },
+  { key: "frac_ops",    label: "Fractional Operations", monthly: 6000, setup: 0,    defaultMix: 10 },
 ];
 
 /* ============================================================
@@ -1993,7 +2027,7 @@ function openCloseDealModal(leadId, prevStatus) {
   modal.dataset.prevStatus = prevStatus;
   document.getElementById("close-modal-title").textContent = "Close deal — " + lead.name;
   // Defaults
-  document.querySelector('input[name="close-package"][value="site6"]').checked = true;
+  document.querySelector('input[name="close-package"][value="ten_hour"]').checked = true;
   document.getElementById("close-modal-custom").value = "";
   document.getElementById("custom-amount-row").classList.remove("show");
   document.getElementById("close-modal-date").value = new Date().toISOString().slice(0, 10);
@@ -2014,10 +2048,13 @@ function confirmCloseModal() {
   if (!leadId) { closeCloseModal(); return; }
   const lead = DATA.find(l => l.id === leadId) || {};
 
-  const pkg = (document.querySelector('input[name="close-package"]:checked') || {}).value || "site6";
+  const pkg = (document.querySelector('input[name="close-package"]:checked') || {}).value || "ten_hour";
   let dealValue = 0;
-  if (pkg === "site6") dealValue = 4000;
-  else if (pkg === "site4") dealValue = 3000;
+  if (pkg === "ten_hour") dealValue = 9500;
+  else if (pkg === "lead_rescue") dealValue = 2500;
+  // Fractional Ops is a $6k/mo retainer — recorded as first-month value;
+  // refine to ACV in Performance analytics if/when it matters.
+  else if (pkg === "frac_ops") dealValue = 6000;
   else dealValue = +document.getElementById("close-modal-custom").value || 0;
   const closeDate = document.getElementById("close-modal-date").value || new Date().toISOString().slice(0, 10);
   const notes = document.getElementById("close-modal-notes").value.trim();
@@ -2624,6 +2661,19 @@ function websitePill(grade) {
   return `<span class="wq wq-${grade}">${label}</span>`;
 }
 
+/* Best-fit-track pill — which Eunoia offer this lead segments into.
+   Keys + labels mirror config.py:TRACKS and the SERVICES catalogue above. */
+const TRACK_LABELS = {
+  ten_hour:    "10-Hour",
+  lead_rescue: "Lead Rescue",
+  frac_ops:    "Frac Ops",
+};
+function trackPill(track) {
+  if (!track) return '<span style="color: var(--slate);">—</span>';
+  const label = TRACK_LABELS[track] || track;
+  return `<span class="track track-${track}">${label}</span>`;
+}
+
 const WQ_BAD = new Set(["MISSING", "DEAD", "SOCIAL_ONLY", "FREE_TIER", "WEAK"]);
 function filteredLeads() {
   const q = document.getElementById("search").value.toLowerCase().trim();
@@ -2632,11 +2682,13 @@ function filteredLeads() {
   const ms = +document.getElementById("filter-min-score").value;
   const fs = document.getElementById("filter-status").value;
   const fw = document.getElementById("filter-website").value;
+  const fk = document.getElementById("filter-track").value;
   return DATA.filter(l => {
     if (ft && l.trade !== ft) return false;
     if (fc && l.city !== fc) return false;
     if (l.fit_score < ms) return false;
     if (fs && (getEntry(l.id).status || "new") !== fs) return false;
+    if (fk && (l.best_fit_track || "") !== fk) return false;
     if (fw) {
       const g = l.website_quality || "";
       if (fw === "BAD") { if (!WQ_BAD.has(g)) return false; }
@@ -2751,6 +2803,7 @@ function renderTable() {
       <td>${escapeHtml(l.trade)}</td>
       <td>${escapeHtml(l.city)}</td>
       <td>${websitePill(l.website_quality)}</td>
+      <td>${trackPill(l.best_fit_track)}</td>
       <td>
         <span class="status-cell s-${status}"><span class="dot"></span>
         <select class="status-select s-${status}" data-lead-id="${escapeHtml(l.id)}" aria-label="Status for ${escapeHtml(l.name)}">${statusOpts}</select>
@@ -2814,7 +2867,7 @@ function toggleNotesRow(btn) {
 
 function exportCsv() {
   const rows = filteredLeads();
-  const headers = ["Status","Score","Company","Trade","City","Address","Website","Phone","Email","Notes","Last Updated","Discovered","Lead ID"];
+  const headers = ["Status","Score","Track","Company","Trade","City","Address","Website","Phone","Email","Notes","Last Updated","Discovered","Lead ID"];
   const lines = [headers.join(",")];
   const esc = s => {
     const v = String(s ?? "");
@@ -2825,6 +2878,7 @@ function exportCsv() {
     lines.push([
       e.status || "new",
       l.fit_score,
+      TRACK_LABELS[l.best_fit_track] || l.best_fit_track || "",
       l.name,
       l.trade,
       l.city,
@@ -2864,7 +2918,7 @@ for (const th of document.querySelectorAll("#leads-table th[data-sort]")) {
   });
 }
 // Table filters — also reset the page window
-for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status", "filter-website"]) {
+for (const id of ["search", "filter-trade", "filter-city", "filter-min-score", "filter-status", "filter-website", "filter-track"]) {
   document.getElementById(id).addEventListener("input", () => {
     _maxRows = _pageSize;
     renderOutreachKpis();

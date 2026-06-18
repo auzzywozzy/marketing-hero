@@ -1,6 +1,6 @@
-# Marketing Hero — Five Talents Lead Generator + Profit Dashboard
+# Marketing Hero — Eunoia Lead Generator + Profit Dashboard
 
-Daily lead-farming pipeline for Five Talents Marketing targeting trades and manufacturing businesses in the **$3M–$9M revenue band** across **British Columbia, Alberta, and Washington State**, plus an interactive profit dashboard that models how leads translate into revenue. Branded for Eunoia Consulting (the system builder).
+Daily lead-farming pipeline for Eunoia Consulting targeting trades and manufacturing businesses in the **$3M–$9M revenue band** across **British Columbia and Alberta**, plus an interactive profit dashboard that models how leads translate into revenue against the current offer ladder (Lead Rescue · 10-Hour Guarantee · Fractional Operations). Each lead is segmented into the best-fit track so the leads table shows which rung to pitch.
 
 ## What it does
 
@@ -94,15 +94,19 @@ marketing_hero/
 
 ## Service catalogue reference (hard-coded in dashboard.html)
 
-These values come from `Five_Talents_New_Services_Proposal.pdf` (April 2026):
+Mirrors the public offer ladder at [eunoiaconsulting.net](https://eunoiaconsulting.net) —
+one path, not a menu.
 
-| Service      | Monthly (target) | Setup / project |
-|--------------|------------------|-----------------|
-| Compounding  | $2,000           | —               |
-| Dominion CMO | $7,500           | —               |
-| Order COO    | $9,000           | —               |
-| Multiplier AI| $1,500           | $12,000         |
-| Cornerstone  | $300 (care plan) | $14,000         |
-| Herald SEO   | $3,500           | —               |
+| Track                    | Monthly (CAD)    | Fixed fee (CAD)        | Cadence                   |
+|--------------------------|------------------|------------------------|---------------------------|
+| Lead Rescue              | —                | $2,500                 | 2-week build              |
+| 10-Hour Guarantee        | —                | $9,500 (50/50 split)   | Flagship · 2 per quarter  |
+| Fractional Operations    | $6,000           | —                      | 3 seats · application-only|
 
-If pricing changes, update the `SERVICES` array at the top of the `<script>` block in `dashboard.html`.
+Each lead is scored against all three tracks and tagged with `best_fit_track`
+by `lead_generator.py` — the dashboard's Track column + filter use that key.
+If pricing or labels change, update three places in sync:
+
+- `SERVICES` array at the top of the `<script>` block in `dashboard.html`
+- Package radios in the close-deal modal (same file)
+- `TRACKS` list in `config.py`

@@ -1,5 +1,5 @@
 """
-Marketing Hero — daily lead generator for Five Talents Marketing.
+Marketing Hero — daily lead generator for Eunoia Consulting.
 
 Farms British Columbia trades businesses that *might* sit in the $3–9M revenue
 band. Runs from Windows Task Scheduler (see run_daily.bat) and appends to a
@@ -77,6 +77,10 @@ def empty_lead() -> dict:
         # Website-quality signal — see config.WEBSITE_NEEDS_HELP_WEIGHTS
         "website_quality": "",       # MISSING | DEAD | SOCIAL_ONLY | FREE_TIER | WEAK | HAS_DOMAIN | OK
         "website_probed_at": "",     # ISO timestamp of last HTTP probe
+        # Eunoia offer-track segmentation — populated by score_lead().
+        # best_fit_track is one of: lead_rescue | ten_hour | frac_ops
+        "best_fit_track": "",
+        "track_scores": {},          # {lead_rescue: int, ten_hour: int, frac_ops: int}
         "status": "new",         # new | contacted | qualified | closed | dead
         "notes": "",
     }
@@ -717,6 +721,97 @@ def score_lead(lead: dict) -> None:
 
     lead["fit_score"] = min(score, 100)
     lead["score_breakdown"] = breakdown
+    _assign_best_fit_track(lead)
+
+
+def _assign_best_fit_track(lead: dict) -> None:
+    """Pick the Eunoia offer track that best matches this lead's signals.
+
+    Writes both `track_scores` (per-track 0-ish ints) and `best_fit_track`
+    (the winning key, with ties broken toward the flagship 10-Hour
+    Guarantee). The dashboard reads `best_fit_track` to colour the Track
+    column and drive per-track filtering.
+    """
+    raw   = lead.get("raw_tags") or {}
+    trade = lead.get("trade", "")
+    city  = lead.get("city", "")
+    grade = lead.get("website_quality") or ""
+    reviews = raw.get("user_ratings_total")
+    reviews = reviews if isinstance(reviews, (int, float)) else 0
+    bag = " ".join([
+        str(lead.get("name", "")).lower(),
+        str(raw.get("description", "")).lower(),
+        str(raw.get("note", "")).lower(),
+        str(raw.get("service", "")).lower(),
+    ])
+    start_year = None
+    sd = str(raw.get("start_date", ""))
+    if sd and re.match(r"^\d{4}", sd):
+        try:
+            start_year = int(sd[:4])
+        except Exception:
+            start_year = None
+    age = (dt.date.today().year - start_year) if start_year else 0
+
+    # --- Lead Rescue --------------------------------------------------------
+    # Phone-first business with leaky inbound. Reachable but mismanaged.
+    lr = 0
+    if trade in config.LEAD_RESCUE_TRADES:
+        lr += 25
+    if lead.get("phone") and not lead.get("email"):
+        lr += 15
+    if lead.get("phone") and grade in {"MISSING", "DEAD", "SOCIAL_ONLY"}:
+        lr += 20
+    if reviews >= 20:
+        lr += 15
+    if city in config.URBAN_METROS:
+        lr += 10
+    keyword_hits = sum(1 for p in config.LEAD_RESCUE_KEYWORDS if re.search(p, bag))
+    lr += min(keyword_hits * 5, 15)
+
+    # --- 10-Hour Guarantee (flagship) --------------------------------------
+    # Mature owner-operator drowning in the seat. Established, real digital
+    # surface, real demand.
+    priority_set = getattr(config, "PRIORITY_TRADES", config.BIG_TRADE_CATEGORIES)
+    th = 0
+    if trade in priority_set:
+        th += 25
+    if age >= 5:
+        th += 20
+    if grade in {"WEAK", "OK", "HAS_DOMAIN"}:
+        th += 15
+    if lead.get("phone") and lead.get("email") and lead.get("website"):
+        th += 15
+    if (any(re.search(p, bag) for p in MULTI_LOCATION_PATTERNS)
+            or any(re.search(p, bag) for p in COMMERCIAL_PATTERNS)):
+        th += 10
+    if city in config.URBAN_METROS:
+        th += 10
+    if reviews >= 50:
+        th += 10
+
+    # --- Fractional Operations (the destination) ---------------------------
+    # Bigger, more complex operation — multiple disciplines or sites,
+    # commercial / industrial mix, a decade-plus on the clock.
+    fo = 0
+    if any(re.search(p, bag) for p in MULTI_LOCATION_PATTERNS):
+        fo += 30
+    if any(re.search(p, bag) for p in COMMERCIAL_PATTERNS):
+        fo += 25
+    if age >= 10:
+        fo += 20
+    if trade in config.FRAC_OPS_TRADES:
+        fo += 15
+    if city in config.URBAN_METROS:
+        fo += 10
+    if reviews >= 100:
+        fo += 10
+
+    scores = {"lead_rescue": lr, "ten_hour": th, "frac_ops": fo}
+    lead["track_scores"] = scores
+    # Tie-break ordering — 10-Hour is the default pitch when scores tie.
+    order = ["ten_hour", "lead_rescue", "frac_ops"]
+    lead["best_fit_track"] = max(order, key=lambda k: (scores[k], -order.index(k)))
 
 
 # ---------------------------------------------------------------------------

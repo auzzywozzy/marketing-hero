@@ -503,6 +503,76 @@ WEBSITE_PROBE_MAX_PER_RUN = 200  # safety cap so one run can't probe forever
 PROBE_REFRESH_DAYS = 14          # re-probe a lead at most every N days
 
 # ---------------------------------------------------------------------------
+# OFFER TRACKS — drives best-fit segmentation in the leads table + dashboard
+# ---------------------------------------------------------------------------
+#
+# Three rungs in the current Eunoia Consulting ladder. Every lead picks the
+# rung with the highest per-track fit score (computed in lead_generator.py)
+# so the dashboard's "Track" column shows which offer to pitch. The same
+# labels + prices feed the SERVICES catalogue in dashboard.html — keep both
+# sides in sync.
+
+TRACKS = [
+    {
+        "key": "lead_rescue",
+        "label": "Lead Rescue",
+        "tagline": "Stop leaking leads and quotes.",
+        "price_cad": 2500,        # one-time fixed fee · 2-week build
+        "price_unit": "fixed",
+    },
+    {
+        "key": "ten_hour",
+        "label": "10-Hour Guarantee",
+        "tagline": "10 hours back — or I keep building free.",
+        "price_cad": 9500,        # fixed fee, 50/50 split · flagship, 2/quarter
+        "price_unit": "fixed",
+    },
+    {
+        "key": "frac_ops",
+        "label": "Fractional Operations",
+        "tagline": "The operator, not just the build.",
+        "price_cad": 6000,        # CAD / month · 3 seats only
+        "price_unit": "monthly",
+    },
+]
+
+# Lead Rescue ICP — leaks-shaped pain: missed calls, slow quote follow-up,
+# no after-hours coverage. Patterns are matched (case-insensitively) against
+# the lead's name + raw_tags description / note / service strings so OSM /
+# Places snippets like "leave a message" or "24/7 emergency" sway the score.
+LEAD_RESCUE_KEYWORDS = [
+    r"missed[\s-]?call",
+    r"voicemail",
+    r"leave a message",
+    r"call(?:s)? back",
+    r"we[' ]?ll get back",
+    r"after[\s-]?hours",
+    r"emergency",
+    r"24[/\s-]?7",
+    r"same[\s-]?day",
+    r"fast response",
+]
+
+# Trades where missed calls turn directly into lost jobs — primary Lead Rescue
+# audience.
+LEAD_RESCUE_TRADES = {
+    "Plumbing", "HVAC / Heating", "Electrical",
+    "Roofing", "Garage Doors", "General Contracting",
+}
+
+# Trades where ongoing ops leadership tends to land — bigger ops with multiple
+# disciplines / supply chains rather than a single-scope trade.
+FRAC_OPS_TRADES = {
+    "General Contracting",
+    "Manufacturing / Factory",
+    "Sawmill / Wood Products",
+    "Brewery / Distillery / Winery",
+    "Metal Fabrication / Welding",
+    "Cabinet / Millwork",
+    "Prefabrication",
+}
+
+# ---------------------------------------------------------------------------
 # OUTPUT PATHS (relative to this file)
 # ---------------------------------------------------------------------------
 
