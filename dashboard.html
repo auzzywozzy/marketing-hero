@@ -489,10 +489,10 @@
     transition: color 0.12s, border-color 0.12s;
   }
   button.ghost:hover { color: var(--signal); border-color: var(--signal); }
-  /* Outreach sequencer */
+  /* Outreach sequencer — 8 tiles: Total + New + Exported + 5 funnel stages */
   .outreach-kpis {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 8px;
     margin-bottom: 14px;
   }
@@ -526,6 +526,7 @@
     font-variant-numeric: tabular-nums;
   }
   .ok-tile.new       .ok-value { color: var(--signal); }
+  .ok-tile.exported  .ok-value { color: var(--accent); }
   .ok-tile.contacted .ok-value { color: var(--info); }
   .ok-tile.replied   .ok-value { color: var(--info); }
   .ok-tile.meeting   .ok-value { color: var(--warn); }
@@ -546,6 +547,7 @@
     min-width: 100px;
   }
   .status-select.s-new       { color: var(--slate); }
+  .status-select.s-exported  { color: var(--accent); border-color: rgba(234, 122, 60, 0.45); }
   .status-select.s-contacted { color: var(--info); border-color: rgba(143, 168, 196, 0.4); }
   .status-select.s-replied   { color: var(--info); border-color: rgba(143, 168, 196, 0.4); }
   .status-select.s-meeting   { color: var(--warn); border-color: rgba(201, 166, 107, 0.4); }
@@ -830,6 +832,7 @@
   .wq.wq-HAS_DOMAIN  { color: var(--slate); }
   .wq.wq-OK          { color: var(--good); border-color: rgba(127,184,154,0.35); background: rgba(127,184,154,0.08); }
   .status-cell.s-new       .dot { background: var(--slate); }
+  .status-cell.s-exported  .dot { background: var(--accent); box-shadow: 0 0 0 2px rgba(234,122,60,0.22); }
   .status-cell.s-contacted .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
   .status-cell.s-replied   .dot { background: var(--info); box-shadow: 0 0 0 2px rgba(143,168,196,0.18); }
   .status-cell.s-meeting   .dot { background: var(--warn); box-shadow: 0 0 0 2px rgba(201,166,107,0.18); }
@@ -1794,6 +1797,7 @@
         <select id="filter-status">
           <option value="">All statuses</option>
           <option value="new">New</option>
+          <option value="exported">Exported</option>
           <option value="contacted">Contacted</option>
           <option value="replied">Replied</option>
           <option value="meeting">Meeting</option>
@@ -1900,6 +1904,7 @@ const SERVICES = [
    ============================================================ */
 const STATUS_OPTIONS = [
   { key: "new",       label: "New"       },
+  { key: "exported",  label: "Exported"  },
   { key: "contacted", label: "Contacted" },
   { key: "replied",   label: "Replied"   },
   { key: "meeting",   label: "Meeting"   },
@@ -2651,7 +2656,7 @@ function filteredLeads() {
 }
 
 function renderOutreachKpis() {
-  const counts = { all: DATA.length, new: 0, contacted: 0, replied: 0, meeting: 0, closed: 0, dead: 0 };
+  const counts = { all: DATA.length, new: 0, exported: 0, contacted: 0, replied: 0, meeting: 0, closed: 0, dead: 0 };
   for (const l of DATA) {
     const st = (getEntry(l.id).status || "new");
     if (counts[st] !== undefined) counts[st]++;
@@ -2661,6 +2666,7 @@ function renderOutreachKpis() {
   const tiles = [
     { k: "",          cls: "",          label: "Total",     value: counts.all },
     { k: "new",       cls: "new",       label: "New",       value: counts.new },
+    { k: "exported",  cls: "exported",  label: "Exported",  value: counts.exported },
     { k: "contacted", cls: "contacted", label: "Contacted", value: counts.contacted },
     { k: "replied",   cls: "replied",   label: "Replied",   value: counts.replied },
     { k: "meeting",   cls: "meeting",   label: "Meeting",   value: counts.meeting },
@@ -2955,8 +2961,11 @@ function paintBaselineStatus() {
    ============================================================ */
 let dashboardMode = "forecast"; // "forecast" | "performance"
 
-const PIPELINE_OPEN = new Set(["contacted", "replied", "meeting"]);
-const STAGE_ORDER = { new: 0, contacted: 1, replied: 2, meeting: 3, closed: 4, dead: 0 };
+const PIPELINE_OPEN = new Set(["exported", "contacted", "replied", "meeting"]);
+// Exported sits at stage 0 like "new" — it marks "handed off to partner" but
+// hasn't yet progressed in the outreach funnel. Once the partner makes contact,
+// the status flips to "contacted" (stage 1) and the funnel advances.
+const STAGE_ORDER = { new: 0, exported: 0, contacted: 1, replied: 2, meeting: 3, closed: 4, dead: 0 };
 
 function _startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
 function _startOfPrevMonth(d) {
