@@ -853,16 +853,33 @@ def run(dry_run: bool = False, reset: bool = False) -> int:
 
             # Google Places — scoped to stay under the free credit
             if use_places and (not places_big_only or category["label"] in config.BIG_TRADE_CATEGORIES):
+                # Multi-query support: high-volume trades define places_queries[]
+                # as a list of phrasings — each surfaces different Google Places
+                # results. Categories without it fall back to a single
+                # places_query string.
+                place_queries = category.get("places_queries") or [category.get("places_query", "")]
+                place_queries = [q for q in place_queries if q]
                 for city in region["places_metros"]:
+                    for q_idx, q_str in enumerate(place_queries):
+                        if places_calls >= places_max:
+                            log(f"  Places cap reached ({places_max}) — skipping remainder")
+                            break
+                        # Hand the active query into fetch_places by temporarily
+                        # rewriting category.places_query (the function reads it).
+                        original_q = category.get("places_query")
+                        category["places_query"] = q_str
+                        try:
+                            places_leads = fetch_places(category, city, region)
+                        finally:
+                            category["places_query"] = original_q
+                        places_calls += 1
+                        if places_leads:
+                            tag = f"q{q_idx+1}" if len(place_queries) > 1 else ""
+                            log(f"  Places [{region['key']} · {city}{(' ·' + tag) if tag else ''}]: {len(places_leads)} hits")
+                        candidates.extend(places_leads)
+                        time.sleep(0.2)
                     if places_calls >= places_max:
-                        log(f"  Places cap reached ({places_max}) — skipping remainder")
                         break
-                    places_leads = fetch_places(category, city, region)
-                    places_calls += 1
-                    if places_leads:
-                        log(f"  Places [{region['key']} · {city}]: {len(places_leads)} hits")
-                    candidates.extend(places_leads)
-                    time.sleep(0.2)
 
     if use_places:
         log(f"Places calls this run: {places_calls}")

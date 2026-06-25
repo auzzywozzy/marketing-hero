@@ -103,29 +103,56 @@ BC_TARGET_AREAS = TARGET_REGIONS[0]["target_areas"]
 #                Examples: ["industrial", "factory"], ["man_made", "works"], ["office", "company"]
 TRADE_CATEGORIES = [
     # --- Core trades (contractors / installers) ---
+    # High-volume trades (Electrical, HVAC, Roofing) get places_queries[] —
+    # multiple Google Places searches per metro per run. Each phrasing
+    # surfaces different businesses on Google's index, expanding the pool
+    # without burning Apollo credits.
     {
         "label": "Plumbing",
         "osm_craft": ["plumber"],
         "osm_shop": [],
         "places_query": "plumber",
+        "places_queries": [
+            "plumber",
+            "plumbing contractor",
+            "commercial plumbing services",
+        ],
     },
     {
         "label": "HVAC / Heating",
         "osm_craft": ["hvac", "heating_engineer"],
         "osm_shop": [],
         "places_query": "hvac heating cooling contractor",
+        "places_queries": [
+            "hvac contractor",
+            "heating and cooling company",
+            "furnace and air conditioning installation",
+            "commercial hvac services",
+        ],
     },
     {
         "label": "Electrical",
         "osm_craft": ["electrician"],
         "osm_shop": [],
         "places_query": "electrician electrical contractor",
+        "places_queries": [
+            "electrician",
+            "electrical contractor",
+            "commercial electrical services",
+            "industrial electrical contractor",
+        ],
     },
     {
         "label": "Roofing",
         "osm_craft": ["roofer"],
         "osm_shop": [],
         "places_query": "roofing contractor",
+        "places_queries": [
+            "roofer",
+            "roofing contractor",
+            "commercial roofing company",
+            "flat roof installation",
+        ],
     },
     {
         "label": "General Contracting",
@@ -290,7 +317,12 @@ PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 PLACES_TOP_METROS = TARGET_REGIONS[0]["places_metros"]  # back-compat alias
 PLACES_BIG_CATEGORIES_ONLY = True
 # Safety cap — hard stop on Places calls per run, even if config drifts.
-PLACES_MAX_CALLS_PER_RUN = 220
+# Bumped from 220 → 350 after enabling multi-query Places for the high-
+# volume trades (Plumbing, HVAC, Electrical, Roofing) — each now runs
+# 3–4 query variations per metro per region, which expands the call
+# count meaningfully. New budget: ~200/day = ~6000/mo ≈ $190 (just
+# inside the $200 Google free credit).
+PLACES_MAX_CALLS_PER_RUN = 350
 
 # --- Apollo.io (organization search) ---
 # Apollo's /api/v1/mixed_companies/api_search returns companies matching an
