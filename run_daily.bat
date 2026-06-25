@@ -9,9 +9,14 @@ REM ===========================================================
 setlocal
 cd /d "%~dp0"
 
+REM Force unbuffered Python output — without this, stdout is block-buffered
+REM when redirected to a file, and progress lines don't appear until the
+REM process exits. Made it look like the agent was "hung" mid-run.
+set PYTHONUNBUFFERED=1
+
 echo [%date% %time%] Starting Marketing Hero daily run >> data\run_log.txt
 
-python lead_generator.py >> data\run_log.txt 2>&1
+python -u lead_generator.py >> data\run_log.txt 2>&1
 
 if errorlevel 1 (
     echo [%date% %time%] Run FAILED with exit code %errorlevel% >> data\run_log.txt
