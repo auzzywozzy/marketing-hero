@@ -253,48 +253,13 @@ TRADE_CATEGORIES = [
         "osm_shop": [],
         "places_query": "cabinet maker millwork joinery",
     },
-    # --- Manufacturing / industrial ---
-    {
-        "label": "Manufacturing / Factory",
-        "osm_craft": [],
-        "osm_shop": [],
-        "osm_tags": [
-            ["industrial", "factory"],
-            ["industrial", "machine_shop"],
-            ["industrial", "metal_production"],
-            ["industrial", "food_processing"],
-            ["industrial", "sawmill"],
-            ["industrial", "shipyard"],
-            ["industrial", "wire_drawing"],
-            ["man_made", "works"],
-        ],
-        "places_query": "manufacturing factory",
-    },
-    {
-        "label": "Sawmill / Wood Products",
-        "osm_craft": ["sawmill"],
-        "osm_shop": [],
-        "places_query": "sawmill lumber wood products manufacturer",
-    },
-    {
-        "label": "Brewery / Distillery / Winery",
-        "osm_craft": ["brewery", "distillery", "winery"],
-        "osm_shop": [],
-        "places_query": "brewery distillery winery",
-    },
-    {
-        "label": "Printing / Signs",
-        "osm_craft": ["printer", "signmaker", "engraver"],
-        "osm_shop": [],
-        "places_query": "commercial printing sign shop",
-    },
-    # --- Trade supply / wholesale ---
-    {
-        "label": "Trade Supply / Hardware",
-        "osm_craft": [],
-        "osm_shop": ["doityourself", "hardware", "paint", "fireplace", "bathroom_furnishing", "kitchen", "tiles"],
-        "places_query": "building supply hardware trade wholesale",
-    },
+    # Retired 2026-06-24 — not single-scope trades, polluted the dataset
+    # with non-ICP companies. Categories removed:
+    #   Manufacturing / Factory   — too broad (food-processing, shipyard, etc.)
+    #   Sawmill / Wood Products   — industrial extraction, not service trade
+    #   Brewery / Distillery / Winery — beverage producers, not trades
+    #   Printing / Signs          — print shops, not construction
+    #   Trade Supply / Hardware   — wholesalers/retailers, not contractors
     # Auto Body / Collision Repair retired 2026-06-02 — OSM auto_repair tags
     # pulled in too many small independent shops that fall well below the
     # $3M revenue band and don't fit the trades/ops ICP.
