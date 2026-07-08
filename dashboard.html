@@ -1493,6 +1493,192 @@
   }
   .modal .custom-amount-row { display: none; }
   .modal .custom-amount-row.show { display: block; }
+
+  /* ============================================================
+     IMPORT LEADS — button, modal internals, imported badge
+     ============================================================ */
+  .mode-row .mode-actions button.import-cta {
+    color: var(--obsidian);
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .mode-row .mode-actions button.import-cta:hover {
+    background: #F08A4E;
+    border-color: #F08A4E;
+    color: var(--obsidian);
+  }
+
+  .modal.modal-wide { max-width: 640px; }
+
+  .imp-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 3px;
+    margin-bottom: 18px;
+  }
+  .imp-tab {
+    flex: 1 1 auto;
+    background: transparent;
+    border: none;
+    color: var(--slate);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: color 0.12s, background 0.12s;
+  }
+  .imp-tab:hover { color: var(--signal); }
+  .imp-tab.active { background: var(--signal); color: var(--obsidian); }
+
+  .imp-csv {
+    width: 100%;
+    min-height: 130px;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    color: var(--signal);
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+  .imp-csv:focus { outline: none; border-color: var(--signal); }
+
+  .imp-file-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .imp-file-label {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--signal);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0;
+    transition: border-color 0.12s, color 0.12s;
+  }
+  .imp-file-label:hover { border-color: var(--signal); }
+  .imp-hint {
+    flex: 1 1 200px;
+    color: var(--slate);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .imp-hint code {
+    background: var(--steel-deep);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--signal);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+  }
+  .imp-preview {
+    margin-top: 14px;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .imp-preview .imp-prev-ok { color: var(--good); }
+  .imp-preview .imp-prev-bad { color: var(--warn); }
+  .imp-preview table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .imp-preview td { padding: 3px 6px; border-bottom: 1px solid var(--border); }
+
+  .imp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+  }
+  .imp-grid .imp-span2 { grid-column: 1 / -1; }
+  .imp-grid label {
+    display: block;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 6px 0;
+  }
+  .imp-grid input, .imp-grid select {
+    width: 100%;
+    background: var(--steel-deep);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    color: var(--signal);
+    padding: 9px 11px;
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+  .imp-grid input:focus, .imp-grid select:focus { outline: none; border-color: var(--signal); }
+
+  .imp-footer-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .imp-clear {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--slate);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .imp-clear:hover { color: var(--bad); border-color: rgba(199,107,107,0.5); }
+
+  /* IMPORTED source badge in the leads table */
+  .imp-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(234,122,60,0.12);
+    border: 1px solid rgba(234,122,60,0.4);
+    vertical-align: middle;
+  }
+
+  @media (max-width: 600px) {
+    .imp-grid { grid-template-columns: 1fr; }
+    .modal.modal-wide { max-width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -1632,6 +1818,7 @@
         <button id="mode-performance-btn" role="tab" aria-selected="false">Performance</button>
       </div>
       <div class="mode-actions">
+        <button id="import-leads-btn" class="import-cta" type="button" title="Add leads that came from outside the agent — paste a CSV, upload a file, or type one in">＋ Import leads</button>
         <button id="export-events-btn" type="button" title="Download the event log (every status change) as a CSV file">⬇ Export events</button>
         <button id="sync-hubspot-btn" type="button" title="Wire this to your HubSpot account (currently a stub — outputs to console)">Sync to HubSpot</button>
       </div>
@@ -1879,6 +2066,61 @@
   </div>
 </div>
 
+<!-- Import-leads modal — add leads that came from outside the agent -->
+<div class="modal-backdrop" id="import-modal" role="dialog" aria-modal="true" aria-labelledby="import-modal-title">
+  <div class="modal modal-wide">
+    <h3 id="import-modal-title">Import leads</h3>
+    <div class="modal-sub">External leads live in your browser and survive the daily agent refresh.</div>
+
+    <div class="imp-tabs" role="tablist">
+      <button id="imp-tab-paste" class="imp-tab active" role="tab" type="button">Paste / Upload CSV</button>
+      <button id="imp-tab-single" class="imp-tab" role="tab" type="button">Add one manually</button>
+    </div>
+
+    <!-- CSV path -->
+    <div id="imp-pane-paste" class="imp-pane">
+      <label>Paste CSV (or upload a file below)</label>
+      <textarea id="imp-csv" class="imp-csv" placeholder="name, trade, city, region, website, phone, email&#10;Acme Roofing, Roofing, Kelowna, BC, https://acmeroofing.ca, 250-555-0100, info@acmeroofing.ca&#10;Bob's Plumbing, Plumbing, Calgary, AB, , 403-555-0199,"></textarea>
+      <div class="imp-file-row">
+        <label class="imp-file-label" for="imp-file">⬆ Upload .csv file</label>
+        <input type="file" id="imp-file" accept=".csv,text/csv" style="display:none" />
+        <span class="imp-hint">Header row required. Recognized columns: <code>name</code> (or company), <code>trade</code>, <code>city</code>, <code>region</code>, <code>website</code>, <code>phone</code>, <code>email</code>, <code>address</code>.</span>
+      </div>
+      <div id="imp-preview" class="imp-preview"></div>
+    </div>
+
+    <!-- Single manual path -->
+    <div id="imp-pane-single" class="imp-pane" style="display:none;">
+      <div class="imp-grid">
+        <div><label>Company name *</label><input type="text" id="imp-s-name" placeholder="Acme Roofing Ltd." /></div>
+        <div><label>Trade</label><input type="text" id="imp-s-trade" list="imp-trade-list" placeholder="Roofing" />
+          <datalist id="imp-trade-list"></datalist></div>
+        <div><label>City</label><input type="text" id="imp-s-city" placeholder="Kelowna" /></div>
+        <div><label>Region</label>
+          <select id="imp-s-region">
+            <option value="BC">BC</option>
+            <option value="AB">AB</option>
+            <option value="">— other —</option>
+          </select></div>
+        <div class="imp-span2"><label>Website</label><input type="text" id="imp-s-website" placeholder="https://acmeroofing.ca (leave blank if none)" /></div>
+        <div><label>Phone</label><input type="text" id="imp-s-phone" placeholder="250-555-0100" /></div>
+        <div><label>Email</label><input type="text" id="imp-s-email" placeholder="info@acmeroofing.ca" /></div>
+        <div class="imp-span2"><label>Address</label><input type="text" id="imp-s-address" placeholder="123 Main St, Kelowna, BC" /></div>
+      </div>
+    </div>
+
+    <div class="imp-footer-line">
+      <span id="imp-count">0 imported leads on file</span>
+      <button id="imp-clear-btn" type="button" class="imp-clear">Clear all imported</button>
+    </div>
+
+    <div class="actions">
+      <button class="cancel" type="button" id="import-modal-cancel">Cancel</button>
+      <button class="confirm" type="button" id="import-modal-confirm">Import</button>
+    </div>
+  </div>
+</div>
+
 <footer class="system-bar anim d4">
   <span>Built by Eunoia</span>
   <span class="sep">·</span>
@@ -1927,6 +2169,138 @@ function saveOutreach() {
 }
 function getEntry(leadId) {
   return OUTREACH[leadId] || { status: "new", notes: "", updated_at: "" };
+}
+
+/* ============================================================
+   Imported leads — leads added by hand / CSV that live in the
+   browser (localStorage) and survive the daily agent refresh which
+   overwrites data/leads.js. Merged into DATA at boot + on every import.
+   ============================================================ */
+const IMPORTED_KEY = "mh_imported_leads_v1";
+
+function loadImportedLeads() {
+  try {
+    const raw = localStorage.getItem(IMPORTED_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) { return []; }
+}
+function saveImportedLeads(arr) {
+  try { localStorage.setItem(IMPORTED_KEY, JSON.stringify(arr)); }
+  catch (e) { console.warn("Could not save imported leads:", e); }
+}
+
+/* Free-tier / social domain lists mirror config.py so imported leads get
+   the same URL-pattern website grade the agent applies before probing. */
+const IMP_FREE_TIER = ["wixsite.com","wix.com","wordpress.com","weebly.com",
+  "godaddysites.com","business.site","jimdofree.com","jimdosite.com",
+  "webnode.com","simdif.com","yola.com","yolasite.com","site123.com",
+  "site123.me","strikingly.com","mywebsite.com"];
+const IMP_SOCIAL = ["facebook.com","fb.com","fb.me","instagram.com",
+  "linkedin.com","x.com","twitter.com","yelp.com","yelp.ca"];
+
+function impHostname(url) {
+  if (!url) return "";
+  let u = String(url).trim();
+  if (!u) return "";
+  if (!/^https?:\/\//i.test(u)) u = "http://" + u;
+  try {
+    return new URL(u).hostname.toLowerCase().replace(/^www\./, "");
+  } catch (e) { return ""; }
+}
+function impClassifyWebsite(url) {
+  if (!url || !String(url).trim()) return "MISSING";
+  const host = impHostname(url);
+  if (!host) return "MISSING";
+  for (const d of IMP_SOCIAL)    if (host === d || host.endsWith("." + d)) return "SOCIAL_ONLY";
+  for (const d of IMP_FREE_TIER) if (host === d || host.endsWith("." + d)) return "FREE_TIER";
+  return "HAS_DOMAIN";
+}
+
+/* Region → registry research URL templates (mirror config.py) */
+const IMP_REGION_RESEARCH = {
+  BC: { registry: "https://www.bcregistry.gov.bc.ca/search?q={q}",
+        opencorporates: "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_bc" },
+  AB: { registry: "https://cores.reg.gov.ab.ca/cores/public/searchcorporation.aspx?q={q}",
+        opencorporates: "https://opencorporates.com/companies?q={q}&jurisdiction_code=ca_ab" },
+};
+function impResearchUrls(lead) {
+  const nameEnc = encodeURIComponent(lead.name || "");
+  const q = encodeURIComponent(`"${lead.name}" ${lead.city || ""} ${lead.province || ""}`.trim());
+  const out = {
+    google: `https://www.google.com/search?q=${q}`,
+    google_maps: `https://www.google.com/maps/search/${encodeURIComponent((lead.name||"") + " " + (lead.city||""))}`,
+    linkedin: `https://www.linkedin.com/search/results/companies/?keywords=${nameEnc}`,
+  };
+  const r = IMP_REGION_RESEARCH[lead.region];
+  if (r) for (const [k, tpl] of Object.entries(r)) out[k] = tpl.replace("{q}", nameEnc);
+  else out.opencorporates = `https://opencorporates.com/companies?q=${nameEnc}`;
+  return out;
+}
+
+/* Lightweight fit-score for imported leads — mirrors the agent weights
+   closely enough that imported leads rank sensibly alongside agent leads. */
+const IMP_PRIORITY_TRADES = new Set(["Electrical","HVAC / Heating","Plumbing",
+  "Carpentry","Prefabrication","Roofing","General Contracting","Concrete / Masonry"]);
+const IMP_URBAN = new Set(["Vancouver","Surrey","Burnaby","Richmond","Victoria",
+  "Coquitlam","Langley","Abbotsford","Kelowna","Saanich","Calgary","Edmonton",
+  "Red Deer","Sherwood Park","St. Albert"]);
+const IMP_WQ_WEIGHTS = { MISSING:25, DEAD:22, SOCIAL_ONLY:22, FREE_TIER:18, WEAK:12, HAS_DOMAIN:5, OK:0 };
+function impFitScore(lead) {
+  let s = 0;
+  if (lead.website) s += 5;
+  if (lead.phone)   s += 5;
+  if (lead.email)   s += 5;
+  if (IMP_PRIORITY_TRADES.has(lead.trade)) s += 20;
+  if (IMP_URBAN.has(lead.city)) s += 10;
+  s += IMP_WQ_WEIGHTS[lead.website_quality] || 0;
+  return Math.min(s, 100);
+}
+
+/* Slug id from name+city; "imp-" prefix marks manual origin + dedupes. */
+function impMakeId(name, city) {
+  const key = `${(name||"").trim().toLowerCase()}|${(city||"").trim().toLowerCase()}`;
+  let h = 0;
+  for (let i = 0; i < key.length; i++) { h = (h * 31 + key.charCodeAt(i)) | 0; }
+  return "imp-" + (h >>> 0).toString(36);
+}
+
+/* Normalize a raw {name,trade,city,region,website,phone,email,address}
+   object into a full lead record matching the agent's shape. */
+function impNormalize(raw) {
+  const name = (raw.name || "").trim();
+  if (!name) return null;
+  const region = (raw.region || "").trim().toUpperCase();
+  const provMap = { BC: "BC", AB: "AB" };
+  const lead = {
+    id: impMakeId(name, raw.city),
+    name,
+    trade: (raw.trade || "").trim() || "Uncategorized",
+    city: (raw.city || "").trim(),
+    region: provMap[region] ? region : "",
+    province: provMap[region] || "",
+    country: provMap[region] ? "Canada" : "",
+    address: (raw.address || "").trim(),
+    website: (raw.website || "").trim(),
+    phone: (raw.phone || "").trim(),
+    email: (raw.email || "").trim(),
+    osm_id: "", place_id: "", apollo_id: "",
+    source: "imported",
+    discovered_at: new Date().toISOString().slice(0, 19),
+    last_seen_at: new Date().toISOString().slice(0, 19),
+    raw_tags: {},
+    website_quality: "",
+    website_probed_at: "",
+    fit_score: 0,
+    score_breakdown: {},
+    research_urls: {},
+    status: "new",
+    notes: "",
+  };
+  lead.website_quality = impClassifyWebsite(lead.website);
+  lead.fit_score = impFitScore(lead);
+  lead.research_urls = impResearchUrls(lead);
+  return lead;
 }
 
 /* ============================================================
@@ -2061,8 +2435,22 @@ function cancelCloseModal() {
 /* ============================================================
    Boot
    ============================================================ */
-const DATA = (window.MARKETING_HERO_DATA && window.MARKETING_HERO_DATA.leads) || [];
+const AGENT_DATA = (window.MARKETING_HERO_DATA && window.MARKETING_HERO_DATA.leads) || [];
 const GENERATED_AT = window.MARKETING_HERO_DATA && window.MARKETING_HERO_DATA.generated_at;
+
+// DATA = agent leads + imported leads (deduped by id). `let` so imports can
+// rebuild it in place. Imported leads with an id that already exists in the
+// agent feed are skipped (agent data wins — it's fresher + probed).
+let DATA = (function buildData() {
+  const agentIds = new Set(AGENT_DATA.map(l => l.id));
+  const imported = loadImportedLeads().filter(l => !agentIds.has(l.id));
+  return AGENT_DATA.concat(imported);
+})();
+function rebuildData() {
+  const agentIds = new Set(AGENT_DATA.map(l => l.id));
+  const imported = loadImportedLeads().filter(l => !agentIds.has(l.id));
+  DATA = AGENT_DATA.concat(imported);
+}
 
 if (!DATA.length) {
   document.getElementById("no-data-banner").style.display = "block";
@@ -2580,6 +2968,10 @@ function renderDistributions() {
     labels: cityLabels,
     datasets: [{ data: cityLabels.map(k => byCity[k]), backgroundColor: "#E8E2D6", borderRadius: 3 }],
   };
+  // Idempotent — destroy any prior chart instances so re-calling after an
+  // import doesn't stack overlapping canvases.
+  if (tradeChart) { tradeChart.destroy(); tradeChart = null; }
+  if (cityChart)  { cityChart.destroy();  cityChart = null; }
   tradeChart = new Chart(document.getElementById("chart-trade"), {
     type: "bar",
     data: tradeData,
@@ -2591,14 +2983,17 @@ function renderDistributions() {
     options: { ...chartOpts(false), plugins: { legend: { display: false } } },
   });
 
-  // Populate filters
+  // Populate filters — clear existing options (except the "All" default at
+  // index 0) first so re-calling doesn't duplicate entries.
   const tradeSel = document.getElementById("filter-trade");
+  while (tradeSel.options.length > 1) tradeSel.remove(1);
   for (const t of tradeLabels) {
     const o = document.createElement("option");
     o.value = t; o.textContent = t;
     tradeSel.appendChild(o);
   }
   const citySel = document.getElementById("filter-city");
+  while (citySel.options.length > 1) citySel.remove(1);
   const allCities = Object.keys(byCity).sort();
   for (const c of allCities) {
     const o = document.createElement("option");
@@ -2753,7 +3148,7 @@ function renderTable() {
     ).join("");
     tr.innerHTML = `
       <td class="score">${scoreBadge(l.fit_score)}</td>
-      <td><strong>${escapeHtml(l.name)}</strong><br><span style="color: var(--slate); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
+      <td><strong>${escapeHtml(l.name)}</strong>${l.source === "imported" ? '<span class="imp-badge" title="Manually imported lead">Imported</span>' : ""}<br><span style="color: var(--slate); font-size: 11px;">${escapeHtml(l.address || "")}</span></td>
       <td>${escapeHtml(l.trade)}</td>
       <td>${escapeHtml(l.city)}</td>
       <td>${websitePill(l.website_quality)}</td>
@@ -3297,6 +3692,219 @@ document.querySelectorAll('input[name="close-package"]').forEach(r => {
 // Click on the backdrop (outside the modal) cancels
 document.getElementById("close-modal").addEventListener("click", e => {
   if (e.target.id === "close-modal") cancelCloseModal();
+});
+
+/* ============================================================
+   IMPORT LEADS — modal wiring, CSV parse, normalize, persist
+   ============================================================ */
+
+// Minimal RFC-4180-ish CSV parser (handles quoted fields, commas, newlines).
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = "", inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else inQuotes = false;
+      } else field += c;
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\r") { /* ignore */ }
+      else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+      else field += c;
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => r.some(c => c.trim() !== ""));
+}
+
+// Map flexible header names → our canonical keys.
+const IMP_HEADER_ALIASES = {
+  name: "name", company: "name", "company name": "name", business: "name", "business name": "name",
+  trade: "trade", category: "trade", industry: "trade", type: "trade",
+  city: "city", town: "city", municipality: "city",
+  region: "region", province: "region", state: "region",
+  website: "website", url: "website", site: "website", web: "website",
+  phone: "phone", tel: "phone", telephone: "phone", "phone number": "phone",
+  email: "email", "e-mail": "email", "email address": "email",
+  address: "address", street: "address", location: "address",
+};
+
+// Parse CSV text → array of raw lead objects. Returns {leads, error}.
+function csvToRawLeads(text) {
+  const rows = parseCsv(text);
+  if (rows.length < 2) return { leads: [], error: "Need a header row plus at least one data row." };
+  const headers = rows[0].map(h => IMP_HEADER_ALIASES[h.trim().toLowerCase()] || null);
+  if (!headers.includes("name"))
+    return { leads: [], error: "No 'name' (or 'company') column found in the header row." };
+  const leads = [];
+  for (let r = 1; r < rows.length; r++) {
+    const obj = {};
+    rows[r].forEach((val, ci) => { if (headers[ci]) obj[headers[ci]] = val.trim(); });
+    if ((obj.name || "").trim()) leads.push(obj);
+  }
+  return { leads, error: null };
+}
+
+// Live preview of what a CSV paste will import.
+function updateImportPreview() {
+  const box = document.getElementById("imp-preview");
+  const text = document.getElementById("imp-csv").value.trim();
+  if (!text) { box.innerHTML = ""; return; }
+  const { leads, error } = csvToRawLeads(text);
+  if (error) { box.innerHTML = `<span class="imp-prev-bad">⚠ ${escapeHtml(error)}</span>`; return; }
+  const rows = leads.slice(0, 5).map(l =>
+    `<tr><td>${escapeHtml(l.name || "")}</td><td>${escapeHtml(l.trade || "—")}</td><td>${escapeHtml(l.city || "—")}</td><td>${escapeHtml(l.region || "—")}</td></tr>`
+  ).join("");
+  const more = leads.length > 5 ? `<div style="margin-top:6px;">…and ${leads.length - 5} more</div>` : "";
+  box.innerHTML = `<span class="imp-prev-ok">✓ ${leads.length} lead${leads.length === 1 ? "" : "s"} ready to import</span>` +
+    `<table>${rows}</table>${more}`;
+}
+
+// Merge an array of normalized leads into localStorage (dedupe by id).
+function persistImportedLeads(normalized) {
+  const existing = loadImportedLeads();
+  const byId = {};
+  for (const l of existing) byId[l.id] = l;
+  let added = 0, updated = 0;
+  for (const l of normalized) {
+    if (byId[l.id]) { byId[l.id] = { ...byId[l.id], ...l }; updated++; }
+    else { byId[l.id] = l; added++; }
+  }
+  saveImportedLeads(Object.values(byId));
+  return { added, updated };
+}
+
+// After any import/clear: rebuild DATA + re-render every dependent view.
+function refreshAfterImport() {
+  rebuildData();
+  renderDistributions();
+  renderOutreachKpis();
+  renderTable();
+  if (typeof dashboardMode !== "undefined" && dashboardMode === "performance") renderPerformance();
+  // status strip + data stamp lead counts
+  const ssLeads = document.getElementById("ss-leads");
+  if (ssLeads) ssLeads.textContent = DATA.length.toLocaleString();
+  const stamp = document.getElementById("data-stamp");
+  if (stamp) {
+    const impCount = loadImportedLeads().length;
+    const base = GENERATED_AT ? `${AGENT_DATA.length} agent leads • generated ${GENERATED_AT}` : `${AGENT_DATA.length} leads`;
+    stamp.textContent = impCount ? `${base} • +${impCount} imported` : base;
+  }
+  updateImportCount();
+}
+
+function updateImportCount() {
+  const el = document.getElementById("imp-count");
+  if (el) {
+    const n = loadImportedLeads().length;
+    el.textContent = `${n} imported lead${n === 1 ? "" : "s"} on file`;
+  }
+}
+
+// Modal open/close
+function openImportModal() {
+  document.getElementById("import-modal").classList.add("open");
+  // Populate the trade datalist from the current dataset so manual entry
+  // can autocomplete against existing trade labels.
+  const dl = document.getElementById("imp-trade-list");
+  if (dl && !dl.dataset.filled) {
+    const trades = [...new Set(DATA.map(l => l.trade).filter(Boolean))].sort();
+    dl.innerHTML = trades.map(t => `<option value="${escapeHtml(t)}"></option>`).join("");
+    dl.dataset.filled = "1";
+  }
+  updateImportCount();
+}
+function closeImportModal() {
+  document.getElementById("import-modal").classList.remove("open");
+}
+
+// Tab switching
+function setImportTab(which) {
+  const paste = which === "paste";
+  document.getElementById("imp-tab-paste").classList.toggle("active", paste);
+  document.getElementById("imp-tab-single").classList.toggle("active", !paste);
+  document.getElementById("imp-pane-paste").style.display = paste ? "" : "none";
+  document.getElementById("imp-pane-single").style.display = paste ? "none" : "";
+}
+
+// Confirm import — reads whichever tab is active.
+function confirmImport() {
+  const pasteActive = document.getElementById("imp-tab-paste").classList.contains("active");
+  let normalized = [];
+  if (pasteActive) {
+    const text = document.getElementById("imp-csv").value.trim();
+    if (!text) { alert("Paste some CSV first, or switch to “Add one manually”."); return; }
+    const { leads, error } = csvToRawLeads(text);
+    if (error) { alert("Import problem: " + error); return; }
+    normalized = leads.map(impNormalize).filter(Boolean);
+  } else {
+    const raw = {
+      name:    document.getElementById("imp-s-name").value,
+      trade:   document.getElementById("imp-s-trade").value,
+      city:    document.getElementById("imp-s-city").value,
+      region:  document.getElementById("imp-s-region").value,
+      website: document.getElementById("imp-s-website").value,
+      phone:   document.getElementById("imp-s-phone").value,
+      email:   document.getElementById("imp-s-email").value,
+      address: document.getElementById("imp-s-address").value,
+    };
+    if (!raw.name.trim()) { alert("Company name is required."); return; }
+    const one = impNormalize(raw);
+    if (one) normalized = [one];
+  }
+  if (!normalized.length) { alert("Nothing to import."); return; }
+
+  const { added, updated } = persistImportedLeads(normalized);
+  refreshAfterImport();
+
+  // Clear the inputs for next time
+  document.getElementById("imp-csv").value = "";
+  document.getElementById("imp-preview").innerHTML = "";
+  for (const id of ["imp-s-name","imp-s-trade","imp-s-city","imp-s-website","imp-s-phone","imp-s-email","imp-s-address"])
+    document.getElementById(id).value = "";
+
+  closeImportModal();
+  const bits = [];
+  if (added) bits.push(`${added} added`);
+  if (updated) bits.push(`${updated} updated`);
+  alert(`Import complete — ${bits.join(", ")}.\nTotal leads now: ${DATA.length}.`);
+}
+
+// Clear all imported leads
+function clearImportedLeads() {
+  const n = loadImportedLeads().length;
+  if (!n) { alert("No imported leads to clear."); return; }
+  if (!confirm(`Remove all ${n} imported lead${n === 1 ? "" : "s"}? Agent leads are untouched. This cannot be undone.`)) return;
+  saveImportedLeads([]);
+  refreshAfterImport();
+  alert("All imported leads removed.");
+}
+
+// Wire the import controls
+document.getElementById("import-leads-btn").addEventListener("click", openImportModal);
+document.getElementById("import-modal-cancel").addEventListener("click", closeImportModal);
+document.getElementById("import-modal-confirm").addEventListener("click", confirmImport);
+document.getElementById("imp-clear-btn").addEventListener("click", clearImportedLeads);
+document.getElementById("imp-tab-paste").addEventListener("click", () => setImportTab("paste"));
+document.getElementById("imp-tab-single").addEventListener("click", () => setImportTab("single"));
+document.getElementById("imp-csv").addEventListener("input", updateImportPreview);
+document.getElementById("import-modal").addEventListener("click", e => {
+  if (e.target.id === "import-modal") closeImportModal();
+});
+document.getElementById("imp-file").addEventListener("change", e => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("imp-csv").value = reader.result;
+    updateImportPreview();
+    e.target.value = ""; // allow re-selecting the same file
+  };
+  reader.readAsText(file);
 });
 
 /* ============================================================
