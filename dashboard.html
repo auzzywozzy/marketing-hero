@@ -3657,22 +3657,106 @@ function exportEventsCsv() {
   setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
 }
 
-/* --- HubSpot sync — stub. Wired to console + a clean integration point
-       so when you set MARKETING_HERO_HUBSPOT_TOKEN we can POST events to
-       /crm/v3/objects/deals (or whatever shape your account expects). --- */
-function syncToHubspot() {
+/* --- HubSpot sync — LIVE (Five Talents' account, closed deals only).
+       Posts unsynced closed-deal events to the /api/hubspot-sync serverless
+       function, which holds Five Talents' Private App token server-side.
+       See api/hubspot-sync.js for the required Vercel env vars. --- */
+const HUBSPOT_SYNCED_KEY = "mh_hubspot_synced_v1";  // event_ids already pushed
+const HUBSPOT_KEY_KEY    = "mh_hubspot_key_v1";     // the shared sync key (this browser)
+
+function loadSyncedIds() {
+  try { return new Set(JSON.parse(localStorage.getItem(HUBSPOT_SYNCED_KEY) || "[]")); }
+  catch (e) { return new Set(); }
+}
+function saveSyncedIds(set) {
+  try { localStorage.setItem(HUBSPOT_SYNCED_KEY, JSON.stringify([...set])); } catch (e) {}
+}
+function getSyncKey() {
+  let k = "";
+  try { k = localStorage.getItem(HUBSPOT_KEY_KEY) || ""; } catch (e) {}
+  if (!k) {
+    k = (prompt("Enter the Marketing Hero → HubSpot sync key\n(the value set as HUBSPOT_SYNC_KEY on Vercel):") || "").trim();
+    if (k) { try { localStorage.setItem(HUBSPOT_KEY_KEY, k); } catch (e) {} }
+  }
+  return k;
+}
+
+async function syncToHubspot() {
   const events = loadEvents();
-  const closes = events.filter(e => e.to_status === "closed" && +e.deal_value > 0);
-  console.log("[HubSpot sync — STUB]");
-  console.log(`  Would push ${events.length} events (${closes.length} closed deals) to HubSpot.`);
-  console.log("  Wire-up notes:");
-  console.log("    1. Backend route (e.g. Vercel function) that holds the HubSpot private app token.");
-  console.log("    2. For each close event, POST /crm/v3/objects/deals with amount=deal_value,");
-  console.log("       dealstage=closedwon, closedate=close_date.");
-  console.log("    3. Optionally upsert the company first via /crm/v3/objects/companies.");
-  console.log("    4. Persist last-synced timestamp here so we only POST new events.");
-  console.log("  Sample payload for first close event:", closes[0] || "(no closes yet)");
-  alert(`HubSpot sync stub — wired but not connected yet.\n\n${events.length} events on file (${closes.length} closes).\n\nOpen the browser console to see the dry-run details.`);
+  const synced = loadSyncedIds();
+  // Closed deals with a value that haven't been pushed yet.
+  const pending = events.filter(e =>
+    e.to_status === "closed" && +e.deal_value > 0 && !synced.has(e.id));
+
+  if (!pending.length) {
+    const totalClosed = events.filter(e => e.to_status === "closed" && +e.deal_value > 0).length;
+    alert(totalClosed
+      ? `Nothing new to sync — all ${totalClosed} closed deal${totalClosed === 1 ? "" : "s"} already in HubSpot.`
+      : "No closed deals to sync yet. Mark a lead as Closed first.");
+    return;
+  }
+
+  const key = getSyncKey();
+  if (!key) { alert("Sync cancelled — no sync key entered."); return; }
+
+  const btn = document.getElementById("sync-hubspot-btn");
+  const prevLabel = btn ? btn.textContent : "";
+  if (btn) { btn.disabled = true; btn.textContent = "Syncing…"; }
+
+  const deals = pending.map(e => ({
+    event_id: e.id,
+    lead_id: e.lead_id,
+    name: e.lead_name,
+    amount: e.deal_value,
+    close_date: e.close_date || e.ts,
+    package: e.package,
+    trade: e.trade,
+    city: (DATA.find(l => l.id === e.lead_id) || {}).city || "",
+    region: e.region,
+    website: (DATA.find(l => l.id === e.lead_id) || {}).website || "",
+    notes: e.notes || "",
+  }));
+
+  try {
+    const resp = await fetch("/api/hubspot-sync", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-mh-key": key },
+      body: JSON.stringify({ deals }),
+    });
+    const data = await resp.json().catch(() => ({}));
+
+    if (resp.status === 401) {
+      // Wrong key — forget it so the next attempt re-prompts.
+      try { localStorage.removeItem(HUBSPOT_KEY_KEY); } catch (e) {}
+      alert("Sync key rejected. Re-run the sync and enter the correct key.");
+      return;
+    }
+    if (resp.status === 503 || data.error === "not_configured") {
+      alert("HubSpot isn't connected on the server yet.\n\n" +
+        (data.message || "Add Five Talents' Private App token (HUBSPOT_TOKEN) and a HUBSPOT_SYNC_KEY to the Vercel project env vars.") +
+        "\n\nEverything else is ready — once those two env vars are set, this button goes live.");
+      return;
+    }
+    if (!resp.ok || !Array.isArray(data.results)) {
+      alert("Sync failed: " + (data.message || data.error || ("HTTP " + resp.status)));
+      return;
+    }
+
+    let ok = 0, fail = 0;
+    for (const r of data.results) {
+      if (r.ok) { synced.add(r.event_id); ok++; } else { fail++; }
+    }
+    saveSyncedIds(synced);
+
+    const firstErr = (data.results.find(r => !r.ok) || {}).error;
+    alert(`HubSpot sync complete.\n\n${ok} deal${ok === 1 ? "" : "s"} created` +
+      (fail ? `\n${fail} failed${firstErr ? " — e.g. " + firstErr : ""}` : "") +
+      `\n\nSynced deals won't be re-created on the next sync.`);
+  } catch (e) {
+    alert("Sync request failed: " + e + "\n\n(If you're opening the dashboard as a local file, the /api endpoint only exists on the Vercel deployment.)");
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
+  }
 }
 
 // Wire all the controls
