@@ -17623,6 +17623,51 @@
       "website_probed_at": "",
       "status": "new",
       "notes": ""
+    },
+    {
+      "id": "imp-glgvmv",
+      "name": "MTN Sense",
+      "trade": "Outdoor / Mountain Safety (Non-ICP)",
+      "city": "",
+      "province": "",
+      "country": "",
+      "address": "",
+      "website": "https://instagram.com/smileysproject",
+      "phone": "",
+      "email": "",
+      "osm_id": "",
+      "place_id": "",
+      "apollo_id": "",
+      "source": "imported",
+      "discovered_at": "2026-07-28T18:20:34",
+      "last_seen_at": "2026-07-28T18:20:34",
+      "raw_tags": {},
+      "website_quality": "SOCIAL_ONLY",
+      "website_probed_at": "",
+      "fit_score": 27,
+      "score_breakdown": {
+        "has_website": 5,
+        "website_quality_social_only": 22
+      },
+      "research_urls": {
+        "google": "https://www.google.com/search?q=%22MTN%20Sense%22%20smileysproject",
+        "google_maps": "https://www.google.com/maps/search/MTN%20Sense",
+        "linkedin": "https://www.linkedin.com/search/results/companies/?keywords=MTN%20Sense",
+        "instagram": "https://instagram.com/smileysproject",
+        "opencorporates": "https://opencorporates.com/companies?q=MTN%20Sense"
+      },
+      "status": "new",
+      "region": "",
+      "notes": "REFERRAL from Ben Rankin via Instagram DM. Contact: Mark (last name TBC), solo operator. Backcountry / mountain-safety brand.\nFour revenue lines: physical gear, ~600 video courses, coaching, guided trips. ~5,000 customers at ~$150 average spend.\nStack: CourseCreator360 (coursecreator360.com) + Shopify. Needs platform consolidation and a unified customer record.\nService interest: Design & Build. Est. value $5,000+ CAD.\nNext step: Operating Snapshot booking — link sent 2026-07-28.\nWATCH: budget unproven; he floated partial barter. Hold the line on fixed scope and cash payment.\nSegment: non-ICP, out-of-niche (not BC/AB trades) — worked on referral merit, not agent fit score.",
+      "contact_name": "Mark (last name TBC)",
+      "instagram": "@smileysproject",
+      "platform": "coursecreator360.com",
+      "referral_source": "Ben Rankin",
+      "channel": "Instagram DM",
+      "segment": "Non-ICP / out-of-niche",
+      "service_interest": "Design & Build",
+      "estimated_value_cad": "5000+",
+      "next_step": "Operating Snapshot booking (link sent 2026-07-28)"
     }
   ]
 }

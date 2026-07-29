@@ -8089,3 +8089,10 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-07-28T07:38:39] Total raw candidates: 286
 [2026-07-28T07:38:39] Run complete. Added: 0, Updated: 274, Total on file: 344
 [2026-07-28  7:38:39.53] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main 66e371f] Daily lead refresh 2026-07-28  7:38:39.72
+ 3 files changed, 451 insertions(+), 276 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   1653a4b..66e371f  main -> main
+[2026-07-28  7:38:39.72] Deployed to live dashboard 
+[2026-07-28  7:38:42.11] Done 
