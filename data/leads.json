@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T07:35:27",
+  "generated_at": "2026-08-17T07:36:09",
   "leads": [
     {
       "id": "83194f7f175f",
@@ -16,7 +16,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Coquitlam",
         "addr:housenumber": "1963",
@@ -69,7 +69,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "3586",
@@ -177,7 +177,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "8729",
@@ -229,7 +229,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:housenumber": "20339",
@@ -282,7 +282,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1090",
@@ -333,7 +333,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:housenumber": "9525",
@@ -384,7 +384,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1636",
@@ -432,7 +432,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1200",
@@ -482,7 +482,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "14692",
@@ -676,7 +676,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Delta",
         "addr:housenumber": "5050",
@@ -728,7 +728,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:country": "CA",
@@ -779,7 +779,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:country": "CA",
@@ -828,7 +828,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1632",
@@ -877,7 +877,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1614",
@@ -926,7 +926,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "2986",
@@ -1029,7 +1029,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:housenumber": "23895",
@@ -1079,7 +1079,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:housenumber": "23867",
@@ -1129,7 +1129,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1640",
@@ -1180,7 +1180,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Port Coquitlam",
         "addr:housenumber": "1515",
@@ -1232,7 +1232,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "3543",
@@ -1280,7 +1280,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "2835",
@@ -1328,7 +1328,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:province": "BC",
@@ -1381,7 +1381,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:housenumber": "4385",
@@ -1434,7 +1434,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:country": "CA",
@@ -1485,7 +1485,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Port Coquitlam",
         "addr:housenumber": "1628",
@@ -1536,7 +1536,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Port Coquitlam",
         "addr:housenumber": "575",
@@ -1590,7 +1590,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kelowna",
         "addr:housenumber": "2375",
@@ -1643,7 +1643,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Delta",
         "addr:housenumber": "9969",
@@ -1697,7 +1697,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "3299",
@@ -1747,7 +1747,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "3211",
@@ -1796,7 +1796,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:housenumber": "2235",
@@ -1846,7 +1846,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:housenumber": "2232",
@@ -1895,7 +1895,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:housenumber": "2217",
@@ -1944,7 +1944,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "940",
@@ -1997,7 +1997,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T16:42:54",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "3891",
@@ -2046,7 +2046,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "3043",
@@ -2101,7 +2101,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Burnaby",
         "addr:housenumber": "5338",
@@ -2150,7 +2150,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Port Coquitlam",
         "addr:country": "CA",
@@ -2201,7 +2201,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Delta",
         "addr:housenumber": "1517",
@@ -2248,7 +2248,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "North Vancouver",
         "addr:housenumber": "390",
@@ -2301,7 +2301,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "North Vancouver",
         "addr:housenumber": "342",
@@ -2354,7 +2354,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vernon",
         "addr:housenumber": "4315",
@@ -2401,7 +2401,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Richmond",
         "addr:housenumber": "2420",
@@ -2445,7 +2445,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Abbotsford",
         "addr:housenumber": "34559",
@@ -2495,7 +2495,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kelowna",
         "addr:housenumber": "2375",
@@ -2547,7 +2547,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "1351",
@@ -2600,7 +2600,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Maple Ridge",
         "addr:country": "CA",
@@ -2701,7 +2701,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "18485",
@@ -2747,7 +2747,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "9547",
@@ -2791,7 +2791,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Delta",
         "addr:housenumber": "5646",
@@ -2836,7 +2836,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Abbotsford",
         "addr:housenumber": "1521",
@@ -2884,7 +2884,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Abbotsford",
         "addr:housenumber": "3349",
@@ -2934,7 +2934,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:postcode": "3063",
@@ -3035,7 +3035,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T17:06:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kelowna",
         "addr:housenumber": "747",
@@ -3094,7 +3094,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T18:23:00",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Langley",
         "addr:country": "CA",
@@ -3145,7 +3145,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T18:23:00",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "7714",
@@ -3191,7 +3191,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T18:23:00",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "3604",
@@ -3441,7 +3441,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T18:53:41",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Abbotsford",
         "addr:housenumber": "30745",
@@ -3488,7 +3488,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-14T18:53:41",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Burnaby",
         "addr:housenumber": "5414",
@@ -3584,7 +3584,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-04-29T07:09:17",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Burnaby",
         "addr:housenumber": "6337",
@@ -3632,7 +3632,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-05-17T08:18:33",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Nanaimo",
         "addr:housenumber": "2071",
@@ -3684,7 +3684,7 @@
       "place_id": "",
       "source": "osm",
       "discovered_at": "2026-05-24T07:05:22",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "212",
@@ -3736,7 +3736,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Edmonton",
         "addr:housenumber": "6005",
@@ -3786,7 +3786,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4838",
@@ -3846,7 +3846,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Edmonton",
         "addr:housenumber": "8925",
@@ -3897,7 +3897,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4550",
@@ -3945,7 +3945,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "1620",
@@ -4000,7 +4000,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "12180",
@@ -4051,7 +4051,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "St. Albert",
         "addr:housenumber": "30",
@@ -4101,7 +4101,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Sherwood Park",
         "addr:housenumber": "115",
@@ -4149,7 +4149,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "407",
@@ -4200,7 +4200,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "333",
@@ -4251,7 +4251,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "2016",
@@ -4301,7 +4301,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:country": "CA",
@@ -4357,7 +4357,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "7555",
@@ -4405,7 +4405,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Spruce Grove",
         "addr:housenumber": "485",
@@ -4454,7 +4454,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "64",
@@ -4507,7 +4507,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:19:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "1122",
@@ -4649,7 +4649,7 @@
       "apollo_id": "54a128d569702d8eeb8c9d01",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -4758,7 +4758,7 @@
       "apollo_id": "5e581fb30c206a000122135b",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -4813,7 +4813,7 @@
       "apollo_id": "54a126c269702d9548352500",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -4864,7 +4864,7 @@
       "apollo_id": "556da243736964122fd25501",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -4919,7 +4919,7 @@
       "apollo_id": "5c23926cf651257e00fee477",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -4974,7 +4974,7 @@
       "apollo_id": "5e57592f05b1890001e7bbba",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -5029,7 +5029,7 @@
       "apollo_id": "5a9d84e8a6da98d977f47aab",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "civil engineering",
         "keywords": [
@@ -5084,7 +5084,7 @@
       "apollo_id": "54a1228f69702d8ed4b92703",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "building materials",
         "keywords": [
@@ -5139,7 +5139,7 @@
       "apollo_id": "54a1347e69702d38bb663d00",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -5194,7 +5194,7 @@
       "apollo_id": "55923fd773696470d3212b00",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -5248,7 +5248,7 @@
       "apollo_id": "5b159cdaa6da9870fd283d96",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -5303,7 +5303,7 @@
       "apollo_id": "54a11dc669702da4258d2301",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -5412,7 +5412,7 @@
       "apollo_id": "5c8446be445455095b2513ae",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -5467,7 +5467,7 @@
       "apollo_id": "54a120eb69702d77c2f0b402",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -5522,7 +5522,7 @@
       "apollo_id": "56e6d749f3e5bb3a2400e46e",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "semiconductors",
         "keywords": [
@@ -5577,7 +5577,7 @@
       "apollo_id": "5569f40073696419a7910000",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "automotive",
         "keywords": [
@@ -5732,7 +5732,7 @@
       "apollo_id": "54a1345669702d3a9c732800",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -5895,7 +5895,7 @@
       "apollo_id": "5f49ba433701e30001604314",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6003,7 +6003,7 @@
       "apollo_id": "556d8ef3736964123d763201",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6057,7 +6057,7 @@
       "apollo_id": "5b133159a6da98dcae5af778",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -6111,7 +6111,7 @@
       "apollo_id": "5e56072851043e00014637b4",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "civil engineering",
         "keywords": [
@@ -6165,7 +6165,7 @@
       "apollo_id": "54a23def7468693fda072019",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -6219,7 +6219,7 @@
       "apollo_id": "61ec3e2359ddc30001315bb2",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6273,7 +6273,7 @@
       "apollo_id": "5a9eb97aa6da98d96d841fb1",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "building materials",
         "keywords": [
@@ -6327,7 +6327,7 @@
       "apollo_id": "54a135dd69702d407fe7dd00",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -6381,7 +6381,7 @@
       "apollo_id": "5a9ec9e3a6da98d96d8495cc",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6489,7 +6489,7 @@
       "apollo_id": "5a9e5688a6da98d93ee0db96",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -6543,7 +6543,7 @@
       "apollo_id": "54a11ccc69702d8aa1f1b900",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -6597,7 +6597,7 @@
       "apollo_id": "55695aff736964257d560f00",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6651,7 +6651,7 @@
       "apollo_id": "5e561f72ad83d50001107cd5",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6705,7 +6705,7 @@
       "apollo_id": "54a12a6e69702d9b8b111e02",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -6759,7 +6759,7 @@
       "apollo_id": "54a129ec69702d8eebc42e02",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6866,7 +6866,7 @@
       "apollo_id": "60f3609ab471e10001bc3afd",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -6920,7 +6920,7 @@
       "apollo_id": "56de7163f3e5bb7063000031",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -7723,7 +7723,7 @@
       "apollo_id": "616186628ab1fe000147af8e",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -7776,7 +7776,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Medicine Hat",
         "addr:housenumber": "541A",
@@ -7824,7 +7824,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Brooks",
         "addr:country": "CA",
@@ -7874,7 +7874,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Stony Plain",
         "addr:housenumber": "1",
@@ -7932,7 +7932,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4508",
@@ -7982,7 +7982,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "6224",
@@ -8029,7 +8029,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "240007",
@@ -8077,7 +8077,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "3019",
@@ -8124,7 +8124,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "3513",
@@ -8171,7 +8171,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "233",
@@ -8220,7 +8220,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "230",
@@ -8268,7 +8268,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "2816",
@@ -8315,7 +8315,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "5915",
@@ -8367,7 +8367,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Edmonton",
         "addr:housenumber": "14111",
@@ -8416,7 +8416,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "5416",
@@ -8464,7 +8464,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "2920",
@@ -8511,7 +8511,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "521",
@@ -8559,7 +8559,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "708",
@@ -8611,7 +8611,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Medicine Hat",
         "addr:housenumber": "727",
@@ -8659,7 +8659,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "5520",
@@ -8707,7 +8707,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "93",
@@ -8759,7 +8759,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "5628",
@@ -8807,7 +8807,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "6205",
@@ -8897,7 +8897,7 @@
       "apollo_id": "54a1272969702d90a2719300",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -9004,7 +9004,7 @@
       "apollo_id": "61ec0fe979043b0001462823",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -9059,7 +9059,7 @@
       "apollo_id": "556d52f5736964124316ea00",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "civil engineering",
         "keywords": [
@@ -9113,7 +9113,7 @@
       "apollo_id": "5ecdbdcc15ec0f00bed35a90",
       "source": "apollo",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "building materials",
         "keywords": [
@@ -9264,7 +9264,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "2423",
@@ -9307,7 +9307,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "5610",
@@ -9349,7 +9349,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Edmonton",
         "addr:housenumber": "12932",
@@ -9391,7 +9391,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Edmonton",
         "addr:housenumber": "12932",
@@ -9435,7 +9435,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lethbridge",
         "addr:housenumber": "2500",
@@ -9480,7 +9480,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Richmond",
         "addr:housenumber": "8731",
@@ -9523,7 +9523,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4632",
@@ -9566,7 +9566,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4500",
@@ -9610,7 +9610,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4500",
@@ -9652,7 +9652,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-02T18:40:48",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "346",
@@ -9695,7 +9695,7 @@
       "apollo_id": "54a11b9069702d9a8b8c4900",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "facilities services",
         "keywords": [
@@ -9749,7 +9749,7 @@
       "apollo_id": "5e55d41199006b0001e736cc",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -9797,7 +9797,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Abbotsford",
         "addr:housenumber": "32865",
@@ -9845,7 +9845,7 @@
       "apollo_id": "6569a9c80592b500019ecb42",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -9899,7 +9899,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Richmond",
         "addr:housenumber": "12591",
@@ -9950,7 +9950,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "1744",
@@ -10004,7 +10004,7 @@
       "apollo_id": "5f48cb759d981d000107770a",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "electrical/electronic manufacturing",
         "keywords": [
@@ -10057,7 +10057,7 @@
       "apollo_id": "5cb3c32580f93ec9bed21698",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -10210,7 +10210,7 @@
       "apollo_id": "54a128be69702dc128f80d01",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "telecommunications",
         "keywords": [
@@ -10265,7 +10265,7 @@
       "apollo_id": "5a9e3419a6da98d97e7b0c22",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -10320,7 +10320,7 @@
       "apollo_id": "5d370b51f65125d817c15499",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "facilities services",
         "keywords": [
@@ -10375,7 +10375,7 @@
       "apollo_id": "5dea697de3bef700d4f8ee45",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "building materials",
         "keywords": [
@@ -10430,7 +10430,7 @@
       "apollo_id": "54a122cd69702d9d7e9edc02",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -10485,7 +10485,7 @@
       "apollo_id": "5d35c15af65125b914258849",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "management consulting",
         "keywords": [
@@ -10595,7 +10595,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Lloydminster",
         "addr:housenumber": "5702",
@@ -10641,7 +10641,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Brooks",
         "addr:housenumber": "333",
@@ -10686,7 +10686,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Brooks",
         "addr:country": "CA",
@@ -10734,7 +10734,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Brooks",
         "addr:country": "CA",
@@ -10782,7 +10782,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Chilliwack",
         "addr:housenumber": "46014",
@@ -10837,7 +10837,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Spruce Grove",
         "addr:housenumber": "420",
@@ -10886,7 +10886,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Port Coquitlam",
         "addr:housenumber": "1870",
@@ -10932,7 +10932,7 @@
       "apollo_id": "63c3ff7589967b0001e26087",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -10986,7 +10986,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "795",
@@ -11030,7 +11030,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Squamish",
         "addr:housenumber": "2545",
@@ -11072,7 +11072,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Stony Plain",
         "addr:housenumber": "82",
@@ -11114,7 +11114,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:country": "CA",
@@ -11159,7 +11159,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "25",
@@ -11208,7 +11208,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "782",
@@ -11252,7 +11252,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "808",
@@ -11296,7 +11296,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "450",
@@ -11384,7 +11384,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "25",
@@ -11433,7 +11433,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "25",
@@ -11482,7 +11482,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Spruce Grove",
         "addr:housenumber": "85",
@@ -11529,7 +11529,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "2950",
@@ -11576,7 +11576,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "16",
@@ -11624,7 +11624,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "118",
@@ -11676,7 +11676,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-15T07:41:41",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Kamloops",
         "addr:housenumber": "414",
@@ -11721,7 +11721,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Stony Plain",
         "addr:country": "CA",
@@ -11766,7 +11766,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Camrose",
         "addr:housenumber": "4315",
@@ -11811,7 +11811,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Stony Plain",
         "addr:housenumber": "52525",
@@ -11856,7 +11856,7 @@
       "apollo_id": "54a1359869702d3e8365c000",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -11910,7 +11910,7 @@
       "apollo_id": "57c4f96da6da986a5f9ec453",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -11964,7 +11964,7 @@
       "apollo_id": "5fc9e700baa2d900017a2164",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "telecommunications",
         "keywords": [
@@ -12019,7 +12019,7 @@
       "apollo_id": "54a11d7069702d9a8b061601",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -12074,7 +12074,7 @@
       "apollo_id": "5569aec17369642585d77800",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mechanical or industrial engineering",
         "keywords": [
@@ -12129,7 +12129,7 @@
       "apollo_id": "5b8309c3f874f704afffb9da",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "design",
         "keywords": [
@@ -12184,7 +12184,7 @@
       "apollo_id": "54a11dd969702d9d7ed33901",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "real estate",
         "keywords": [],
@@ -12386,7 +12386,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "2430",
@@ -12429,7 +12429,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "5905",
@@ -12471,7 +12471,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "8020",
@@ -12515,7 +12515,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:country": "CA",
@@ -12561,7 +12561,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Sherwood Park",
         "addr:housenumber": "53351",
@@ -12609,7 +12609,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Surrey",
         "addr:housenumber": "5433",
@@ -12656,7 +12656,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "1423",
@@ -12748,7 +12748,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Courtenay",
         "addr:housenumber": "2898",
@@ -12802,7 +12802,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Whistler",
         "addr:housenumber": "1100",
@@ -12853,7 +12853,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "51",
@@ -12904,7 +12904,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "23",
@@ -13008,7 +13008,7 @@
       "apollo_id": "54a127c469702d8eeb0e0301",
       "source": "apollo",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -13062,7 +13062,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Medicine Hat",
         "addr:housenumber": "720",
@@ -13105,7 +13105,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Airdrie",
         "addr:housenumber": "2858",
@@ -13153,7 +13153,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Stony Plain",
         "addr:housenumber": "4900",
@@ -13198,7 +13198,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-24T16:52:38",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Delta",
         "addr:housenumber": "4878",
@@ -13241,7 +13241,7 @@
       "apollo_id": "6509386d7072200001b57c41",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -13288,7 +13288,7 @@
       "apollo_id": "5e574ec93c1bf500014683f2",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -13340,7 +13340,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Vancouver",
         "addr:housenumber": "828",
@@ -13390,7 +13390,7 @@
       "apollo_id": "54a128cf69702d9b8bfb4e01",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "maritime",
         "keywords": [
@@ -13444,7 +13444,7 @@
       "apollo_id": "556dd17373696411ec5a9d01",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -13498,7 +13498,7 @@
       "apollo_id": "54a129e669702da220b9d301",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "civil engineering",
         "keywords": [
@@ -13552,7 +13552,7 @@
       "apollo_id": "556dc5e97369641258e88601",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -13660,7 +13660,7 @@
       "apollo_id": "54a138cc69702d267a090a00",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "building materials",
         "keywords": [
@@ -13714,7 +13714,7 @@
       "apollo_id": "54a11da269702d77c28d3801",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food production",
         "keywords": [
@@ -13768,7 +13768,7 @@
       "apollo_id": "55eb8a61f3e5bb1349000240",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food production",
         "keywords": [
@@ -13822,7 +13822,7 @@
       "apollo_id": "54a1b6e174686954756a470a",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -13876,7 +13876,7 @@
       "apollo_id": "5a9cc128a6da98d977efe02a",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "real estate",
         "keywords": [
@@ -13930,7 +13930,7 @@
       "apollo_id": "54a1297b69702dc841a05901",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "civil engineering",
         "keywords": [
@@ -13984,7 +13984,7 @@
       "apollo_id": "556da1bd7369641238675401",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food & beverages",
         "keywords": [
@@ -14038,7 +14038,7 @@
       "apollo_id": "54a12af569702dab376c6a02",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14092,7 +14092,7 @@
       "apollo_id": "5b12ec99a6da98dcb5c68dd7",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -14146,7 +14146,7 @@
       "apollo_id": "54a126f169702d8eebe28900",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14200,7 +14200,7 @@
       "apollo_id": "54a1358e69702d4b2e48a200",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -14254,7 +14254,7 @@
       "apollo_id": "5e1e0d1f69d64e012cceb41e",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14308,7 +14308,7 @@
       "apollo_id": "5b1428f6a6da98dca8eab4bb",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mechanical or industrial engineering",
         "keywords": [
@@ -14362,7 +14362,7 @@
       "apollo_id": "556d659c7369641202ed0d01",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -14416,7 +14416,7 @@
       "apollo_id": "54a1284f69702dab37531f01",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14470,7 +14470,7 @@
       "apollo_id": "60d3313bb37b27008c8f89e0",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "entertainment",
         "keywords": [
@@ -14524,7 +14524,7 @@
       "apollo_id": "5e56fab85ec9c30001a7deb3",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "printing",
         "keywords": [
@@ -14578,7 +14578,7 @@
       "apollo_id": "5b849441324d444282278b6a",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -14627,7 +14627,7 @@
       "apollo_id": "5b872167324d440aff35b375",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14681,7 +14681,7 @@
       "apollo_id": "556d99757369641202b65a01",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mechanical or industrial engineering",
         "keywords": [
@@ -14789,7 +14789,7 @@
       "apollo_id": "663f3adf72de8f00012ab072",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food production",
         "keywords": [],
@@ -14834,7 +14834,7 @@
       "apollo_id": "5e56364cdbd347000177e868",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -14888,7 +14888,7 @@
       "apollo_id": "57c4c795a6da9836caa724f7",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -14942,7 +14942,7 @@
       "apollo_id": "6440b8e1bd85ca00daf45e39",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -14996,7 +14996,7 @@
       "apollo_id": "62714d7036c26900a56c7064",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -15050,7 +15050,7 @@
       "apollo_id": "5e56f9914b3b840001a4814e",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mechanical or industrial engineering",
         "keywords": [
@@ -15104,7 +15104,7 @@
       "apollo_id": "57c4c76da6da9836e28072f0",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -15158,7 +15158,7 @@
       "apollo_id": "5c22cce7a3ae61150150ca93",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -15212,7 +15212,7 @@
       "apollo_id": "604a4edb9f93fd00011b090d",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -15266,7 +15266,7 @@
       "apollo_id": "5f467be778513700016c58a6",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -15320,7 +15320,7 @@
       "apollo_id": "5591fcb673696418e9751000",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -15374,7 +15374,7 @@
       "apollo_id": "556d29e873696411f445ab00",
       "source": "apollo",
       "discovered_at": "2026-06-26T07:27:52",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "machinery",
         "keywords": [
@@ -15806,7 +15806,7 @@
       "apollo_id": "5da6748046f42a000172cf78",
       "source": "apollo",
       "discovered_at": "2026-06-27T07:15:22",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -15858,7 +15858,7 @@
       "apollo_id": "5a9d1c56a6da98d97e73b344",
       "source": "apollo",
       "discovered_at": "2026-06-27T07:15:22",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "management consulting",
         "keywords": [
@@ -15967,7 +15967,7 @@
       "apollo_id": "54a25fbb7468693a7e20131e",
       "source": "apollo",
       "discovered_at": "2026-06-28T07:21:09",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "renewables & environment",
         "keywords": [
@@ -16022,7 +16022,7 @@
       "apollo_id": "57c4ad9ca6da9867ded1e653",
       "source": "apollo",
       "discovered_at": "2026-06-29T07:27:31",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16076,7 +16076,7 @@
       "apollo_id": "54a120a669702d918c6f6602",
       "source": "apollo",
       "discovered_at": "2026-06-30T07:22:49",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16123,7 +16123,7 @@
       "apollo_id": "54a129c769702dc8410b8101",
       "source": "apollo",
       "discovered_at": "2026-07-01T07:34:03",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "semiconductors",
         "keywords": [
@@ -16178,7 +16178,7 @@
       "apollo_id": "54a2651574686930c2afa21f",
       "source": "apollo",
       "discovered_at": "2026-07-01T07:34:03",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -16232,7 +16232,7 @@
       "apollo_id": "54a1b60074686958604b420a",
       "source": "apollo",
       "discovered_at": "2026-07-02T07:34:23",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "environmental services",
         "keywords": [
@@ -16287,7 +16287,7 @@
       "apollo_id": "5db12968da9dd30001a224fc",
       "source": "apollo",
       "discovered_at": "2026-07-02T07:34:23",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16339,7 +16339,7 @@
       "apollo_id": "54a1391f69702d2851bd2a00",
       "source": "apollo",
       "discovered_at": "2026-07-03T07:31:40",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16393,7 +16393,7 @@
       "apollo_id": "64aff02baf83f700019b2f8a",
       "source": "apollo",
       "discovered_at": "2026-07-04T07:22:30",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16448,7 +16448,7 @@
       "apollo_id": "54a13c2469702de5b341d101",
       "source": "apollo",
       "discovered_at": "2026-07-05T07:23:35",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "medical devices",
         "keywords": [
@@ -16503,7 +16503,7 @@
       "apollo_id": "54a128d869702d8eeb3b9f01",
       "source": "apollo",
       "discovered_at": "2026-07-05T07:23:35",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -16558,7 +16558,7 @@
       "apollo_id": "5b8532e0f874f71559b7d04c",
       "source": "apollo",
       "discovered_at": "2026-07-05T07:23:35",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "renewables & environment",
         "keywords": [
@@ -16613,7 +16613,7 @@
       "apollo_id": "54a126cf69702dab37a90000",
       "source": "apollo",
       "discovered_at": "2026-07-05T07:23:35",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16667,7 +16667,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-07-07T07:30:56",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Calgary",
         "addr:housenumber": "4412",
@@ -16724,7 +16724,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-07-07T07:30:56",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Victoria",
         "addr:housenumber": "2519",
@@ -16781,7 +16781,7 @@
       "apollo_id": "54a1204869702da7533d2e02",
       "source": "apollo",
       "discovered_at": "2026-07-07T07:30:56",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -16836,7 +16836,7 @@
       "apollo_id": "54a12a7769702d9b8b0c2402",
       "source": "apollo",
       "discovered_at": "2026-07-07T07:30:56",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16890,7 +16890,7 @@
       "apollo_id": "64a5482de4ff4100c3d8f1f6",
       "source": "apollo",
       "discovered_at": "2026-07-07T07:30:56",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "environmental services",
         "keywords": [
@@ -16944,7 +16944,7 @@
       "apollo_id": "54a25e597468693cddbf7c1d",
       "source": "apollo",
       "discovered_at": "2026-07-08T07:34:19",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -16998,7 +16998,7 @@
       "apollo_id": "54a129de69702dcef947d901",
       "source": "apollo",
       "discovered_at": "2026-07-08T07:34:19",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "oil & energy",
         "keywords": [
@@ -17052,7 +17052,7 @@
       "apollo_id": "5a9dd049a6da98d93567d125",
       "source": "apollo",
       "discovered_at": "2026-07-08T07:34:19",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food & beverages",
         "keywords": [
@@ -17106,7 +17106,7 @@
       "apollo_id": "5e576532d2bd680001fdc24b",
       "source": "apollo",
       "discovered_at": "2026-07-08T07:34:19",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -17160,7 +17160,7 @@
       "apollo_id": "54a134b969702d3e83984900",
       "source": "apollo",
       "discovered_at": "2026-07-10T07:32:06",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "management consulting",
         "keywords": [
@@ -17215,7 +17215,7 @@
       "apollo_id": "5569d25b73696425b2fb9c00",
       "source": "apollo",
       "discovered_at": "2026-07-10T07:32:06",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "information technology & services",
         "keywords": [
@@ -17269,7 +17269,7 @@
       "apollo_id": "56d43906f3e5bb14ff002970",
       "source": "apollo",
       "discovered_at": "2026-07-10T07:32:06",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "food & beverages",
         "keywords": [
@@ -17323,7 +17323,7 @@
       "apollo_id": "5d09a9afa3ae617986fe02e4",
       "source": "apollo",
       "discovered_at": "2026-07-11T07:24:15",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "airlines/aviation",
         "keywords": [
@@ -17378,7 +17378,7 @@
       "apollo_id": "63787af9727b4000e5c6cce9",
       "source": "apollo",
       "discovered_at": "2026-07-11T07:24:15",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "government administration",
         "keywords": [
@@ -17427,7 +17427,7 @@
       "apollo_id": "56d94606f3e5bb262c001272",
       "source": "apollo",
       "discovered_at": "2026-07-11T07:24:15",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "mining & metals",
         "keywords": [
@@ -17535,7 +17535,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-07-24T07:42:28",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Cochrane",
         "addr:housenumber": "62",
@@ -17587,7 +17587,7 @@
       "apollo_id": "556962e773696425db531a00",
       "source": "apollo",
       "discovered_at": "2026-07-26T07:33:22",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -17641,7 +17641,7 @@
       "apollo_id": "5ed952bbe2ae55000197420c",
       "source": "apollo",
       "discovered_at": "2026-08-08T07:26:44",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "industry": "construction",
         "keywords": [
@@ -17695,7 +17695,7 @@
       "apollo_id": "",
       "source": "osm",
       "discovered_at": "2026-08-17T07:35:27",
-      "last_seen_at": "2026-08-17T07:35:27",
+      "last_seen_at": "2026-08-17T07:36:09",
       "raw_tags": {
         "addr:city": "Sylvan Lake",
         "addr:housenumber": "17",
@@ -17722,6 +17722,67 @@
         "linkedin": "https://www.linkedin.com/search/results/companies/?keywords=Falcon%20Homes",
         "registry": "https://cores.reg.gov.ab.ca/cores/public/searchcorporation.aspx?q=Falcon%20Homes",
         "opencorporates": "https://opencorporates.com/companies?q=Falcon%20Homes&jurisdiction_code=ca_ab"
+      },
+      "website_quality": "HAS_DOMAIN",
+      "website_probed_at": "",
+      "status": "new",
+      "notes": ""
+    },
+    {
+      "id": "f57460d8ee37",
+      "name": "The Honest Electrician Inc.",
+      "trade": "Electrical",
+      "city": "Calgary",
+      "region": "AB",
+      "province": "AB",
+      "country": "Canada",
+      "address": "4920, 45 Street SW, Calgary, T3E 3W4",
+      "website": "https://www.honestelectrician.ca",
+      "phone": "403-669-0355",
+      "email": "contact@honestelectrician.ca",
+      "osm_id": "node/14102978145",
+      "place_id": "",
+      "apollo_id": "",
+      "source": "osm",
+      "discovered_at": "2026-08-17T07:36:09",
+      "last_seen_at": "2026-08-17T07:36:09",
+      "raw_tags": {
+        "Languages spoken": "English",
+        "Payment options": "cash, credit card, email money transfer, cheque",
+        "Slogan/tagline": "Your Family's Safety Always Comes First",
+        "Tiktok": "https://www.tiktok.com/@honestelectrician",
+        "Youtube": "http://www.youtube.com/channel/UCBlDOeSQ7JJhD75GocmQI9g",
+        "addr:city": "Calgary",
+        "addr:housenumber": "4920",
+        "addr:postcode": "T3E 3W4",
+        "addr:province": "Alberta",
+        "addr:street": "45 Street SW",
+        "craft": "electrician",
+        "description": "Founded by Master Electrician Kyle Moss, The Honest Electrician Inc. provides a full spectrum of electrical installations, emergency repairs, and code upgrades across Calgary.",
+        "email": "contact@honestelectrician.ca",
+        "facebook": "https://www.facebook.com/Thehonestelectrician/",
+        "instagram": "https://www.instagram.com/thehonestelectricianinc/",
+        "name": "The Honest Electrician Inc.",
+        "opening_date": "November 1, 2013",
+        "opening_hours": "24/7 365",
+        "phone": "403-669-0355",
+        "website": "https://www.honestelectrician.ca"
+      },
+      "fit_score": 50,
+      "score_breakdown": {
+        "has_website": 5,
+        "has_phone": 5,
+        "has_email": 5,
+        "priority_trade": 20,
+        "urban_metro": 10,
+        "website_has_domain": 5
+      },
+      "research_urls": {
+        "google": "https://www.google.com/search?q=%22The%20Honest%20Electrician%20Inc.%22%20Calgary%20AB",
+        "google_maps": "https://www.google.com/maps/search/The%20Honest%20Electrician%20Inc.%20Calgary",
+        "linkedin": "https://www.linkedin.com/search/results/companies/?keywords=The%20Honest%20Electrician%20Inc.",
+        "registry": "https://cores.reg.gov.ab.ca/cores/public/searchcorporation.aspx?q=The%20Honest%20Electrician%20Inc.",
+        "opencorporates": "https://opencorporates.com/companies?q=The%20Honest%20Electrician%20Inc.&jurisdiction_code=ca_ab"
       },
       "website_quality": "HAS_DOMAIN",
       "website_probed_at": "",
