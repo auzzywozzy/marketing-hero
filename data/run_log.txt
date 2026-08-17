@@ -10355,3 +10355,151 @@ To https://github.com/auzzywozzy/marketing-hero.git
 [2026-08-15T07:41:41] Total raw candidates: 295
 [2026-08-15T07:41:41] Run complete. Added: 0, Updated: 278, Total on file: 345
 [2026-08-15  7:41:41.95] Run complete, deploying... 
+warning: in the working copy of 'data/run_log.txt', LF will be replaced by CRLF the next time Git touches it
+[main 6e6f563] Daily lead refresh 2026-08-15  7:41:42.08
+ 3 files changed, 407 insertions(+), 280 deletions(-)
+To https://github.com/auzzywozzy/marketing-hero.git
+   1d64b61..6e6f563  main -> main
+[2026-08-15  7:41:42.08] Deployed to live dashboard 
+[2026-08-15  7:41:44.56] Done 
+[2026-08-16  7:00:01.71] Starting Marketing Hero daily run 
+[2026-08-16T07:00:02] Loaded store: 345 existing leads
+[2026-08-16T07:00:02] Sources active: OSM + Google Places + Apollo
+[2026-08-16T07:00:02] Regions: BC, AB (48 target cities)
+[2026-08-16T07:00:02] Categories: 23
+[2026-08-16T07:00:02] Places scope: 8 cats × 10 metros (across 2 regions) = 80 calls (cap 350)
+[2026-08-16T07:00:02] Category: Plumbing
+[2026-08-16T07:00:05]   OSM [BC]: 14 raw hits
+^C[2026-08-17  7:00:01.67] Starting Marketing Hero daily run 
+[2026-08-17T07:00:02] Loaded store: 345 existing leads
+[2026-08-17T07:00:02] Sources active: OSM + Google Places + Apollo
+[2026-08-17T07:00:02] Regions: BC, AB (48 target cities)
+[2026-08-17T07:00:02] Categories: 23
+[2026-08-17T07:00:02] Places scope: 8 cats × 10 metros (across 2 regions) = 80 calls (cap 350)
+[2026-08-17T07:00:02] Category: Plumbing
+[2026-08-17T07:00:09]   OSM [BC]: 14 raw hits
+[2026-08-17T07:00:26]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:00:41]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:01:02]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:01:32]   OSM [AB]: 14 raw hits
+[2026-08-17T07:01:40] Category: HVAC / Heating
+[2026-08-17T07:01:44]   OSM [BC]: 14 raw hits
+[2026-08-17T07:02:08]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:02:24]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-08-17T07:02:46]   OSM [AB]: 9 raw hits
+[2026-08-17T07:02:56] Category: Electrical
+[2026-08-17T07:03:12]   OSM [BC]: 9 raw hits
+[2026-08-17T07:03:32]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:03:48]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:04:16]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:04:49]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-08-17T07:05:37]   ! Overpass error for Electrical [AB]: HTTP Error 504: Gateway Timeout
+[2026-08-17T07:05:37]   OSM [AB]: 0 raw hits
+[2026-08-17T07:05:47] Category: Roofing
+[2026-08-17T07:05:57]   OSM [BC]: 5 raw hits
+[2026-08-17T07:06:11]   OSM [AB]: 4 raw hits
+[2026-08-17T07:06:21] Category: General Contracting
+[2026-08-17T07:06:31]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:06:48]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-08-17T07:07:17]   OSM [BC]: 22 raw hits
+[2026-08-17T07:07:36]   OSM [AB]: 11 raw hits
+[2026-08-17T07:07:41] Category: Carpentry
+[2026-08-17T07:07:51]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:08:07]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-08-17T07:08:29]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:09:02]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-08-17T07:09:50]   ! Overpass error for Carpentry [BC]: HTTP Error 504: Gateway Timeout
+[2026-08-17T07:09:50]   OSM [BC]: 0 raw hits
+[2026-08-17T07:10:06]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:10:18]   OSM [AB]: 4 raw hits
+[2026-08-17T07:10:24] Category: Prefabrication
+[2026-08-17T07:10:34]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:10:51]   OSM [BC]: 0 raw hits
+[2026-08-17T07:11:07]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:11:26]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:11:49]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:12:19]   OSM [AB]: 0 raw hits
+[2026-08-17T07:12:24] Category: Landscaping
+[2026-08-17T07:12:35]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:12:53]   OSM [BC]: 5 raw hits
+[2026-08-17T07:13:07]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:13:22]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:13:48]   OSM [AB]: 5 raw hits
+[2026-08-17T07:13:52] Category: Excavation / Earthworks
+[2026-08-17T07:14:02]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:14:15]   OSM [BC]: 0 raw hits
+[2026-08-17T07:14:32]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:14:48]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-08-17T07:15:10]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:15:46]   . Overpass 504, backing off 48s (attempt 4/4)
+[2026-08-17T07:16:34]   ! Overpass error for Excavation / Earthworks [AB]: HTTP Error 504: Gateway Timeout
+[2026-08-17T07:16:34]   OSM [AB]: 0 raw hits
+[2026-08-17T07:16:38] Category: Demolition / Site Prep
+[2026-08-17T07:16:41]   OSM [BC]: 0 raw hits
+[2026-08-17T07:16:54]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:17:03]   OSM [AB]: 0 raw hits
+[2026-08-17T07:17:07] Category: Painting
+[2026-08-17T07:17:16]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:17:35]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:17:52]   OSM [BC]: 7 raw hits
+[2026-08-17T07:17:58]   OSM [AB]: 7 raw hits
+[2026-08-17T07:18:02] Category: Flooring / Tile
+[2026-08-17T07:18:12]   . Overpass 429, backing off 6s (attempt 1/4)
+[2026-08-17T07:18:30]   . Overpass 429, backing off 12s (attempt 2/4)
+[2026-08-17T07:19:13]   . Overpass 504, backing off 24s (attempt 3/4)
+[2026-08-17T07:20:03]   OSM [BC]: 1 raw hits
+[2026-08-17T07:20:39]   OSM [AB]: 3 raw hits
+[2026-08-17T07:20:43] Category: Drywall / Plastering
+[2026-08-17T07:21:13]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:21:48]   OSM [BC]: 0 raw hits
+[2026-08-17T07:22:24]   OSM [AB]: 0 raw hits
+[2026-08-17T07:22:28] Category: Concrete / Masonry
+[2026-08-17T07:22:55]   OSM [BC]: 3 raw hits
+[2026-08-17T07:23:26]   OSM [AB]: 1 raw hits
+[2026-08-17T07:23:32] Category: Windows / Doors
+[2026-08-17T07:24:02]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:24:33]   OSM [BC]: 1 raw hits
+[2026-08-17T07:25:09]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:25:40]   OSM [AB]: 7 raw hits
+[2026-08-17T07:25:44] Category: Garage Doors
+[2026-08-17T07:25:44]   OSM [BC]: 0 raw hits
+[2026-08-17T07:25:48]   OSM [AB]: 0 raw hits
+[2026-08-17T07:25:52] Category: Fencing / Decking
+[2026-08-17T07:26:16]   OSM [BC]: 0 raw hits
+[2026-08-17T07:26:43]   OSM [AB]: 0 raw hits
+[2026-08-17T07:26:47] Category: Solar
+[2026-08-17T07:27:18]   OSM [BC]: 0 raw hits
+[2026-08-17T07:27:55]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:28:31]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:29:05]   OSM [AB]: 0 raw hits
+[2026-08-17T07:29:09] Category: Pool / Spa
+[2026-08-17T07:29:09]   OSM [BC]: 0 raw hits
+[2026-08-17T07:29:13]   OSM [AB]: 0 raw hits
+[2026-08-17T07:29:17] Category: Glass / Glazing
+[2026-08-17T07:29:40]   OSM [BC]: 5 raw hits
+[2026-08-17T07:30:08]   OSM [AB]: 1 raw hits
+[2026-08-17T07:30:12] Category: Insulation / Scaffolding
+[2026-08-17T07:30:43]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:31:13]   OSM [BC]: 1 raw hits
+[2026-08-17T07:31:40]   OSM [AB]: 0 raw hits
+[2026-08-17T07:31:44] Category: Metal Fabrication / Welding
+[2026-08-17T07:32:15]   . Overpass 504, backing off 6s (attempt 1/4)
+[2026-08-17T07:32:53]   . Overpass 504, backing off 12s (attempt 2/4)
+[2026-08-17T07:33:38]   OSM [BC]: 4 raw hits
+[2026-08-17T07:34:09]   OSM [AB]: 8 raw hits
+[2026-08-17T07:34:13] Category: Cabinet / Millwork
+[2026-08-17T07:34:42]   OSM [BC]: 1 raw hits
+[2026-08-17T07:35:14]   OSM [AB]: 0 raw hits
+[2026-08-17T07:35:18] Places calls this run: 190
+[2026-08-17T07:35:18] Apollo: region BC
+[2026-08-17T07:35:19]   Apollo [BC p1]: 23 hits (est pool 2850)
+[2026-08-17T07:35:21]   Apollo [BC p2]: 23 hits (est pool 2850)
+[2026-08-17T07:35:22]   Apollo [BC p3]: 22 hits (est pool 2850)
+[2026-08-17T07:35:23] Apollo: region AB
+[2026-08-17T07:35:24]   Apollo [AB p1]: 21 hits (est pool 2825)
+[2026-08-17T07:35:25]   Apollo [AB p2]: 22 hits (est pool 2825)
+[2026-08-17T07:35:26]   Apollo [AB p3]: 22 hits (est pool 2825)
+[2026-08-17T07:35:27] Apollo calls this run: 6
+[2026-08-17T07:35:27] Total raw candidates: 299
+[2026-08-17T07:35:27] Run complete. Added: 1, Updated: 280, Total on file: 346
+[2026-08-17  7:35:27.95] Run complete, deploying... 
